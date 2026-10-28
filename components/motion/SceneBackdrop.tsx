@@ -117,27 +117,43 @@ const scenes: Record<SceneName, Scene> = {
     viewBox: "0 0 400 340",
     art: (
       <>
-        <g className="shackle text-ink/25">
-          <path d="M260 170V130a40 40 0 0 1 80 0V170" {...line} strokeWidth={8} />
+        <defs>
+          {/* The key is cut off at the keyhole, so its tip disappears into it. */}
+          <clipPath id="scene-key-clip">
+            <rect x={-200} y={0} width={500} height={340} />
+          </clipPath>
+        </defs>
+        {/* Short left leg pops free; the long right leg stays seated in the body. */}
+        <g className="shackle">
+          <path d="M260 180V130a40 40 0 0 1 80 0V222" {...line} strokeWidth={8} className="text-ink/25" />
+          <path d="M260 180V130a40 40 0 0 1 80 0V222" {...line} strokeWidth={8} className="unlocked text-primary" />
         </g>
-        <g className="text-ink/25" {...line}>
-          <rect x={235} y={170} width={130} height={120} rx={20} />
-        </g>
-        <g className="keyhole text-primary" fill="currentColor">
+        <rect x={235} y={170} width={130} height={120} rx={20} {...line} className="fill-ground text-ink/25" />
+        <rect x={235} y={170} width={130} height={120} rx={20} {...line} className="unlocked fill-primary/10 text-primary" />
+        <g className="text-ink/25" fill="currentColor">
           <circle cx={300} cy={222} r={10} />
           <path d="M295 226h10l4 26h-18Z" />
         </g>
-        <g className="key text-primary" {...line} strokeWidth={6}>
-          <circle cx={70} cy={230} r={32} />
-          <circle cx={70} cy={230} r={11} />
-          <path d="M102 230H226M200 230v20M214 230v14" />
+        <g className="unlocked text-primary" fill="currentColor">
+          <circle cx={300} cy={222} r={10} />
+          <path d="M295 226h10l4 26h-18Z" />
+        </g>
+        <g clipPath="url(#scene-key-clip)">
+          <g className="key text-primary" {...line} strokeWidth={6}>
+            <circle cx={160} cy={222} r={32} />
+            <circle cx={160} cy={222} r={11} />
+            <path d="M192 222H336M306 222v20M322 222v14" />
+          </g>
         </g>
       </>
     ),
     play: (tl, q) => {
-      tl.from(q(".key"), { x: -140, ease: "power1.out", duration: 2 })
-        .from(q(".keyhole"), { opacity: 0.2, duration: 0.4 })
-        .fromTo(q(".shackle"), { y: 0 }, { y: -26, duration: 0.8, ease: "back.out(2)" });
+      tl.from(q(".key"), { x: -120, ease: "power1.inOut", duration: 2 })
+        // Quarter turn: the head goes edge-on.
+        .to(q(".key"), { scaleY: 0.35, svgOrigin: "160 222", duration: 0.4, ease: "power2.inOut" })
+        .from(q(".unlocked"), { opacity: 0, duration: 0.6 }, "<0.2")
+        // Lifts until the short left leg clears the body; the long right leg stays seated.
+        .fromTo(q(".shackle"), { y: 0 }, { y: -36, duration: 0.6, ease: "back.out(2)" }, "<");
     },
   },
 
