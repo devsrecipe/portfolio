@@ -113,30 +113,38 @@ const scenes: Record<SceneName, Scene> = {
     viewBox: "0 0 400 320",
     art: (
       <>
-        <g className="text-ink/20" {...line} strokeWidth={5}>
-          <rect x={244} y={130} width={120} height={120} rx={28} />
-          <path d="M286 172v18M322 172v18" strokeWidth={9} />
+        {/* Both faces sit at x=218 when connected. On contact the oval faces fade
+            into a single straight seam. The socket is filled with the section
+            colour and drawn last, so the prongs vanish behind it. */}
+        <g className="plug text-ink/30" {...line} strokeWidth={5}>
+          <path d="M130 190C86 190 70 236 96 262S74 316 20 312" />
+          <path d="M224 174h34M224 206h34" strokeWidth={9} />
+          <path d="M218 148 172 149C146 150 130 160 130 176V204C130 220 146 230 172 231L218 232" className="fill-ground" />
+          <ellipse cx={218} cy={190} rx={10} ry={42} className="face fill-ground" />
         </g>
-        <g className="plug text-ink/35" {...line} strokeWidth={5}>
-          <path d="M118 190C50 190 70 300 -10 300" />
-          <rect x={118} y={150} width={92} height={80} rx={20} />
-          <path d="M210 172h34M210 208h34" strokeWidth={9} />
+        <g className="socket text-ink/30" {...line} strokeWidth={5}>
+          <path d="M306 190C350 190 366 236 340 262S362 316 416 312" />
+          <path d="M218 148 264 149C290 150 306 160 306 176V204C306 220 290 230 264 231L218 232" className="fill-ground" />
+          <ellipse cx={218} cy={190} rx={10} ry={42} className="face fill-ground" />
+          <path d="M218 151V229" className="seam" />
+          <g className="face" fill="currentColor" stroke="none">
+            <ellipse cx={218} cy={174} rx={3.5} ry={6} />
+            <ellipse cx={218} cy={206} rx={3.5} ry={6} />
+          </g>
         </g>
-        <path
-          className="bolt text-primary"
-          d="M312 40 288 90h22l-14 44 40-58h-24l14-36Z"
-          fill="currentColor"
-        />
+        <g className="spark text-primary" fill="currentColor">
+          <path d="M226 74 210 104h12l-8 28 24-36h-13l9-22Z" />
+          <path d="M226 254 210 284h12l-8 28 24-36h-13l9-22Z" />
+        </g>
       </>
     ),
     play: (tl, q) => {
-      tl.from(q(".plug"), { x: -110, ease: "power1.out", duration: 2 }).from(q(".bolt"), {
-        opacity: 0,
-        scale: 0.4,
-        svgOrigin: "312 87",
-        duration: 0.6,
-        ease: "back.out(3)",
-      });
+      tl.from(q(".plug"), { x: -70, ease: "power2.in", duration: 2 })
+        .from(q(".socket"), { x: 70, ease: "power2.in", duration: 2 }, "<")
+        // On contact the oval faces and holes give way to one straight seam.
+        .to(q(".face"), { opacity: 0, duration: 0.2 }, "-=0.15")
+        .from(q(".seam"), { opacity: 0, duration: 0.2 }, "<")
+        .from(q(".spark"), { opacity: 0, scale: 0.3, svgOrigin: "218 190", duration: 0.6, ease: "back.out(3)" });
     },
   },
 };
