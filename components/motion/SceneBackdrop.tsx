@@ -84,7 +84,7 @@ const scenes: Record<SceneName, Scene> = {
   },
 
   relay: {
-    viewBox: "0 0 420 220",
+    viewBox: "0 0 420 175",
     art: (
       <>
         <g className="text-ink/15" {...line}>
@@ -92,7 +92,7 @@ const scenes: Record<SceneName, Scene> = {
             <rect key={x} x={x} y={40} width={100} height={100} rx={20} />
           ))}
           <path d="M120 90h28m-8-8 8 8-8 8M270 90h28m-8-8 8 8-8 8" />
-          <path d="M60 190H360" strokeDasharray="2 10" />
+          <path d="M60 162H360" strokeDasharray="2 10" />
           {/* idea, build, finish */}
           <circle cx={60} cy={84} r={13} />
           <path d="M53 104h14M55 112h10" />
@@ -102,7 +102,7 @@ const scenes: Record<SceneName, Scene> = {
         {[10, 160, 310].map((x, i) => (
           <rect key={x} className={`lit lit-${i} text-primary`} x={x} y={40} width={100} height={100} rx={20} {...line} />
         ))}
-        <circle className="baton text-primary" cx={360} cy={190} r={9} fill="currentColor" />
+        <circle className="baton text-primary" cx={360} cy={162} r={9} fill="currentColor" />
       </>
     ),
     play: (tl, q) => {
@@ -259,7 +259,8 @@ export function SceneBackdrop({ scene, className }: { scene: SceneName; classNam
           },
         );
         const tl = gsap.timeline({
-          scrollTrigger: { trigger: section, start: "top 80%", end: "center 40%", scrub: 0.8 },
+          // Fully played once the art has travelled 70% of the way up the viewport.
+          scrollTrigger: { trigger: el, start: "top bottom", end: "top 30%", scrub: 0.8 },
         });
         play(tl, q);
       },

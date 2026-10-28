@@ -119,7 +119,7 @@ export default function HomePage() {
         aria-labelledby="industries-title"
         className="container-x relative isolate scroll-mt-24 py-24"
       >
-        <SceneBackdrop scene="rocket" className="right-0 top-6 w-[400px]" />
+        <SceneBackdrop scene="rocket" className="right-6 top-6 w-[360px]" />
         <SectionHeading
           id="industries-title"
           eyebrow={home.industries.eyebrow}
@@ -158,8 +158,8 @@ export default function HomePage() {
         aria-labelledby="process-title"
         className="relative isolate scroll-mt-24 overflow-hidden bg-surface py-24"
       >
-        <SceneBackdrop scene="relay" className="right-[4%] top-16 w-[420px]" />
-        <div className="container-x">
+        <div className="container-x relative">
+          <SceneBackdrop scene="relay" className="right-6 -top-6 w-[320px]" />
           <SectionHeading
             id="process-title"
             eyebrow={home.process.eyebrow}
@@ -191,7 +191,7 @@ export default function HomePage() {
 
       {/* Success stories */}
       <section aria-labelledby="stories-title" className="container-x relative isolate py-24">
-        <SceneBackdrop scene="key" className="right-0 top-10 w-[360px]" />
+        <SceneBackdrop scene="key" className="right-6 top-10 w-[320px]" />
         <SectionHeading
           id="stories-title"
           eyebrow={home.stories.eyebrow}
@@ -236,8 +236,8 @@ export default function HomePage() {
         aria-labelledby="compare-title"
         className="relative isolate overflow-hidden border-y border-border bg-surface py-24"
       >
-        <SceneBackdrop scene="gears" className="right-[4%] top-4 w-[340px]" />
-        <div className="container-x">
+        <div className="container-x relative">
+          <SceneBackdrop scene="gears" className="right-6 -top-16 w-[300px]" />
           <SectionHeading
             id="compare-title"
             eyebrow={home.compare.eyebrow}
@@ -251,7 +251,7 @@ export default function HomePage() {
 
       {/* Team */}
       <section aria-labelledby="team-title" className="container-x relative isolate py-24">
-        <SceneBackdrop scene="seat" className="right-0 top-8 w-[380px]" />
+        <SceneBackdrop scene="seat" className="right-6 top-8 w-[340px]" />
         <SectionHeading
           id="team-title"
           eyebrow={home.team.eyebrow}
@@ -349,8 +349,8 @@ export default function HomePage() {
         aria-labelledby="contact-title"
         className="relative isolate scroll-mt-20 overflow-hidden bg-primary py-20 text-ground"
       >
-        <SceneBackdrop scene="plug" className="-left-10 bottom-0 w-[380px]" />
-        <div className="container-x grid items-start gap-12 lg:grid-cols-[1fr_1.1fr]">
+        <div className="container-x relative grid items-start gap-12 lg:grid-cols-[1fr_1.1fr]">
+          <SceneBackdrop scene="plug" className="-bottom-20 left-6 w-[340px]" />
           <div>
             <h2
               id="contact-title"
