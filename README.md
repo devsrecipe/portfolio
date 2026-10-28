@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Devs Recipe
 
-## Getting Started
+Marketing site and admin panel for Devs Recipe. Next.js 16 (App Router, Cache Components), TypeScript, Tailwind CSS v4. Palette A · Midnight Kitchen.
 
-First, run the development server:
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # type check, lint-clean production build
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Admin lives at `/admin`. It is protected by `proxy.ts` (Next 16's name for middleware) and is `noindex` and disallowed in `robots.txt`.
+Demo sign in, overridable with env vars `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- email `admin@devsrecipe.local`
+- password `change-me`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Set `NEXT_PUBLIC_SITE_URL` to the production origin so canonicals, sitemap and Open Graph URLs are correct.
 
-## Learn More
+## Where to edit
 
-To learn more about Next.js, take a look at the following resources:
+| What | Where |
+| --- | --- |
+| Colours (only place hex values live) | `app/globals.css` |
+| Copy, nav, compare table, process steps | `content/site.ts` |
+| Industries / solution pages | `content/industries.ts` |
+| Success stories | `content/stories.ts` |
+| Blog posts | `content/posts.ts` |
+| Jobs | `content/jobs.ts` |
+| FAQ, team, hero demo scenarios | `content/faq.ts`, `content/team.ts`, `content/automation.ts` |
+| Admin sample data | `content/admin.ts` |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Bracketed placeholders such as `[Client name]` are content, not code. Fill them in the `content/` files.
+Public pages read content through `lib/content.ts`, where each getter is cached and tagged (`posts`, `stories`, `jobs`, `industries`). Swap those function bodies for a CMS or database and call `revalidateTag` to refresh pages.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Fonts
 
-## Deploy on Vercel
+Self-hosted through `next/font/google`, `display: swap`:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Hanken Grotesk** for headings and body (closest to the geometric grotesk in the designs)
+- **JetBrains Mono** for small uppercase labels, bracketed placeholders and code-like text
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notes
+
+- Forms (contact, newsletter, job application, sign in) use Server Actions with Zod validation. They validate and show success states, but do not store anything yet: see the `TODO` comments in `lib/actions.ts`.
+- `lib/og.tsx`, `app/icon.tsx` and `app/apple-icon.tsx` repeat the palette as `rgb()` values because `ImageResponse` cannot read CSS variables.
+- Admin auth is a demo. Replace `lib/auth.ts` with a real session provider before going live, and check the session in server code as well as in `proxy.ts`.

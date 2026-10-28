@@ -1,26 +1,185 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Palette A · Midnight Kitchen. The only place colour values are defined. */
+@theme {
+  --color-ground: #0f1115;
+  --color-ink: #f3f1ec;
+  --color-primary: #ff6a3d;
+  --color-primary-hover: #ff8259;
+  --color-accent: #ffb547;
+  --color-muted: #8b909a;
+  --color-surface: #171a20;
+  --color-surface-2: #1e222a;
+  --color-border: #2a2f38;
+  --color-success: #3dd68c;
+  --color-primary-soft: rgba(255, 106, 61, 0.12);
+  --color-accent-soft: rgba(255, 181, 71, 0.14);
+  --color-success-soft: rgba(61, 214, 140, 0.14);
+  --color-ink-border: rgba(243, 241, 236, 0.4);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ground);
+  color: var(--color-ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--color-primary);
+  color: var(--color-ground);
+}
+
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+@utility container-x {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 75rem;
+  padding-inline: 1.5rem;
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes flow-dash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+.flow-line {
+  stroke-dasharray: 4 8;
+  animation: flow-dash 1.4s linear infinite;
+}
+
+/* ---------- Motion ---------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes draw-underline {
+  from {
+    background-size: 0% 4px;
+  }
+  to {
+    background-size: 100% 4px;
+  }
+}
+@keyframes hub-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 106, 61, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 14px rgba(255, 106, 61, 0);
+  }
+}
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Entrance on page load, staggered with --d */
+.anim-rise {
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: var(--d, 0s);
+}
+.anim-panel {
+  animation: panel-in 0.35s ease-out both;
+}
+.hub-pulse {
+  animation: hub-pulse 2.4s ease-out infinite;
+}
+.underline-draw {
+  background: linear-gradient(var(--color-accent), var(--color-accent)) 0 100% / 100% 4px no-repeat;
+  animation: draw-underline 0.9s 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  padding-bottom: 6px;
+}
+
+/* Hover lift for cards and links */
+.lift {
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.lift:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-primary);
+  box-shadow: 0 16px 40px -20px rgba(255, 106, 61, 0.35);
+}
+button:active:not(:disabled),
+a[class*="rounded-full"]:active {
+  transform: scale(0.98);
+}
+
+/* Scroll reveal: pure CSS, content stays visible where unsupported */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: rise linear backwards;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .anim-rise,
+  .anim-panel,
+  .hub-pulse,
+  .underline-draw,
+  .flow-line {
+    animation: none !important;
+  }
+  .lift:hover {
+    transform: none;
+  }
 }
