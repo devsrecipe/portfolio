@@ -19,7 +19,7 @@ const word: Variants = {
 
 type Part = { text: string; highlight?: boolean };
 
-/** H1 whose words rise in one by one. The highlighted word gets an underline that draws in. */
+/** H1 whose words rise in one by one. The highlighted word is set in italic in the primary colour. */
 export function HeroHeadline({ id, parts }: { id: string; parts: Part[] }) {
   return (
     <motion.h1
@@ -28,7 +28,7 @@ export function HeroHeadline({ id, parts }: { id: string; parts: Part[] }) {
       initial="hidden"
       animate="show"
       style={{ perspective: 600 }}
-      className="mt-6 text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl"
+      className="mt-6 font-display text-[3.25rem] leading-[1] tracking-[-0.02em] sm:text-6xl lg:text-[4.5rem]"
     >
       {parts.flatMap((part, p) =>
         part.text.split(" ").map((w, i) => (
@@ -37,20 +37,11 @@ export function HeroHeadline({ id, parts }: { id: string; parts: Part[] }) {
             variants={word}
             className={
               part.highlight
-                ? "relative mr-[0.25em] inline-block text-primary"
+                ? "mr-[0.25em] inline-block italic text-primary"
                 : "mr-[0.25em] inline-block"
             }
           >
             {w}
-            {part.highlight ? (
-              <motion.span
-                aria-hidden
-                className="absolute inset-x-0 -bottom-1 h-1 origin-left rounded-full bg-accent"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 0.9, duration: 0.7, ease: [0.2, 0.7, 0.2, 1] }}
-              />
-            ) : null}
           </motion.span>
         )),
       )}

@@ -11,6 +11,7 @@ import {
   StaggerList,
   StaggerOrderedList,
 } from "@/components/motion/Reveal";
+import { SceneBackdrop } from "@/components/motion/SceneBackdrop";
 import { ScrubLine } from "@/components/motion/ScrubLine";
 import { Spotlight } from "@/components/motion/Spotlight";
 import { TiltCard } from "@/components/motion/TiltCard";
@@ -18,6 +19,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { AutomationDemo } from "@/components/site/AutomationDemo";
 import { CompareTable } from "@/components/site/CompareTable";
 import { ContactForm } from "@/components/site/ContactForm";
+import { FitPuzzle } from "@/components/site/FitPuzzle";
 import { IndustryCard } from "@/components/site/IndustryCard";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { StoryCard } from "@/components/site/StoryCard";
@@ -55,7 +57,7 @@ export default function HomePage() {
         <HeroGlow />
         <section
           aria-labelledby="hero-title"
-          className="container-x grid items-center gap-12 py-16 lg:grid-cols-[1.05fr_1fr] lg:py-24"
+          className="container-x grid items-center gap-12 py-16 lg:grid-cols-[1.05fr_1fr] lg:py-28"
         >
           <div>
             <p className="eyebrow">{hero.eyebrow}</p>
@@ -98,11 +100,24 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Team fit */}
+      <section aria-labelledby="fit-title" className="container-x py-24 lg:py-32">
+        <div className="grid items-center gap-14 lg:grid-cols-2">
+          <SectionHeading
+            id="fit-title"
+            eyebrow={home.fit.eyebrow}
+            title={home.fit.title}
+            intro={home.fit.intro}
+          />
+          <FitPuzzle data={home.fit} />
+        </div>
+      </section>
+
       {/* Industries */}
       <section
         id="solutions"
         aria-labelledby="industries-title"
-        className="container-x scroll-mt-24 py-24"
+        className="container-x scroll-mt-24 py-24 lg:py-32"
       >
         <SectionHeading
           id="industries-title"
@@ -140,9 +155,10 @@ export default function HomePage() {
       <section
         id="process"
         aria-labelledby="process-title"
-        className="scroll-mt-24 bg-surface py-24"
+        className="theme-dark relative isolate scroll-mt-24 overflow-hidden bg-ground py-24 lg:py-32"
       >
-        <div className="container-x">
+        <div className="container-x relative">
+          <SceneBackdrop scene="relay" className="right-6 -top-6 w-[320px]" />
           <SectionHeading
             id="process-title"
             eyebrow={home.process.eyebrow}
@@ -173,7 +189,8 @@ export default function HomePage() {
       </section>
 
       {/* Success stories */}
-      <section aria-labelledby="stories-title" className="container-x py-24">
+      <section aria-labelledby="stories-title" className="container-x relative isolate py-24 lg:py-32">
+        <SceneBackdrop scene="key" className="right-6 top-10 w-[320px]" />
         <SectionHeading
           id="stories-title"
           eyebrow={home.stories.eyebrow}
@@ -202,7 +219,7 @@ export default function HomePage() {
           ))}
         </StaggerList>
         <figure className="mt-8 rounded-3xl border border-border bg-surface p-8">
-          <blockquote className="text-2xl">“{home.stories.quote.text}”</blockquote>
+          <blockquote className="font-display text-3xl italic leading-snug sm:text-4xl">“{home.stories.quote.text}”</blockquote>
           <figcaption className="mt-5 flex items-center gap-4">
             <span aria-hidden className="size-11 rounded-full bg-surface-2" />
             <span>
@@ -216,7 +233,7 @@ export default function HomePage() {
       {/* Compare */}
       <section
         aria-labelledby="compare-title"
-        className="border-y border-border bg-surface py-24"
+        className="border-y border-border bg-surface py-24 lg:py-32"
       >
         <div className="container-x">
           <SectionHeading
@@ -231,7 +248,7 @@ export default function HomePage() {
       </section>
 
       {/* Team */}
-      <section aria-labelledby="team-title" className="container-x py-24">
+      <section aria-labelledby="team-title" className="container-x py-24 lg:py-32">
         <SectionHeading
           id="team-title"
           eyebrow={home.team.eyebrow}
@@ -258,7 +275,7 @@ export default function HomePage() {
         <div className="container-x grid gap-12 lg:grid-cols-[1.6fr_1fr]">
           <div>
             <div className="flex items-baseline justify-between gap-4">
-              <h2 className="text-3xl font-bold tracking-tight">{home.blog.title}</h2>
+              <h2 className="font-display text-4xl tracking-[-0.015em]">{home.blog.title}</h2>
               <Link href={home.blog.allLink.href} className={textLink}>
                 {home.blog.allLink.label} →
               </Link>
@@ -284,7 +301,7 @@ export default function HomePage() {
           </div>
           <div>
             <div className="flex items-baseline justify-between gap-4">
-              <h2 className="text-3xl font-bold tracking-tight">{home.roles.title}</h2>
+              <h2 className="font-display text-4xl tracking-[-0.015em]">{home.roles.title}</h2>
               <Link href={home.roles.allLink.href} className={textLink}>
                 {home.roles.allLink.label} →
               </Link>
@@ -314,9 +331,9 @@ export default function HomePage() {
       </section>
 
       {/* FAQ */}
-      <section aria-labelledby="faq-title" className="container-x py-24">
+      <section aria-labelledby="faq-title" className="container-x py-24 lg:py-32">
         <div className="mx-auto max-w-3xl">
-          <h2 id="faq-title" className="mb-8 text-4xl font-bold tracking-tight">
+          <h2 id="faq-title" className="mb-8 font-display text-5xl tracking-[-0.015em]">
             {home.faq.title}
           </h2>
           <Accordion items={home.faq.items} />
@@ -327,27 +344,28 @@ export default function HomePage() {
       <section
         id="contact"
         aria-labelledby="contact-title"
-        className="scroll-mt-20 bg-primary py-20 text-ground"
+        className="theme-dark relative isolate scroll-mt-20 overflow-hidden bg-ground py-24 lg:py-32"
       >
-        <div className="container-x grid items-start gap-12 lg:grid-cols-[1fr_1.1fr]">
+        <div className="container-x relative grid items-start gap-12 lg:grid-cols-[1fr_1.1fr]">
+          <SceneBackdrop scene="plug" className="-bottom-24 left-6 w-[340px] lg:-bottom-32" />
           <div>
             <h2
               id="contact-title"
-              className="text-5xl font-bold leading-[1.02] tracking-tight"
+              className="font-display text-6xl leading-[1.02] tracking-[-0.015em]"
             >
               {home.contact.title}
             </h2>
-            <p className="mt-6 text-lg">{home.contact.text}</p>
+            <p className="mt-6 max-w-md text-lg text-muted">{home.contact.text}</p>
             <div className="mt-8 flex items-center gap-4">
-              <span aria-hidden className="size-14 rounded-full bg-ground/25" />
+              <span aria-hidden className="size-14 rounded-full bg-surface-2" />
               <p>
                 <span className="block font-semibold">{site.founder.name}</span>
-                <span className="block text-sm">{site.founder.role}</span>
+                <span className="block text-sm text-muted">{site.founder.role}</span>
               </p>
             </div>
             <Link
               href={home.contact.calendar.href}
-              className="mt-8 inline-flex h-12 items-center rounded-full border border-ground px-6 font-semibold hover:bg-ground hover:text-ink"
+              className="mt-8 inline-flex h-12 items-center rounded-full border border-ink-border px-6 font-semibold hover:bg-surface-2"
             >
               {home.contact.calendar.label}
             </Link>

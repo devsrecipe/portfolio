@@ -1,28 +1,50 @@
 @import "tailwindcss";
 
-/* Palette A · Midnight Kitchen. The only place colour values are defined. */
+/* Palette B · Warm Kitchen. The only place colour values are defined.
+ * Light cream base; .theme-dark (below) flips a section to the dark variant.
+ * primary, accent and success all pass WCAG AA (4.5:1) as text on ground and surface. */
 @theme {
-  --color-ground: #0f1115;
-  --color-ink: #f3f1ec;
-  --color-primary: #ff6a3d;
-  --color-primary-hover: #ff8259;
-  --color-accent: #ffb547;
-  --color-muted: #8b909a;
-  --color-surface: #171a20;
-  --color-surface-2: #1e222a;
-  --color-border: #2a2f38;
-  --color-success: #3dd68c;
-  --color-primary-soft: rgba(255, 106, 61, 0.12);
-  --color-accent-soft: rgba(255, 181, 71, 0.14);
-  --color-success-soft: rgba(61, 214, 140, 0.14);
-  --color-ink-border: rgba(243, 241, 236, 0.4);
+  --color-ground: #fffaf3;
+  --color-ink: #1c1714;
+  --color-primary: #c4461e;
+  --color-primary-hover: #a83a16;
+  --color-accent: #9a6412;
+  --color-muted: #6b6259;
+  --color-surface: #f7f0e5;
+  --color-surface-2: #efe6d8;
+  --color-border: #e6dbcb;
+  --color-success: #1f7a4d;
+  --color-primary-soft: rgba(196, 70, 30, 0.09);
+  --color-accent-soft: rgba(154, 100, 18, 0.1);
+  --color-success-soft: rgba(31, 122, 77, 0.1);
+  --color-ink-border: rgba(28, 23, 20, 0.22);
 
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
+  --font-display: var(--font-display);
+}
+
+/* Dark sections for rhythm (Process, Contact, footer). Every token-based utility inside follows. */
+.theme-dark {
+  --color-ground: #17120f;
+  --color-ink: #fffaf3;
+  --color-primary: #e8673a;
+  --color-primary-hover: #f07d53;
+  --color-accent: #f2b25c;
+  --color-muted: #a99f93;
+  --color-surface: #1f1915;
+  --color-surface-2: #2a231e;
+  --color-border: #3a3029;
+  --color-success: #4cc38a;
+  --color-primary-soft: rgba(232, 103, 58, 0.14);
+  --color-accent-soft: rgba(242, 178, 92, 0.14);
+  --color-success-soft: rgba(76, 195, 138, 0.14);
+  --color-ink-border: rgba(255, 250, 243, 0.35);
+  color: var(--color-ink);
 }
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
   scroll-behavior: smooth;
 }
 
@@ -48,7 +70,7 @@ html.lenis body {
 .spotlight-card {
   background-image: radial-gradient(
     380px circle at var(--x, -1000px) var(--y, -1000px),
-    rgba(255, 106, 61, 0.11),
+    color-mix(in srgb, var(--color-primary) 8%, transparent),
     transparent 60%
   );
 }
@@ -121,10 +143,10 @@ details > summary::-webkit-details-marker {
 @keyframes hub-pulse {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(255, 106, 61, 0.45);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 45%, transparent);
   }
   50% {
-    box-shadow: 0 0 0 14px rgba(255, 106, 61, 0);
+    box-shadow: 0 0 0 14px transparent;
   }
 }
 .hub-pulse {
@@ -140,7 +162,7 @@ details > summary::-webkit-details-marker {
 .lift:hover {
   transform: translateY(-4px);
   border-color: var(--color-primary);
-  box-shadow: 0 16px 40px -20px rgba(255, 106, 61, 0.35);
+  box-shadow: 0 18px 40px -22px rgba(28, 23, 20, 0.28);
 }
 button:active:not(:disabled),
 a[class*="rounded-full"]:active {

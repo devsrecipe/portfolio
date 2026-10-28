@@ -57,7 +57,7 @@ export function HeroGlow() {
       aria-hidden
       className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
     >
-      <div className="glow-a absolute -left-24 top-10 size-96 rounded-full bg-primary/15 blur-3xl" />
+      <div className="glow-a absolute -left-24 top-10 size-96 rounded-full bg-primary/10 blur-3xl" />
       <div className="glow-b absolute -right-20 top-40 size-96 rounded-full bg-accent/10 blur-3xl" />
     </div>
   );

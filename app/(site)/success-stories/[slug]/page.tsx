@@ -73,7 +73,7 @@ export default async function StoryPage({
               {done ? t.completed : t.inProgress}
             </Badge>
           </div>
-          <h1 className="mt-5 max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl">
+          <h1 className="mt-5 max-w-4xl font-display text-5xl leading-[1.02] tracking-[-0.015em] sm:text-7xl">
             {story.title}
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-muted">{story.summary}</p>
@@ -103,7 +103,7 @@ export default async function StoryPage({
             {story.results.map((r, i) => (
               <li key={`${r.value}-${i}`}>
                 <Card className="h-full p-6">
-                  <p className="text-4xl font-bold text-primary sm:text-5xl">{r.value}</p>
+                  <p className="font-display text-5xl text-primary sm:text-6xl">{r.value}</p>
                   <p className="mt-3 text-sm text-muted">{r.label}</p>
                 </Card>
               </li>
@@ -116,7 +116,7 @@ export default async function StoryPage({
             <div className="grid gap-6 md:grid-cols-[1fr_2fr]">
               <div>
                 <p className="font-mono text-xs text-primary">01</p>
-                <h2 className="mt-2 text-3xl font-bold">{t.problemTitle}</h2>
+                <h2 className="mt-2 font-display text-4xl">{t.problemTitle}</h2>
               </div>
               <div>
                 <p className="text-lg">{story.problem}</p>
@@ -128,7 +128,7 @@ export default async function StoryPage({
             <div className="grid gap-6 md:grid-cols-[1fr_2fr]">
               <div>
                 <p className="font-mono text-xs text-primary">02</p>
-                <h2 className="mt-2 text-3xl font-bold">{t.builtTitle}</h2>
+                <h2 className="mt-2 font-display text-4xl">{t.builtTitle}</h2>
               </div>
               <ul className="grid gap-4 sm:grid-cols-3">
                 {story.features.map((f, i) => (
@@ -159,7 +159,7 @@ export default async function StoryPage({
 
         <section className="container-x grid gap-12 pb-16 md:grid-cols-2">
           <div>
-            <h2 className="text-3xl font-bold">{t.cameTogether}</h2>
+            <h2 className="font-display text-4xl">{t.cameTogether}</h2>
             <ol className="mt-6 space-y-5 border-l border-border pl-6">
               {story.phases.map((p) => (
                 <li key={p.name}>
@@ -172,7 +172,7 @@ export default async function StoryPage({
             </ol>
           </div>
           <div>
-            <h2 className="text-3xl font-bold">{t.builtWith}</h2>
+            <h2 className="font-display text-4xl">{t.builtWith}</h2>
             <ul className="mt-6 flex flex-wrap gap-3">
               {story.tech.map((tech, i) => (
                 <li
@@ -188,7 +188,7 @@ export default async function StoryPage({
 
         <section className="container-x pb-16">
           <figure className="rounded-3xl bg-primary p-8 text-ground sm:p-10">
-            <blockquote className="text-2xl font-bold leading-snug sm:text-3xl">
+            <blockquote className="font-display text-3xl italic leading-snug sm:text-4xl">
               “{story.quote.text}”
             </blockquote>
             <figcaption className="mt-6 flex items-center gap-4">

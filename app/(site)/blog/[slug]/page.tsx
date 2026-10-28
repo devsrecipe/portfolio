@@ -43,7 +43,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
           <p className="text-sm text-muted">
             [{post.category}] · <time dateTime={post.dateIso}>[{post.date}]</time>
           </p>
-          <h1 className="mt-3 text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl">
+          <h1 className="mt-3 font-display text-5xl leading-[1.02] tracking-[-0.015em] sm:text-6xl">
             {post.title}
           </h1>
         </header>

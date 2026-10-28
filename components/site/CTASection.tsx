@@ -12,7 +12,7 @@ export function CTASection({
     <section className="border-t border-border bg-surface">
       <div className="container-x flex flex-col gap-6 py-14 md:flex-row md:items-center md:justify-between">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight">{title}</h2>
+          <h2 className="font-display text-4xl tracking-[-0.015em]">{title}</h2>
           <p className="mt-2 max-w-xl text-muted">{text}</p>
         </div>
         <div className="flex flex-wrap gap-3">

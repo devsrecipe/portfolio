@@ -10,7 +10,7 @@ export function Footer() {
   const { site, solutions, forms } = content;
   const { footer } = site;
   return (
-    <footer className="border-t border-border bg-surface">
+    <footer className="theme-dark border-t border-border bg-ground">
       <div className="container-x grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr_1fr_1.6fr]">
         <div>
           <Logo />
