@@ -1,28 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SectionHeading } from "@/components/site/SectionHeading";
+import { content } from "@/content";
 import { getJobs } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = buildMetadata({
-  title: "Careers",
-  description:
-    "Open roles at Devs Recipe. Join a small team of engineers and designers who build software for real businesses.",
-  path: "/careers",
-});
+const { page } = content.careers;
 
-export default async function CareersPage() {
-  const jobs = await getJobs();
+export const metadata: Metadata = buildMetadata({ ...page.seo, path: "/careers" });
+
+export default function CareersPage() {
   return (
     <section className="container-x py-16">
       <SectionHeading
         as="h1"
-        eyebrow="Careers"
-        title="Open roles"
-        intro="Join a small team of engineers and designers who build software for real businesses."
+        eyebrow={page.eyebrow}
+        title={page.title}
+        intro={page.intro}
       />
       <ul className="mt-12 max-w-3xl divide-y divide-border rounded-3xl border border-border bg-surface">
-        {jobs.map((job) => (
+        {getJobs().map((job) => (
           <li key={job.slug}>
             <Link
               href={`/careers/${job.slug}`}

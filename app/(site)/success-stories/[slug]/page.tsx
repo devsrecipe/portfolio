@@ -7,19 +7,20 @@ import { CTASection } from "@/components/site/CTASection";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { Placeholder } from "@/components/ui/Placeholder";
+import { content } from "@/content";
 import { getStories, getStory } from "@/lib/content";
 import { buildMetadata, storyArticleLd } from "@/lib/seo";
 
-export async function generateStaticParams() {
-  const stories = await getStories();
-  return stories.map((s) => ({ slug: s.slug }));
+const t = content.stories.labels;
+
+export function generateStaticParams() {
+  return getStories().map((s) => ({ slug: s.slug }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps<"/success-stories/[slug]">): Promise<Metadata> {
-  const { slug } = await params;
-  const story = await getStory(slug);
+  const story = getStory((await params).slug);
   if (!story) return {};
   return buildMetadata({
     title: `${story.client} case study: ${story.industry}`.slice(0, 60),
@@ -32,19 +33,19 @@ export async function generateMetadata({
 export default async function StoryPage({
   params,
 }: PageProps<"/success-stories/[slug]">) {
-  const { slug } = await params;
-  const [story, stories] = await Promise.all([getStory(slug), getStories()]);
+  const story = getStory((await params).slug);
   if (!story) notFound();
 
+  const stories = getStories();
   const next =
     stories[(stories.findIndex((s) => s.slug === story.slug) + 1) % stories.length];
   const path = `/success-stories/${story.slug}`;
   const done = story.status === "completed";
   const meta = [
-    ["Timeline", story.timeline],
-    ["Team", story.team],
-    ["Platforms", story.platforms],
-    ["Live since", story.liveSince],
+    [t.timeline, story.timeline],
+    [t.team, story.team],
+    [t.platforms, story.platforms],
+    [t.liveSince, story.liveSince],
   ];
 
   return (
@@ -55,7 +56,7 @@ export default async function StoryPage({
           <Breadcrumbs
             crumbs={[
               { name: "Home", path: "/" },
-              { name: "Success stories", path: "/success-stories" },
+              { name: content.stories.page.eyebrow, path: "/success-stories" },
               { name: story.title, path },
             ]}
           />
@@ -63,13 +64,13 @@ export default async function StoryPage({
             href="/success-stories"
             className="mt-8 inline-block text-sm font-semibold text-primary"
           >
-            ← All success stories
+            {t.back}
           </Link>
           <div className="mt-5 flex flex-wrap gap-2">
             <Badge>[{story.industry}]</Badge>
             <Badge>{story.country}</Badge>
             <Badge variant={done ? "success" : "warning"}>
-              {done ? "Completed" : "In progress"}
+              {done ? t.completed : t.inProgress}
             </Badge>
           </div>
           <h1 className="mt-5 max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl">
@@ -96,7 +97,7 @@ export default async function StoryPage({
 
         <section aria-labelledby="results-title" className="container-x py-16">
           <h2 id="results-title" className="eyebrow">
-            The results
+            {t.results}
           </h2>
           <ul className="mt-5 grid gap-4 md:grid-cols-3">
             {story.results.map((r, i) => (
@@ -115,7 +116,7 @@ export default async function StoryPage({
             <div className="grid gap-6 md:grid-cols-[1fr_2fr]">
               <div>
                 <p className="font-mono text-xs text-primary">01</p>
-                <h2 className="mt-2 text-3xl font-bold">The problem</h2>
+                <h2 className="mt-2 text-3xl font-bold">{t.problemTitle}</h2>
               </div>
               <div>
                 <p className="text-lg">{story.problem}</p>
@@ -127,7 +128,7 @@ export default async function StoryPage({
             <div className="grid gap-6 md:grid-cols-[1fr_2fr]">
               <div>
                 <p className="font-mono text-xs text-primary">02</p>
-                <h2 className="mt-2 text-3xl font-bold">What we built</h2>
+                <h2 className="mt-2 text-3xl font-bold">{t.builtTitle}</h2>
               </div>
               <ul className="grid gap-4 sm:grid-cols-3">
                 {story.features.map((f, i) => (
@@ -145,7 +146,7 @@ export default async function StoryPage({
 
         <section aria-labelledby="inside-title" className="container-x py-16">
           <h2 id="inside-title" className="eyebrow">
-            Inside the product
+            {t.inside}
           </h2>
           <ul className="mt-5 grid gap-4 md:grid-cols-2">
             {story.screenshots.map((label, i) => (
@@ -158,7 +159,7 @@ export default async function StoryPage({
 
         <section className="container-x grid gap-12 pb-16 md:grid-cols-2">
           <div>
-            <h2 className="text-3xl font-bold">How it came together</h2>
+            <h2 className="text-3xl font-bold">{t.cameTogether}</h2>
             <ol className="mt-6 space-y-5 border-l border-border pl-6">
               {story.phases.map((p) => (
                 <li key={p.name}>
@@ -171,14 +172,14 @@ export default async function StoryPage({
             </ol>
           </div>
           <div>
-            <h2 className="text-3xl font-bold">Built with</h2>
+            <h2 className="text-3xl font-bold">{t.builtWith}</h2>
             <ul className="mt-6 flex flex-wrap gap-3">
-              {story.tech.map((t, i) => (
+              {story.tech.map((tech, i) => (
                 <li
-                  key={`${t}-${i}`}
+                  key={`${tech}-${i}`}
                   className="rounded-xl border border-border bg-surface px-4 py-2 font-mono text-sm"
                 >
-                  {t}
+                  {tech}
                 </li>
               ))}
             </ul>
@@ -202,9 +203,10 @@ export default async function StoryPage({
       </article>
 
       <CTASection
-        title="Facing the same problem?"
-        text="Tell us how you work today. We will tell you honestly what software can fix."
-        secondary={{ href: `/success-stories/${next.slug}`, label: "Next story →" }}
+        secondary={{
+          href: `/success-stories/${next.slug}`,
+          label: content.cta.nextStoryLabel,
+        }}
       />
     </>
   );

@@ -5,13 +5,13 @@ export const size = ogSize;
 export const contentType = ogContentType;
 export const alt = "Devs Recipe blog post";
 
-export async function generateStaticParams() {
-  const posts = await getPosts();
+export function generateStaticParams() {
+  const posts = getPosts();
   return posts.map((p) => ({ slug: p.slug }));
 }
 
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = await getPost(slug);
+  const post = getPost(slug);
   return renderOg(post?.title ?? "Blog", "Blog");
 }

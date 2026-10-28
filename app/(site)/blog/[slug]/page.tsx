@@ -3,19 +3,18 @@ import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 import { CTASection } from "@/components/site/CTASection";
+import { content } from "@/content";
 import { getPost, getPosts } from "@/lib/content";
 import { buildMetadata, postArticleLd } from "@/lib/seo";
 
-export async function generateStaticParams() {
-  const posts = await getPosts();
-  return posts.map((p) => ({ slug: p.slug }));
+export function generateStaticParams() {
+  return getPosts().map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps<"/blog/[slug]">): Promise<Metadata> {
-  const { slug } = await params;
-  const post = await getPost(slug);
+  const post = getPost((await params).slug);
   if (!post) return {};
   return buildMetadata({
     title: post.searchTitle,
@@ -26,8 +25,7 @@ export async function generateMetadata({
 }
 
 export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
-  const { slug } = await params;
-  const post = await getPost(slug);
+  const post = getPost((await params).slug);
   if (!post) notFound();
 
   return (
@@ -37,7 +35,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
         <Breadcrumbs
           crumbs={[
             { name: "Home", path: "/" },
-            { name: "Blog", path: "/blog" },
+            { name: content.blog.page.eyebrow, path: "/blog" },
             { name: post.title, path: `/blog/${post.slug}` },
           ]}
         />
@@ -60,10 +58,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
           ))}
         </div>
       </article>
-      <CTASection
-        title="Facing the same problem?"
-        text="Tell us how you work today. We will tell you honestly what software can fix."
-      />
+      <CTASection />
     </>
   );
 }

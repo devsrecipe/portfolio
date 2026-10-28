@@ -5,8 +5,8 @@ export const size = ogSize;
 export const contentType = ogContentType;
 export const alt = "Devs Recipe solution";
 
-export async function generateStaticParams() {
-  const solutions = await getSolutions();
+export function generateStaticParams() {
+  const solutions = getSolutions();
   return solutions.map((s) => ({ industry: s.slug }));
 }
 
@@ -16,6 +16,6 @@ export default async function Image({
   params: Promise<{ industry: string }>;
 }) {
   const { industry } = await params;
-  const solution = await getSolution(industry);
+  const solution = getSolution(industry);
   return renderOg(solution?.seoTitle ?? "Devs Recipe", "Solutions");
 }

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useRef, useState, type KeyboardEvent } from "react";
 import { LogoMark } from "@/components/brand/Logo";
 import { cn } from "@/lib/utils";
-import type { AutomationScenario } from "@/types";
+import type { SiteContent } from "@/types";
 
 const rowY = [16.5, 50, 83.5];
 
@@ -50,7 +50,8 @@ function Node({
   );
 }
 
-export function AutomationDemo({ scenarios }: { scenarios: AutomationScenario[] }) {
+export function AutomationDemo({ data }: { data: SiteContent["home"]["automation"] }) {
+  const { scenarios } = data;
   const [index, setIndex] = useState(0);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const active = scenarios[index];
@@ -73,16 +74,16 @@ export function AutomationDemo({ scenarios }: { scenarios: AutomationScenario[] 
       <div className="flex items-center justify-between gap-3 font-mono text-[0.7rem] uppercase tracking-widest">
         <p className="flex items-center gap-2 text-ink">
           <span aria-hidden className="size-1.5 rounded-full bg-success" />
-          Example automation · {active.title}
+          {data.label} · {active.title}
         </p>
         <p className="hidden normal-case tracking-normal text-muted sm:block">
-          Pick an industry
+          {data.pickLabel}
         </p>
       </div>
 
       <div
         role="tablist"
-        aria-label="Pick an industry"
+        aria-label={data.pickLabel}
         className="mt-4 flex flex-wrap gap-2"
       >
         {scenarios.map((s, i) => (
@@ -128,8 +129,8 @@ export function AutomationDemo({ scenarios }: { scenarios: AutomationScenario[] 
         transition={{ duration: 0.3 }}
       >
         <div className="mt-6 flex justify-between font-mono text-[0.65rem] uppercase tracking-widest text-muted">
-          <span>Comes in</span>
-          <span>Gets done</span>
+          <span>{data.comesIn}</span>
+          <span>{data.getsDone}</span>
         </div>
 
         <div className="relative mt-3 [background-image:radial-gradient(var(--color-border)_1px,transparent_1px)] [background-size:16px_16px]">
@@ -170,7 +171,7 @@ export function AutomationDemo({ scenarios }: { scenarios: AutomationScenario[] 
                 <LogoMark className="size-9" />
               </div>
               <span className="font-mono text-[0.6rem] uppercase tracking-widest text-muted">
-                Your system
+                {data.hubLabel}
               </span>
             </div>
             <ul className="flex h-64 flex-col justify-between">
@@ -183,7 +184,7 @@ export function AutomationDemo({ scenarios }: { scenarios: AutomationScenario[] 
 
         <div className="mt-5 border-t border-border pt-4">
           <p className="font-mono text-[0.65rem] uppercase tracking-widest text-muted">
-            Handled automatically
+            {data.handledTitle}
           </p>
           <ol className="mt-2 space-y-1.5">
             {active.handled.map((line, i) => (
@@ -201,9 +202,7 @@ export function AutomationDemo({ scenarios }: { scenarios: AutomationScenario[] 
               </motion.li>
             ))}
           </ol>
-          <p className="mt-4 text-xs text-muted">
-            An example of the systems we build. Every step above is usually done by hand.
-          </p>
+          <p className="mt-4 text-xs text-muted">{data.footnote}</p>
         </div>
       </motion.div>
     </div>

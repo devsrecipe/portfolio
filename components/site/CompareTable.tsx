@@ -1,14 +1,12 @@
 import { cn } from "@/lib/utils";
-import { compareTable } from "@/content/site";
+import { content } from "@/content";
 
 export function CompareTable() {
-  const { columns, rows } = compareTable;
+  const { columns, rows, caption } = content.home.compare;
   return (
     <div className="overflow-x-auto">
       <table className="w-full min-w-[40rem] border-separate border-spacing-0 text-left">
-        <caption className="sr-only">
-          Devs Recipe compared with a typical agency and a freelance marketplace
-        </caption>
+        <caption className="sr-only">{caption}</caption>
         <thead>
           <tr>
             <td className="w-[34%]" />

@@ -1,46 +1,49 @@
 "use client";
 
-import { useActionState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Field";
-import { subscribe } from "@/lib/actions";
-import { initialFormState } from "@/types/forms";
+import type { SiteContent } from "@/types";
+import { FormError } from "./FormError";
+import { useFormService, type FormMessages } from "./useFormService";
 
-export function NewsletterForm() {
-  const [state, action, pending] = useActionState(subscribe, initialFormState);
+type Props = {
+  config: SiteContent["forms"]["newsletter"];
+  messages: FormMessages;
+  contactEmail: string;
+};
+
+export function NewsletterForm({ config, messages, contactEmail }: Props) {
+  const { status, error, sending, onSubmit } = useFormService(config.endpoint, messages);
+
+  if (status === "success") {
+    return (
+      <p role="status" className="mt-4 text-sm text-success">
+        {config.successText}
+      </p>
+    );
+  }
 
   return (
-    <form action={action} noValidate className="mt-4">
+    <form onSubmit={onSubmit} className="mt-4">
+      <input type="hidden" name="_subject" value="New newsletter subscriber" />
       <div className="flex gap-2">
         <label htmlFor="newsletter-email" className="sr-only">
-          Email address
+          {config.emailLabel}
         </label>
         <Input
           id="newsletter-email"
           name="email"
-          defaultValue={state.values?.email}
           type="email"
           autoComplete="email"
-          placeholder="you@company.com"
-          aria-invalid={Boolean(state.errors?.email)}
-          aria-describedby="newsletter-status"
+          required
+          placeholder={config.placeholder}
           className="h-11 min-w-0 flex-1"
         />
-        <Button type="submit" size="sm" disabled={pending}>
-          Subscribe
+        <Button type="submit" size="sm" disabled={sending}>
+          {sending ? messages.sending : config.submit}
         </Button>
       </div>
-      <p
-        id="newsletter-status"
-        role="status"
-        className={
-          state.status === "error"
-            ? "mt-2 text-sm text-accent"
-            : "mt-2 text-sm text-success"
-        }
-      >
-        {state.errors?.email ?? state.message}
-      </p>
+      <FormError message={error} email={contactEmail} className="mt-2" />
     </form>
   );
 }
