@@ -1,32 +1,29 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SectionHeading } from "@/components/site/SectionHeading";
+import { content } from "@/content";
 import { getPosts } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = buildMetadata({
-  title: "Blog",
-  description:
-    "Plain answers to the questions buyers ask before they commission software: costs, timelines and what to check first.",
-  path: "/blog",
-});
+const { page } = content.blog;
 
-export default async function BlogPage() {
-  const posts = await getPosts();
+export const metadata: Metadata = buildMetadata({ ...page.seo, path: "/blog" });
+
+export default function BlogPage() {
   return (
     <section className="container-x py-16">
       <SectionHeading
         as="h1"
-        eyebrow="Blog"
-        title="From the blog"
-        intro="Plain answers to the questions buyers ask before they commission software."
+        eyebrow={page.eyebrow}
+        title={page.title}
+        intro={page.intro}
       />
       <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {posts.map((post) => (
+        {getPosts().map((post) => (
           <li key={post.slug}>
             <Link
               href={`/blog/${post.slug}`}
-              className="block h-full rounded-3xl border border-border bg-surface p-6 hover:border-primary"
+              className="lift block h-full rounded-3xl border border-border bg-surface p-6"
             >
               <p className="text-xs text-muted">
                 [{post.category}] · [{post.date}]

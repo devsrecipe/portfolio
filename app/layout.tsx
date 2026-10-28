@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
-import { site } from "@/content/site";
+import { content } from "@/content";
 import { absoluteUrl } from "@/lib/utils";
 import "./globals.css";
 
@@ -19,15 +19,15 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(absoluteUrl("/")),
   title: {
-    default: "Devs Recipe: software that cuts costs and automates operations",
-    template: "%s | Devs Recipe",
+    default: content.site.defaultTitle,
+    template: `%s | ${content.site.name}`,
   },
-  description: site.description,
+  description: content.site.description,
   openGraph: {
     type: "website",
-    siteName: site.name,
-    title: "Devs Recipe: software that cuts costs and automates operations",
-    description: site.description,
+    siteName: content.site.name,
+    title: content.site.defaultTitle,
+    description: content.site.description,
   },
   twitter: { card: "summary_large_image" },
 };

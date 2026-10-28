@@ -1,18 +1,19 @@
 import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
 import { ButtonLink } from "@/components/ui/Button";
-import { navLinks } from "@/content/site";
+import { content } from "@/content";
 
 export function Header() {
+  const { nav, bookCall, name } = content.site;
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-ground/90 backdrop-blur">
       <div className="container-x flex h-20 items-center justify-between gap-6">
-        <Link href="/" aria-label="Devs Recipe home">
+        <Link href="/" aria-label={`${name} home`}>
           <Logo />
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
+          {nav.map((link) => (
             <Link
               key={link.label}
               href={link.href}
@@ -21,8 +22,8 @@ export function Header() {
               {link.label}
             </Link>
           ))}
-          <ButtonLink href="/#contact" size="sm">
-            Book a call
+          <ButtonLink href={bookCall.href} size="sm">
+            {bookCall.label}
           </ButtonLink>
         </nav>
 
@@ -43,7 +44,7 @@ export function Header() {
             aria-label="Mobile"
             className="absolute right-0 top-14 flex w-64 flex-col gap-1 rounded-2xl border border-border bg-surface p-3 shadow-xl"
           >
-            {navLinks.map((link) => (
+            {nav.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
@@ -52,8 +53,8 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
-            <ButtonLink href="/#contact" size="sm" className="mt-2">
-              Book a call
+            <ButtonLink href={bookCall.href} size="sm" className="mt-2">
+              {bookCall.label}
             </ButtonLink>
           </nav>
         </details>

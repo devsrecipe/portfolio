@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { site } from "@/content/site";
+import { content } from "@/content";
 import type { FaqItem, Job, Post, Story } from "@/types";
 import { absoluteUrl } from "./utils";
 
@@ -22,7 +22,7 @@ export function buildMetadata({
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, url, type, siteName: site.name },
+    openGraph: { title, description, url, type, siteName: content.site.name },
     twitter: { card: "summary_large_image", title, description },
   };
 }
@@ -46,10 +46,10 @@ export function organizationLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: site.name,
+    name: content.site.name,
     url: absoluteUrl("/"),
     logo: absoluteUrl("/icon"),
-    description: site.description,
+    description: content.site.description,
   };
 }
 
@@ -57,7 +57,7 @@ export function websiteLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: site.name,
+    name: content.site.name,
     url: absoluteUrl("/"),
   };
 }
@@ -87,8 +87,12 @@ export function articleLd(input: {
     description: input.description,
     datePublished: input.datePublished,
     mainEntityOfPage: absoluteUrl(input.path),
-    author: { "@type": "Organization", name: site.name },
-    publisher: { "@type": "Organization", name: site.name, logo: absoluteUrl("/icon") },
+    author: { "@type": "Organization", name: content.site.name },
+    publisher: {
+      "@type": "Organization",
+      name: content.site.name,
+      logo: absoluteUrl("/icon"),
+    },
   };
 }
 
@@ -119,7 +123,7 @@ export function jobPostingLd(job: Job) {
     employmentType: job.employmentType,
     hiringOrganization: {
       "@type": "Organization",
-      name: site.name,
+      name: content.site.name,
       sameAs: absoluteUrl("/"),
     },
     ...(job.remote
@@ -138,6 +142,6 @@ export function serviceLd(input: { name: string; description: string; path: stri
     name: input.name,
     description: input.description,
     url: absoluteUrl(input.path),
-    provider: { "@type": "Organization", name: site.name, url: absoluteUrl("/") },
+    provider: { "@type": "Organization", name: content.site.name, url: absoluteUrl("/") },
   };
 }
