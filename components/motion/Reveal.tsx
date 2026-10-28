@@ -69,7 +69,13 @@ export function StaggerOrderedList({ children, className, stagger = 0.1 }: ListP
   );
 }
 
-export function StaggerItem({ children, className }: { children: ReactNode; className?: string }) {
+export function StaggerItem({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   return (
     <motion.li className={className} variants={itemVariants}>
       {children}

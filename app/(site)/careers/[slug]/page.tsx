@@ -90,7 +90,7 @@ export default async function RolePage({ params }: PageProps<"/careers/[slug]">)
             <ApplyForm
               jobSlug={job.slug}
               cvMaxMb={job.cvMaxMb}
-              retention={job.retention}
+              retention={`${job.retentionMonths} months`}
               replyPromise={job.replyPromise}
             />
           </aside>

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Field, Input } from "@/components/ui/Field";
@@ -16,6 +17,7 @@ export function LoginForm() {
         <Input
           id="l-email"
           name="email"
+          defaultValue={state.values?.email}
           type="email"
           autoComplete="username"
           required
@@ -28,12 +30,12 @@ export function LoginForm() {
           <label htmlFor="l-password" className="text-sm font-semibold">
             Password
           </label>
-          <a
-            href="mailto:?subject=Reset%20admin%20password"
+          <Link
+            href="/admin/forgot-password"
             className="text-sm font-semibold text-primary"
           >
             Forgot password?
-          </a>
+          </Link>
         </div>
         <Input
           id="l-password"

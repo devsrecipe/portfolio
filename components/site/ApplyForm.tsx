@@ -45,6 +45,7 @@ export function ApplyForm({ jobSlug, cvMaxMb, retention, replyPromise }: Props) 
         <Input
           id="a-name"
           name="name"
+          defaultValue={state.values?.name}
           autoComplete="name"
           required
           aria-invalid={Boolean(err.name)}
@@ -55,6 +56,7 @@ export function ApplyForm({ jobSlug, cvMaxMb, retention, replyPromise }: Props) 
         <Input
           id="a-email"
           name="email"
+          defaultValue={state.values?.email}
           type="email"
           autoComplete="email"
           required
@@ -66,6 +68,7 @@ export function ApplyForm({ jobSlug, cvMaxMb, retention, replyPromise }: Props) 
         <Input
           id="a-phone"
           name="phone"
+          defaultValue={state.values?.phone}
           type="tel"
           autoComplete="tel"
           required
@@ -81,6 +84,7 @@ export function ApplyForm({ jobSlug, cvMaxMb, retention, replyPromise }: Props) 
         <Input
           id="a-profile"
           name="profile"
+          defaultValue={state.values?.profile}
           type="url"
           placeholder="https://"
           required
@@ -107,7 +111,7 @@ export function ApplyForm({ jobSlug, cvMaxMb, retention, replyPromise }: Props) 
       </Field>
 
       <Field label="Why this role?" hint="Optional" htmlFor="a-why" error={err.why}>
-        <Textarea id="a-why" name="why" rows={4} />
+        <Textarea id="a-why" name="why" defaultValue={state.values?.why} rows={4} />
       </Field>
 
       <div>
@@ -115,6 +119,7 @@ export function ApplyForm({ jobSlug, cvMaxMb, retention, replyPromise }: Props) 
           <input
             id="a-consent"
             name="consent"
+            defaultChecked={state.values?.consent === "on"}
             type="checkbox"
             aria-invalid={Boolean(err.consent)}
             aria-describedby={describedBy("a-consent", err.consent)}

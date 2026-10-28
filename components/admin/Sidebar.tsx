@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Logo } from "@/components/brand/Logo";
-import { adminNav, adminUser } from "@/content/admin";
+import { adminNav } from "@/content/admin";
 import { signOut } from "@/lib/actions";
 import { cn } from "@/lib/utils";
 
@@ -12,7 +12,13 @@ function isActive(pathname: string, href: string) {
   return href === "/admin" ? pathname === href : pathname.startsWith(href);
 }
 
-function NavContent({ onNavigate }: { onNavigate?: () => void }) {
+type SidebarProps = { adminName: string; newApplications: number };
+
+function NavContent({
+  adminName,
+  newApplications,
+  onNavigate,
+}: SidebarProps & { onNavigate?: () => void }) {
   const pathname = usePathname();
   return (
     <>
@@ -35,9 +41,10 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
                   )}
                 >
                   {item.label}
-                  {"badge" in item ? (
+                  {item.href === "/admin/applications" && newApplications > 0 ? (
                     <span className="grid size-6 place-items-center rounded-full bg-accent text-xs font-bold text-ground">
-                      {item.badge}
+                      {newApplications}
+                      <span className="sr-only"> new</span>
                     </span>
                   ) : null}
                 </Link>
@@ -49,7 +56,7 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
       <div className="flex items-center gap-3 border-t border-border px-3 pt-4">
         <span aria-hidden className="size-9 rounded-full bg-surface-2" />
         <div className="text-sm">
-          <p className="font-semibold">{adminUser.name}</p>
+          <p className="font-semibold">{adminName}</p>
           <form action={signOut}>
             <button type="submit" className="text-muted hover:text-ink">
               Sign out
@@ -62,13 +69,13 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
 }
 
 /** Fixed sidebar on desktop, drawer on mobile. */
-export function Sidebar() {
+export function Sidebar(props: SidebarProps) {
   const [open, setOpen] = useState(false);
 
   return (
     <>
       <aside className="fixed inset-y-0 left-0 hidden w-60 flex-col border-r border-border bg-surface p-3 lg:flex">
-        <NavContent />
+        <NavContent {...props} />
       </aside>
 
       <div className="flex items-center justify-between border-b border-border bg-surface px-4 py-3 lg:hidden">
@@ -97,7 +104,7 @@ export function Sidebar() {
             id="admin-drawer"
             className="relative flex h-full w-72 max-w-[85%] flex-col border-r border-border bg-surface p-3"
           >
-            <NavContent onNavigate={() => setOpen(false)} />
+            <NavContent {...props} onNavigate={() => setOpen(false)} />
           </aside>
         </div>
       ) : null}

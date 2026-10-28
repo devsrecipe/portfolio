@@ -32,6 +32,7 @@ export function ContactForm({ businessTypes, budgetRanges }: Props) {
           <Input
             id="c-name"
             name="name"
+            defaultValue={state.values?.name}
             autoComplete="name"
             required
             aria-invalid={Boolean(err.name)}
@@ -42,6 +43,7 @@ export function ContactForm({ businessTypes, budgetRanges }: Props) {
           <Input
             id="c-email"
             name="email"
+            defaultValue={state.values?.email}
             type="email"
             autoComplete="email"
             required
@@ -50,14 +52,22 @@ export function ContactForm({ businessTypes, budgetRanges }: Props) {
           />
         </Field>
         <Field label="Business type" htmlFor="c-type" error={err.businessType}>
-          <Select id="c-type" name="businessType" defaultValue={businessTypes[0]}>
+          <Select
+            id="c-type"
+            name="businessType"
+            defaultValue={state.values?.businessType ?? businessTypes[0]}
+          >
             {businessTypes.map((t) => (
               <option key={t}>{t}</option>
             ))}
           </Select>
         </Field>
         <Field label="Budget range" htmlFor="c-budget" error={err.budget}>
-          <Select id="c-budget" name="budget" defaultValue={budgetRanges[0]}>
+          <Select
+            id="c-budget"
+            name="budget"
+            defaultValue={state.values?.budget ?? budgetRanges[0]}
+          >
             {budgetRanges.map((t) => (
               <option key={t}>{t}</option>
             ))}
@@ -73,6 +83,7 @@ export function ContactForm({ businessTypes, budgetRanges }: Props) {
         <Textarea
           id="c-message"
           name="message"
+          defaultValue={state.values?.message}
           rows={5}
           required
           aria-invalid={Boolean(err.message)}

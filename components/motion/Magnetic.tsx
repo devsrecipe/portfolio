@@ -4,7 +4,13 @@ import { gsap } from "gsap";
 import { useEffect, useRef, type ReactNode } from "react";
 
 /** Wrapper that pulls its child slightly toward the cursor (GSAP quickTo). */
-export function Magnetic({ children, strength = 0.35 }: { children: ReactNode; strength?: number }) {
+export function Magnetic({
+  children,
+  strength = 0.35,
+}: {
+  children: ReactNode;
+  strength?: number;
+}) {
   const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {

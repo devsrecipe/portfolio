@@ -69,7 +69,8 @@ export type Job = {
   requirements: string[];
   offer: string[];
   cvMaxMb: number;
-  retention: string;
+  /** Applications are deleted automatically this many months after they arrive. */
+  retentionMonths: number;
   replyPromise: string;
 };
 
@@ -87,17 +88,3 @@ export type AutomationScenario = {
 };
 
 export type ApplicationStatus = "new" | "shortlisted" | "not-a-fit";
-
-export type Applicant = {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  profile: string;
-  applied: string;
-  status: ApplicationStatus;
-  jobSlug: string;
-  cvName: string;
-  cvSize: string;
-  why: string;
-};

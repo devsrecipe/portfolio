@@ -1,13 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { Badge, type BadgeVariant } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Textarea } from "@/components/ui/Field";
-import { applicants as initial, adminJobs } from "@/content/admin";
+import { saveApplicationNote, setApplicationStatus } from "@/lib/admin-actions";
 import { cn } from "@/lib/utils";
-import type { Applicant, ApplicationStatus } from "@/types";
+import type { ApplicationStatus } from "@/types";
+import type { AdminApplicant, AdminJobOption } from "@/types/admin";
 
 const statusLabel: Record<ApplicationStatus, string> = {
   new: "New",
@@ -21,53 +22,76 @@ const statusBadge: Record<ApplicationStatus, BadgeVariant> = {
   "not-a-fit": "neutral",
 };
 
+function profileHref(profile: string) {
+  return /^https?:\/\//.test(profile) ? profile : `https://${profile}`;
+}
+
 function ApplicantPanel({
   applicant,
   jobTitle,
+  retentionMonths,
   onStatus,
 }: {
-  applicant: Applicant;
+  applicant: AdminApplicant;
   jobTitle: string;
+  retentionMonths: number;
   onStatus: (status: ApplicationStatus) => void;
 }) {
+  const [note, setNote] = useState(applicant.note);
+  const [noteState, setNoteState] = useState<"idle" | "saving" | "saved">("idle");
+  const [, startTransition] = useTransition();
+
+  function saveNote() {
+    if (note === applicant.note && noteState === "idle") return;
+    setNoteState("saving");
+    startTransition(async () => {
+      await saveApplicationNote(applicant.id, note);
+      setNoteState("saved");
+    });
+  }
+
   return (
     <Card className="p-6 sm:p-7">
       <h2 className="text-2xl font-bold">{applicant.name}</h2>
       <p className="mt-1 text-sm text-muted">
-        {jobTitle} · applied {applicant.applied}
+        {jobTitle} · applied {applicant.applied.toLowerCase()}
       </p>
 
       <dl className="mt-5 space-y-2 text-sm">
-        {[
-          ["Email", applicant.email],
-          ["Phone", applicant.phone],
-        ].map(([label, value]) => (
-          <div key={label} className="flex justify-between gap-4">
-            <dt className="text-muted">{label}</dt>
-            <dd>{value}</dd>
-          </div>
-        ))}
+        <div className="flex justify-between gap-4">
+          <dt className="text-muted">Email</dt>
+          <dd>
+            <a href={`mailto:${applicant.email}`} className="hover:text-primary">
+              {applicant.email}
+            </a>
+          </dd>
+        </div>
+        <div className="flex justify-between gap-4">
+          <dt className="text-muted">Phone</dt>
+          <dd>{applicant.phone}</dd>
+        </div>
         <div className="flex justify-between gap-4">
           <dt className="text-muted">Profile</dt>
-          <dd>
+          <dd className="min-w-0 truncate">
             <a
-              href={`https://${applicant.profile}`}
+              href={profileHref(applicant.profile)}
               className="text-primary underline"
-              rel="noreferrer"
+              target="_blank"
+              rel="noreferrer noopener"
             >
-              {applicant.profile}
+              {applicant.profile.replace(/^https?:\/\//, "")}
             </a>
           </dd>
         </div>
       </dl>
 
       <div className="mt-5 flex items-center justify-between gap-4 rounded-xl border border-border p-4">
-        <div>
-          <p className="font-semibold">{applicant.cvName}</p>
+        <div className="min-w-0">
+          <p className="truncate font-semibold">{applicant.cvName}</p>
           <p className="text-sm text-muted">{applicant.cvSize}</p>
         </div>
         <a
-          href="#download"
+          href={`/admin/applications/${applicant.id}/cv`}
           className="font-semibold text-primary hover:text-primary-hover"
         >
           Download
@@ -75,46 +99,79 @@ function ApplicantPanel({
       </div>
 
       <h3 className="mt-5 text-sm font-semibold">Why this role</h3>
-      <p className="mt-1 text-sm">{applicant.why}</p>
+      <p className="mt-1 whitespace-pre-line text-sm">
+        {applicant.why || <span className="text-muted">No note added.</span>}
+      </p>
 
-      <label
-        htmlFor={`note-${applicant.id}`}
-        className="mt-5 block text-sm font-semibold"
-      >
-        Private team note
-      </label>
-      <Textarea id={`note-${applicant.id}`} rows={3} className="mt-1.5" />
+      <div className="mt-5 flex items-baseline justify-between">
+        <label htmlFor={`note-${applicant.id}`} className="text-sm font-semibold">
+          Private team note
+        </label>
+        <span role="status" className="text-xs text-muted">
+          {noteState === "saving" ? "Saving…" : noteState === "saved" ? "Saved" : ""}
+        </span>
+      </div>
+      <Textarea
+        id={`note-${applicant.id}`}
+        rows={3}
+        value={note}
+        onChange={(e) => {
+          setNote(e.target.value);
+          setNoteState("idle");
+        }}
+        onBlur={saveNote}
+        className="mt-1.5"
+      />
 
       <div className="mt-4 grid grid-cols-2 gap-3">
-        <Button size="sm" onClick={() => onStatus("shortlisted")}>
+        <Button
+          size="sm"
+          aria-pressed={applicant.status === "shortlisted"}
+          onClick={() => onStatus("shortlisted")}
+        >
           Shortlist
         </Button>
-        <Button variant="secondary" size="sm" onClick={() => onStatus("not-a-fit")}>
+        <Button
+          variant="secondary"
+          size="sm"
+          aria-pressed={applicant.status === "not-a-fit"}
+          onClick={() => onStatus("not-a-fit")}
+        >
           Not a fit
         </Button>
       </div>
       <p className="mt-4 text-sm text-muted">
-        Applications are deleted automatically after [X months], matching the consent the
-        applicant gave.
+        Applications are deleted automatically after {retentionMonths} months, matching
+        the consent the applicant gave.
       </p>
     </Card>
   );
 }
 
-export function ApplicationsView() {
-  const [list, setList] = useState<Applicant[]>(initial);
-  const [selectedId, setSelectedId] = useState(initial[0].id);
-  const [jobSlug, setJobSlug] = useState(adminJobs[0].slug);
+type Props = {
+  applicants: AdminApplicant[];
+  jobOptions: AdminJobOption[];
+  retentionMonths: Record<string, number>;
+};
 
+export function ApplicationsView({ applicants, jobOptions, retentionMonths }: Props) {
+  const [list, setList] = useState(applicants);
+  const [jobSlug, setJobSlug] = useState(
+    jobOptions.find((j) => j.count > 0)?.slug ?? jobOptions[0]?.slug ?? "",
+  );
   const rows = list.filter((a) => a.jobSlug === jobSlug);
+  const [selectedId, setSelectedId] = useState(rows[0]?.id ?? "");
+  const [, startTransition] = useTransition();
+
   const selected = rows.find((a) => a.id === selectedId) ?? rows[0];
-  const jobTitle = adminJobs.find((j) => j.slug === jobSlug)?.title ?? "";
+  const jobTitle = jobOptions.find((j) => j.slug === jobSlug)?.title ?? "";
 
   function setStatus(status: ApplicationStatus) {
     if (!selected) return;
-    setList((current) =>
-      current.map((a) => (a.id === selected.id ? { ...a, status } : a)),
-    );
+    const id = selected.id;
+    // Optimistic: update the row now, persist in the background.
+    setList((current) => current.map((a) => (a.id === id ? { ...a, status } : a)));
+    startTransition(() => setApplicationStatus(id, status));
   }
 
   return (
@@ -126,12 +183,15 @@ export function ApplicationsView() {
         <select
           id="job-select"
           value={jobSlug}
-          onChange={(e) => setJobSlug(e.target.value)}
+          onChange={(e) => {
+            setJobSlug(e.target.value);
+            setSelectedId("");
+          }}
           className="h-11 rounded-xl border border-border bg-surface-2 px-3"
         >
-          {adminJobs.map((j) => (
+          {jobOptions.map((j) => (
             <option key={j.slug} value={j.slug}>
-              {j.title} · {j.applicants}
+              {j.title} · {j.count}
             </option>
           ))}
         </select>
@@ -157,8 +217,9 @@ export function ApplicationsView() {
             <tbody>
               {rows.length === 0 ? (
                 <tr>
-                  <td colSpan={3} className="px-5 py-8 text-center text-muted">
-                    No applications yet.
+                  <td colSpan={3} className="px-5 py-10 text-center text-muted">
+                    No applications for this role yet. They appear here as soon as someone
+                    applies on the careers page.
                   </td>
                 </tr>
               ) : null}
@@ -205,6 +266,7 @@ export function ApplicationsView() {
             key={selected.id}
             applicant={selected}
             jobTitle={jobTitle}
+            retentionMonths={retentionMonths[selected.jobSlug] ?? 6}
             onStatus={setStatus}
           />
         ) : null}

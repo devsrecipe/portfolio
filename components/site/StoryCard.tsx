@@ -18,7 +18,7 @@ function Row({ label, children }: { label: string; children: string }) {
 export function StoryCard({ story, index = 0 }: { story: Story; index?: number }) {
   const done = story.status === "completed";
   return (
-    <Card className="lift reveal flex h-full flex-col overflow-hidden">
+    <Card className="lift flex h-full flex-col overflow-hidden">
       <Placeholder
         label={done ? "[Project screenshot]" : "[Current build screenshot]"}
         tone={done ? tones[index % 3 === 1 ? 0 : index % 3] : "accent"}

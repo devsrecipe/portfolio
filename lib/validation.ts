@@ -24,6 +24,21 @@ export const loginSchema = z.object({
   password: z.string().min(1, "Enter your password."),
 });
 
+export const forgotPasswordSchema = z.object({
+  email: z.string().trim().email("Enter your email address."),
+});
+
+export const resetPasswordSchema = z
+  .object({
+    token: z.string().min(32, "This reset link is not valid."),
+    password: z.string().min(8, "Use at least 8 characters."),
+    confirm: z.string(),
+  })
+  .refine((v) => v.password === v.confirm, {
+    path: ["confirm"],
+    message: "The two passwords do not match.",
+  });
+
 export const applicationSchema = z.object({
   jobSlug: z.string().min(1),
   name: z.string().trim().min(2, "Please enter your full name."),

@@ -18,6 +18,7 @@ export function NewsletterForm() {
         <Input
           id="newsletter-email"
           name="email"
+          defaultValue={state.values?.email}
           type="email"
           autoComplete="email"
           placeholder="you@company.com"

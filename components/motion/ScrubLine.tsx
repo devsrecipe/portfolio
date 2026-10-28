@@ -14,22 +14,26 @@ export function ScrubLine() {
   useEffect(() => {
     const mm = gsap.matchMedia();
 
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-      gsap.fromTo(
-        fill.current,
-        { scaleX: 0 },
-        {
-          scaleX: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: track.current,
-            start: "top 85%",
-            end: "top 35%",
-            scrub: 0.6,
+    mm.add(
+      "(prefers-reduced-motion: no-preference)",
+      () => {
+        gsap.fromTo(
+          fill.current,
+          { scaleX: 0 },
+          {
+            scaleX: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: track.current,
+              start: "top 85%",
+              end: "top 35%",
+              scrub: 0.6,
+            },
           },
-        },
-      );
-    }, track);
+        );
+      },
+      track,
+    );
 
     return () => mm.revert();
   }, []);

@@ -4,7 +4,7 @@ import type { Industry } from "@/types";
 
 export function IndustryCard({ industry }: { industry: Industry }) {
   return (
-    <Card className="lift reveal flex h-full flex-col p-6">
+    <Card className="lift spotlight-card flex h-full flex-col p-6">
       <p className="font-mono text-xs text-primary">{industry.number}</p>
       <h3 className="mt-4 text-xl font-semibold">{industry.name}</h3>
       <p className="mt-3 text-[1.02rem] leading-snug">“{industry.pain}”</p>

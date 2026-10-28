@@ -1,5 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HeroGlow } from "@/components/motion/HeroGlow";
+import { HeroHeadline } from "@/components/motion/HeroHeadline";
+import { Magnetic } from "@/components/motion/Magnetic";
+import { Marquee } from "@/components/motion/Marquee";
+import { Parallax } from "@/components/motion/Parallax";
+import { Spotlight } from "@/components/motion/Spotlight";
+import { TiltCard } from "@/components/motion/TiltCard";
+import {
+  Reveal,
+  StaggerItem,
+  StaggerList,
+  StaggerOrderedList,
+} from "@/components/motion/Reveal";
+import { ScrubLine } from "@/components/motion/ScrubLine";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AutomationDemo } from "@/components/site/AutomationDemo";
 import { CompareTable } from "@/components/site/CompareTable";
@@ -53,54 +67,54 @@ export default async function HomePage() {
       <JsonLd data={[organizationLd(), websiteLd(), faqLd(faq)]} />
 
       {/* Hero */}
-      <section
-        aria-labelledby="hero-title"
-        className="container-x grid items-center gap-12 py-16 lg:grid-cols-[1.05fr_1fr] lg:py-24"
-      >
-        <div>
-          <p className="eyebrow anim-rise">
-            Software and automation for growing businesses
-          </p>
-          <h1
-            id="hero-title"
-            className="anim-rise [--d:.1s] mt-6 text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl"
-          >
-            We help businesses cut costs and{" "}
-            <span className="underline-draw text-primary">automate</span> their
-            operations, so they move faster.
-          </h1>
-          <p className="anim-rise [--d:.2s] mt-8 max-w-xl text-lg text-muted">
-            Still doing by hand what software could do for you? We build the systems that
-            take orders, book appointments and keep records straight, for shops,
-            restaurants, clinics, schools and more.
-          </p>
-          <div className="anim-rise mt-8 flex flex-wrap gap-3 [--d:.3s]">
-            <ButtonLink href="/#contact" size="lg">
-              Book a 30 minute call
-            </ButtonLink>
-            <ButtonLink href="/success-stories" variant="secondary" size="lg">
-              See our work
-            </ButtonLink>
+      <div className="relative">
+        <HeroGlow />
+        <section
+          aria-labelledby="hero-title"
+          className="container-x grid items-center gap-12 py-16 lg:grid-cols-[1.05fr_1fr] lg:py-24"
+        >
+          <div>
+            <p className="eyebrow">Software and automation for growing businesses</p>
+            <HeroHeadline
+              id="hero-title"
+              parts={[
+                { text: "We help businesses cut costs and" },
+                { text: "automate", highlight: true },
+                { text: "their operations, so they move faster." },
+              ]}
+            />
+            <Reveal delay={0.5}>
+              <p className="mt-8 max-w-xl text-lg text-muted">
+                Still doing by hand what software could do for you? We build the systems
+                that take orders, book appointments and keep records straight, for shops,
+                restaurants, clinics, schools and more.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Magnetic>
+                  <ButtonLink href="/#contact" size="lg">
+                    Book a 30 minute call
+                  </ButtonLink>
+                </Magnetic>
+                <Magnetic>
+                  <ButtonLink href="/success-stories" variant="secondary" size="lg">
+                    See our work
+                  </ButtonLink>
+                </Magnetic>
+              </div>
+              <p className="mt-5 text-sm text-muted">{site.replyNote}</p>
+            </Reveal>
           </div>
-          <p className="mt-5 text-sm text-muted">{site.replyNote}</p>
-        </div>
-        <div className="anim-rise [--d:.25s]">
-          <AutomationDemo scenarios={automationScenarios} />
-        </div>
-      </section>
+          <Reveal delay={0.35}>
+            <AutomationDemo scenarios={automationScenarios} />
+          </Reveal>
+        </section>
+      </div>
 
       {/* Trusted by */}
       <section aria-label="Trusted by" className="border-y border-border">
-        <div className="container-x flex flex-wrap items-center gap-4 py-7">
-          <p className="mr-4 text-sm font-semibold">Trusted by</p>
-          {trustedBy.map((label, i) => (
-            <span
-              key={`${label}-${i}`}
-              className="rounded-lg border border-dashed border-border px-4 py-2.5 text-sm text-muted"
-            >
-              {label}
-            </span>
-          ))}
+        <div className="container-x flex items-center gap-6 py-7">
+          <p className="shrink-0 text-sm font-semibold">Trusted by</p>
+          <Marquee items={trustedBy} />
         </div>
       </section>
 
@@ -115,14 +129,20 @@ export default async function HomePage() {
           eyebrow="Industries we serve"
           title="Different industries. The same problems underneath."
           intro="Manual work, scattered data and slow processes cost every business money. We build the systems that remove them, whether you sell products, book appointments or run a school."
+          scrubIntro
         />
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {industries.map((industry) => (
-            <li key={industry.slug}>
-              <IndustryCard industry={industry} />
-            </li>
-          ))}
-        </ul>
+        <Spotlight>
+          <StaggerList
+            className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
+            stagger={0.07}
+          >
+            {industries.map((industry) => (
+              <StaggerItem key={industry.slug}>
+                <IndustryCard industry={industry} />
+              </StaggerItem>
+            ))}
+          </StaggerList>
+        </Spotlight>
         <div className="mt-6 flex flex-col gap-6 rounded-3xl border border-border bg-surface p-8 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="eyebrow">For startups</p>
@@ -149,17 +169,23 @@ export default async function HomePage() {
             eyebrow="How we work"
             title="Our recipe, in four steps."
           />
-          <ol className="mt-12 grid gap-5 md:grid-cols-3">
+          <div className="mt-10">
+            <ScrubLine />
+          </div>
+          <StaggerOrderedList className="mt-8 grid gap-5 md:grid-cols-3">
             {processSteps.map((step, i) => (
-              <li key={step.name} className={i === 3 ? "md:col-span-3" : undefined}>
-                <Card className="lift reveal h-full bg-ground p-6">
+              <StaggerItem
+                key={step.name}
+                className={i === 3 ? "md:col-span-3" : undefined}
+              >
+                <Card className="lift h-full bg-ground p-6">
                   <p className="font-mono text-xs uppercase text-primary">{step.step}</p>
                   <h3 className="mt-3 text-xl font-semibold">{step.name}</h3>
                   <p className="mt-2 text-muted">{step.text}</p>
                 </Card>
-              </li>
+              </StaggerItem>
             ))}
-          </ol>
+          </StaggerOrderedList>
         </div>
       </section>
 
@@ -170,6 +196,7 @@ export default async function HomePage() {
           eyebrow="Success stories"
           title="Problems we solved, and what changed."
           intro="Finished projects show real results. Projects still being built show exactly where they stand today."
+          scrubIntro
         />
         <div className="mt-6 flex flex-wrap items-center gap-3">
           <Badge variant="success" className="px-4 py-1.5 text-sm">
@@ -185,13 +212,15 @@ export default async function HomePage() {
             All success stories →
           </Link>
         </div>
-        <ul className="mt-8 grid gap-6 md:grid-cols-3">
+        <StaggerList className="mt-8 grid gap-6 md:grid-cols-3" stagger={0.12}>
           {shown.map((story, i) => (
-            <li key={story.slug}>
-              <StoryCard story={story} index={i} />
-            </li>
+            <StaggerItem key={story.slug}>
+              <TiltCard>
+                <StoryCard story={story} index={i} />
+              </TiltCard>
+            </StaggerItem>
           ))}
-        </ul>
+        </StaggerList>
         <figure className="mt-8 rounded-3xl border border-border bg-surface p-8">
           <blockquote className="text-2xl">“{storyClientQuote.text}”</blockquote>
           <figcaption className="mt-5 flex items-center gap-4">
@@ -228,18 +257,17 @@ export default async function HomePage() {
           eyebrow="The people"
           title="Real engineers, real names."
         />
-        <ul className="mt-12 grid gap-6 md:grid-cols-3">
+        <StaggerList className="mt-12 grid gap-6 md:grid-cols-3" stagger={0.12}>
           {team.map((member, i) => (
-            <li key={`${member.name}-${i}`} className="reveal">
-              <Placeholder
-                label={member.photoLabel}
-                className="aspect-[4/5] rounded-3xl"
-              />
+            <StaggerItem key={`${member.name}-${i}`}>
+              <Parallax className="aspect-4/5 rounded-3xl">
+                <Placeholder label={member.photoLabel} className="h-full" />
+              </Parallax>
               <h3 className="mt-4 text-lg font-semibold">{member.name}</h3>
               <p className="mt-1 text-sm text-muted">{member.role}</p>
-            </li>
+            </StaggerItem>
           ))}
-        </ul>
+        </StaggerList>
       </section>
 
       {/* Blog + roles */}

@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useRef, useState, type KeyboardEvent } from "react";
 import { LogoMark } from "@/components/brand/Logo";
 import { cn } from "@/lib/utils";
@@ -21,15 +22,31 @@ function NodeIcon({ done }: { done?: boolean }) {
   );
 }
 
-function Node({ title, meta, done }: { title: string; meta: string; done?: boolean }) {
+function Node({
+  title,
+  meta,
+  done,
+  index,
+}: {
+  title: string;
+  meta: string;
+  done?: boolean;
+  index: number;
+}) {
   return (
-    <li className="flex items-center gap-2.5 rounded-xl border border-border bg-surface-2 p-2.5">
+    <motion.li
+      initial={{ opacity: 0, x: done ? 24 : -24 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.45, delay: 0.1 + index * 0.1, ease: [0.2, 0.7, 0.2, 1] }}
+      whileHover={{ scale: 1.03 }}
+      className="flex items-center gap-2.5 rounded-xl border border-border bg-surface-2 p-2.5"
+    >
       <NodeIcon done={done} />
       <div className="min-w-0">
         <p className="truncate text-[0.8rem] font-semibold leading-tight">{title}</p>
         <p className="truncate text-[0.68rem] text-muted">{meta}</p>
       </div>
-    </li>
+    </motion.li>
   );
 }
 
@@ -82,23 +99,33 @@ export function AutomationDemo({ scenarios }: { scenarios: AutomationScenario[] 
             onClick={() => setIndex(i)}
             onKeyDown={onKeyDown}
             className={cn(
-              "rounded-full border px-3.5 py-1.5 text-[0.8rem] font-medium transition-colors",
+              "relative rounded-full border px-3.5 py-1.5 text-[0.8rem] font-medium transition-colors",
               i === index
-                ? "border-primary bg-primary text-ground"
+                ? "border-primary text-ground"
                 : "border-border text-ink hover:bg-surface-2",
             )}
           >
-            {s.tab}
+            {i === index ? (
+              <motion.span
+                layoutId="demo-tab-pill"
+                aria-hidden
+                className="absolute inset-0 rounded-full bg-primary"
+                transition={{ type: "spring", stiffness: 420, damping: 34 }}
+              />
+            ) : null}
+            <span className="relative">{s.tab}</span>
           </button>
         ))}
       </div>
 
-      <div
+      <motion.div
         key={active.id}
         id="demo-panel"
         role="tabpanel"
         aria-labelledby={`demo-tab-${active.id}`}
-        className="anim-panel"
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
       >
         <div className="mt-6 flex justify-between font-mono text-[0.65rem] uppercase tracking-widest text-muted">
           <span>Comes in</span>
@@ -134,8 +161,8 @@ export function AutomationDemo({ scenarios }: { scenarios: AutomationScenario[] 
 
           <div className="relative grid grid-cols-[1fr_auto_1fr] items-center gap-x-4 py-2">
             <ul className="flex h-64 flex-col justify-between">
-              {active.inputs.map((n) => (
-                <Node key={n.title} {...n} />
+              {active.inputs.map((n, i) => (
+                <Node key={n.title} {...n} index={i} />
               ))}
             </ul>
             <div className="flex flex-col items-center gap-2">
@@ -147,8 +174,8 @@ export function AutomationDemo({ scenarios }: { scenarios: AutomationScenario[] 
               </span>
             </div>
             <ul className="flex h-64 flex-col justify-between">
-              {active.outputs.map((n) => (
-                <Node key={n.title} {...n} done />
+              {active.outputs.map((n, i) => (
+                <Node key={n.title} {...n} index={i} done />
               ))}
             </ul>
           </div>
@@ -160,19 +187,25 @@ export function AutomationDemo({ scenarios }: { scenarios: AutomationScenario[] 
           </p>
           <ol className="mt-2 space-y-1.5">
             {active.handled.map((line, i) => (
-              <li key={line} className="flex gap-3 text-sm">
+              <motion.li
+                key={line}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 + i * 0.15, duration: 0.35 }}
+                className="flex gap-3 text-sm"
+              >
                 <span className="font-mono text-xs leading-5 text-success">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 {line}
-              </li>
+              </motion.li>
             ))}
           </ol>
           <p className="mt-4 text-xs text-muted">
             An example of the systems we build. Every step above is usually done by hand.
           </p>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
