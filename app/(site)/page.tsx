@@ -18,6 +18,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { AutomationDemo } from "@/components/site/AutomationDemo";
 import { CompareTable } from "@/components/site/CompareTable";
 import { ContactForm } from "@/components/site/ContactForm";
+import { FitPuzzle } from "@/components/site/FitPuzzle";
 import { IndustryCard } from "@/components/site/IndustryCard";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { StoryCard } from "@/components/site/StoryCard";
@@ -95,6 +96,19 @@ export default function HomePage() {
         <div className="container-x flex items-center gap-6 py-7">
           <p className="shrink-0 text-sm font-semibold">{home.trustedBy.label}</p>
           <Marquee items={home.trustedBy.items} />
+        </div>
+      </section>
+
+      {/* Team fit */}
+      <section aria-labelledby="fit-title" className="container-x py-24">
+        <div className="grid items-center gap-14 lg:grid-cols-2">
+          <SectionHeading
+            id="fit-title"
+            eyebrow={home.fit.eyebrow}
+            title={home.fit.title}
+            intro={home.fit.intro}
+          />
+          <FitPuzzle data={home.fit} />
         </div>
       </section>
 

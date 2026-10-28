@@ -148,7 +148,7 @@
         "label": "See our work",
         "href": "/success-stories"
       },
-      "note": "[Reply time promise, for example: we reply within one business day]"
+      "note": "We reply to every message within one business day."
     },
     "automation": {
       "label": "Example automation",
@@ -468,12 +468,21 @@
     "trustedBy": {
       "label": "Trusted by",
       "items": [
-        "[Client logo]",
-        "[Client logo]",
-        "[Client logo]",
-        "[Client logo]",
-        "[Review rating, for example Clutch or Upwork]"
+        { "name": "Green Leaf Grocers", "logo": "/clients/green-leaf-grocers.png" },
+        { "name": "Spice Route Kitchen", "logo": "/clients/spice-route-kitchen.png" },
+        { "name": "CarePoint Clinic", "logo": "/clients/carepoint-clinic.png" },
+        { "name": "Brightway School", "logo": "/clients/brightway-school.png" },
+        { "name": "MediScan Diagnostics", "logo": "/clients/mediscan-diagnostics.png" },
+        { "name": "UrbanFit Studio", "logo": "/clients/urbanfit-studio.png" }
       ]
+    },
+    "fit": {
+      "eyebrow": "How we work with you",
+      "title": "Your team and ours, working as one.",
+      "intro": "You bring the vision and know your business. We bring the engineers who design, build and ship it. Same goals, same tools, one team.",
+      "yours": "Your vision and core team",
+      "ours": "Dedicated Devs Recipe engineers",
+      "badge": { "before": "We just", "highlight": "fit." }
     },
     "industries": {
       "eyebrow": "Industries we serve",

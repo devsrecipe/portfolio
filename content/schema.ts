@@ -189,7 +189,18 @@ export const contentSchema = z.object({
       footnote: text,
       scenarios: z.array(scenarioSchema).min(1),
     }),
-    trustedBy: z.object({ label: text, items: z.array(text) }),
+    trustedBy: z.object({
+      label: text,
+      /** `logo` is a 400x100 image under public/, for example "/clients/acme.png". */
+      items: z.array(z.object({ name: text, logo: text })),
+    }),
+    fit: z.object({
+      ...section,
+      intro: text,
+      yours: text,
+      ours: text,
+      badge: z.object({ before: text, highlight: text }),
+    }),
     industries: z.object({
       ...section,
       intro: text,
