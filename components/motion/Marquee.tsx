@@ -48,6 +48,7 @@ export function Marquee({
   }, [speed]);
 
   // Logo files are 400x100 wordmarks that already include the client's name.
+  // Muted greyscale at rest so the strip reads as one calm band; colour on hover.
   const renderItems = (prefix: string) =>
     items.map((item, i) => (
       <li key={`${prefix}-${i}`} className="shrink-0 px-4">
@@ -56,7 +57,7 @@ export function Marquee({
           alt={item.name}
           width={160}
           height={40}
-          className="h-10 w-40 opacity-80 transition-opacity hover:opacity-100"
+          className="h-10 w-40 opacity-60 grayscale transition hover:opacity-100 hover:grayscale-0"
         />
       </li>
     ));

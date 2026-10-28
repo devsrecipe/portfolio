@@ -58,7 +58,7 @@ export default async function SolutionPage({
           <p className="eyebrow mt-10">
             {page.eyebrow} · {solution.name}
           </p>
-          <h1 className="mt-4 max-w-3xl text-5xl font-bold leading-[1.05] tracking-tight">
+          <h1 className="mt-4 max-w-3xl font-display text-6xl leading-[1.02] tracking-[-0.015em]">
             {solution.seoTitle}
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-muted">{solution.intro}</p>
@@ -70,7 +70,7 @@ export default async function SolutionPage({
 
         <section aria-labelledby="build-title" className="bg-surface py-20">
           <div className="container-x">
-            <h2 id="build-title" className="text-3xl font-bold tracking-tight">
+            <h2 id="build-title" className="font-display text-4xl tracking-[-0.015em]">
               {page.buildTitle}
             </h2>
             <ul className="mt-8 grid gap-5 md:grid-cols-3">
@@ -87,7 +87,7 @@ export default async function SolutionPage({
 
         {related.length > 0 ? (
           <section aria-labelledby="related-title" className="container-x py-20">
-            <h2 id="related-title" className="text-3xl font-bold tracking-tight">
+            <h2 id="related-title" className="font-display text-4xl tracking-[-0.015em]">
               {page.relatedTitle}
             </h2>
             <ul className="mt-8 grid gap-6 md:grid-cols-3">

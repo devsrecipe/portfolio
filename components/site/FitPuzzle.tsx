@@ -128,7 +128,7 @@ export function FitPuzzle({ data }: { data: SiteContent["home"]["fit"] }) {
         />
 
         <div ref={left} className={piece}>
-          <svg viewBox={VIEWBOX} aria-hidden className="size-full overflow-visible drop-shadow-[0_18px_30px_rgba(0,0,0,0.45)]">
+          <svg viewBox={VIEWBOX} aria-hidden className="size-full overflow-visible drop-shadow-[0_20px_28px_rgba(28,23,20,0.22)]">
             <path d={LEFT_PIECE} className="fill-ink" />
           </svg>
           <div className={`${label} left-[2.4%] pr-[7%] text-ground`}>
@@ -141,11 +141,11 @@ export function FitPuzzle({ data }: { data: SiteContent["home"]["fit"] }) {
         </div>
 
         <div ref={right} className={piece}>
-          <svg viewBox={VIEWBOX} aria-hidden className="size-full overflow-visible drop-shadow-[0_18px_30px_rgba(255,106,61,0.35)]">
+          <svg viewBox={VIEWBOX} aria-hidden className="size-full overflow-visible drop-shadow-[0_20px_28px_rgba(196,70,30,0.28)]">
             <defs>
               <linearGradient id="fit-ours" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stopColor="var(--color-primary-hover)" />
-                <stop offset="1" stopColor="var(--color-primary)" />
+                <stop offset="0" stopColor="var(--color-primary)" />
+                <stop offset="1" stopColor="var(--color-primary-hover)" />
               </linearGradient>
             </defs>
             <path d={RIGHT_PIECE} fill="url(#fit-ours)" />
@@ -166,9 +166,9 @@ export function FitPuzzle({ data }: { data: SiteContent["home"]["fit"] }) {
 
       <p
         ref={badge}
-        className="mx-auto -mt-2 w-fit rounded-full border border-border bg-surface px-7 py-3 text-xl font-bold shadow-[0_10px_30px_rgba(0,0,0,0.4)] sm:text-2xl"
+        className="mx-auto -mt-2 w-fit rounded-full border border-border bg-ground px-8 py-3 font-display text-3xl shadow-[0_12px_30px_-12px_rgba(28,23,20,0.25)] sm:text-4xl"
       >
-        {data.badge.before} <span className="text-primary">{data.badge.highlight}</span>
+        {data.badge.before} <span className="italic text-primary">{data.badge.highlight}</span>
       </p>
     </div>
   );

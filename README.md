@@ -1,6 +1,6 @@
 # Devs Recipe
 
-Portfolio website for Devs Recipe. Next.js 16 (App Router), TypeScript, Tailwind CSS v4. Palette A · Midnight Kitchen.
+Portfolio website for Devs Recipe. Next.js 16 (App Router), TypeScript, Tailwind CSS v4. Palette B · Warm Kitchen (cream base, terracotta accent, dark Process/Contact/footer sections).
 
 It is a fully static site: no database, no admin panel, no server code. Every page is generated at build time from one JSON file.
 

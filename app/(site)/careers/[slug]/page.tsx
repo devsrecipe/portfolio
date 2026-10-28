@@ -70,7 +70,7 @@ export default async function RolePage({ params }: PageProps<"/careers/[slug]">)
           <article className="space-y-8">
             <header>
               <p className="eyebrow">{page.eyebrow}</p>
-              <h1 className="mt-3 text-5xl font-bold tracking-tight">{job.title}</h1>
+              <h1 className="mt-3 font-display text-6xl tracking-[-0.015em]">{job.title}</h1>
               <div className="mt-5 flex flex-wrap gap-2">
                 <Badge>{job.location}</Badge>
                 <Badge>{job.type}</Badge>

@@ -4,13 +4,13 @@ export const ogSize = { width: 1200, height: 630 };
 export const ogContentType = "image/png";
 
 /*
- * ImageResponse cannot read CSS variables, so the Midnight Kitchen values are
+ * ImageResponse cannot read CSS variables, so the Warm Kitchen values are
  * repeated here as rgb() triplets (ground, ink, primary, muted).
  */
-const ground = "rgb(15, 17, 21)";
-const ink = "rgb(243, 241, 236)";
-const primary = "rgb(255, 106, 61)";
-const muted = "rgb(139, 144, 154)";
+const ground = "rgb(255, 250, 243)";
+const ink = "rgb(28, 23, 20)";
+const primary = "rgb(196, 70, 30)";
+const muted = "rgb(107, 98, 89)";
 
 export function renderOg(title: string, eyebrow = "Devs Recipe") {
   return new ImageResponse(

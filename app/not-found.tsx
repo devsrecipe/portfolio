@@ -11,7 +11,7 @@ export default function NotFound() {
         <Logo />
       </Link>
       <p className="eyebrow">{notFound.eyebrow}</p>
-      <h1 className="max-w-2xl text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl">
+      <h1 className="max-w-2xl font-display text-6xl leading-[1.02] tracking-[-0.015em] sm:text-7xl">
         {notFound.title}
       </h1>
       <p className="max-w-xl text-lg text-muted">{notFound.text}</p>

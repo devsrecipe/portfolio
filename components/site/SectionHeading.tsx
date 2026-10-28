@@ -30,7 +30,7 @@ export function SectionHeading({
         {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
         <Tag
           id={id}
-          className="mt-3 text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl"
+          className="mt-4 font-display text-5xl leading-[1.02] tracking-[-0.015em] sm:text-6xl"
         >
           {title}
         </Tag>
