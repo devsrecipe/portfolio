@@ -11,6 +11,7 @@ import {
   StaggerList,
   StaggerOrderedList,
 } from "@/components/motion/Reveal";
+import { SceneBackdrop } from "@/components/motion/SceneBackdrop";
 import { ScrubLine } from "@/components/motion/ScrubLine";
 import { Spotlight } from "@/components/motion/Spotlight";
 import { TiltCard } from "@/components/motion/TiltCard";
@@ -116,8 +117,9 @@ export default function HomePage() {
       <section
         id="solutions"
         aria-labelledby="industries-title"
-        className="container-x scroll-mt-24 py-24"
+        className="container-x relative isolate scroll-mt-24 py-24"
       >
+        <SceneBackdrop scene="rocket" className="right-0 top-6 w-[400px]" />
         <SectionHeading
           id="industries-title"
           eyebrow={home.industries.eyebrow}
@@ -154,8 +156,9 @@ export default function HomePage() {
       <section
         id="process"
         aria-labelledby="process-title"
-        className="scroll-mt-24 bg-surface py-24"
+        className="relative isolate scroll-mt-24 overflow-hidden bg-surface py-24"
       >
+        <SceneBackdrop scene="relay" className="right-[4%] top-16 w-[420px]" />
         <div className="container-x">
           <SectionHeading
             id="process-title"
@@ -187,7 +190,8 @@ export default function HomePage() {
       </section>
 
       {/* Success stories */}
-      <section aria-labelledby="stories-title" className="container-x py-24">
+      <section aria-labelledby="stories-title" className="container-x relative isolate py-24">
+        <SceneBackdrop scene="key" className="right-0 top-10 w-[360px]" />
         <SectionHeading
           id="stories-title"
           eyebrow={home.stories.eyebrow}
@@ -230,8 +234,9 @@ export default function HomePage() {
       {/* Compare */}
       <section
         aria-labelledby="compare-title"
-        className="border-y border-border bg-surface py-24"
+        className="relative isolate overflow-hidden border-y border-border bg-surface py-24"
       >
+        <SceneBackdrop scene="gears" className="right-[4%] top-4 w-[340px]" />
         <div className="container-x">
           <SectionHeading
             id="compare-title"
@@ -245,7 +250,8 @@ export default function HomePage() {
       </section>
 
       {/* Team */}
-      <section aria-labelledby="team-title" className="container-x py-24">
+      <section aria-labelledby="team-title" className="container-x relative isolate py-24">
+        <SceneBackdrop scene="seat" className="right-0 top-8 w-[380px]" />
         <SectionHeading
           id="team-title"
           eyebrow={home.team.eyebrow}
@@ -341,8 +347,9 @@ export default function HomePage() {
       <section
         id="contact"
         aria-labelledby="contact-title"
-        className="scroll-mt-20 bg-primary py-20 text-ground"
+        className="relative isolate scroll-mt-20 overflow-hidden bg-primary py-20 text-ground"
       >
+        <SceneBackdrop scene="plug" className="-left-10 bottom-0 w-[380px]" />
         <div className="container-x grid items-start gap-12 lg:grid-cols-[1fr_1.1fr]">
           <div>
             <h2
