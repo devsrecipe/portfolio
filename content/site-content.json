@@ -159,6 +159,44 @@
       "handledTitle": "Handled automatically",
       "footnote": "An example of the systems we build. Every step above is usually done by hand.",
       "scenarios": [
+         {
+          "id": "diagnostics",
+          "tab": "Diagnostics",
+          "title": "Diagnostics",
+          "inputs": [
+            {
+              "title": "Test booking",
+              "meta": "CBC · home sample"
+            },
+            {
+              "title": "Sample received",
+              "meta": "Tube #5521"
+            },
+            {
+              "title": "Result entered",
+              "meta": "Lab 2"
+            }
+          ],
+          "outputs": [
+            {
+              "title": "Sample tracked",
+              "meta": "In analysis"
+            },
+            {
+              "title": "Report generated",
+              "meta": "PDF"
+            },
+            {
+              "title": "Patient notified",
+              "meta": "SMS and email"
+            }
+          ],
+          "handled": [
+            "Sample #5521 tracked from collection to lab",
+            "Report generated the moment the result is signed off",
+            "Patient gets a secure link to download it"
+          ]
+        },
         {
           "id": "restaurant",
           "tab": "Restaurant",
@@ -311,44 +349,7 @@
             "Reminder scheduled for the day before"
           ]
         },
-        {
-          "id": "diagnostics",
-          "tab": "Diagnostics",
-          "title": "Diagnostics",
-          "inputs": [
-            {
-              "title": "Test booking",
-              "meta": "CBC · home sample"
-            },
-            {
-              "title": "Sample received",
-              "meta": "Tube #5521"
-            },
-            {
-              "title": "Result entered",
-              "meta": "Lab 2"
-            }
-          ],
-          "outputs": [
-            {
-              "title": "Sample tracked",
-              "meta": "In analysis"
-            },
-            {
-              "title": "Report generated",
-              "meta": "PDF"
-            },
-            {
-              "title": "Patient notified",
-              "meta": "SMS and email"
-            }
-          ],
-          "handled": [
-            "Sample #5521 tracked from collection to lab",
-            "Report generated the moment the result is signed off",
-            "Patient gets a secure link to download it"
-          ]
-        },
+       
         {
           "id": "school",
           "tab": "School",

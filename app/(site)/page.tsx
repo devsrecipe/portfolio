@@ -247,7 +247,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Team */}
+      {/* Team — hidden for now
       <section aria-labelledby="team-title" className="container-x py-24 lg:py-32">
         <SectionHeading
           id="team-title"
@@ -266,6 +266,7 @@ export default function HomePage() {
           ))}
         </StaggerList>
       </section>
+      */}
 
       {/* Blog + roles */}
       <section

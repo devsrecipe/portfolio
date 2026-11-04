@@ -1,0 +1,255 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;600&display=block" rel="stylesheet">
+<style>
+  :root {
+    --ground: #17120f;
+    --ground-2: #1f1915;
+    --surface: #2a231e;
+    --border: #3a3029;
+    --ink: #fffaf3;
+    --muted: #a99f93;
+    --primary: #e8673a;
+    --accent: #f2b25c;
+    --success: #4cc38a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; }
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Hanken Grotesk", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .canvas {
+    position: relative; width: 100vw; height: 100vh; overflow: hidden;
+    background:
+      radial-gradient(ellipse 55% 70% at 78% 45%, rgba(232,103,58,.20), transparent 70%),
+      radial-gradient(ellipse 40% 50% at 8% 100%, rgba(242,178,92,.10), transparent 70%),
+      var(--ground);
+  }
+  /* dotted grid texture */
+  .canvas::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,250,243,.07) 1.2px, transparent 1.2px);
+    background-size: 28px 28px;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 40%, #000 100%);
+  }
+  .canvas::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 8px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+  }
+
+  .copy { position: absolute; z-index: 2; }
+  .logo { display: block; height: 44px; }
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .16em; color: var(--accent);
+    font-size: 15px; display: flex; align-items: center; gap: 12px;
+  }
+  .eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--accent); }
+  h1 {
+    font-weight: 800; letter-spacing: -.03em; line-height: 1.02;
+  }
+  h1 em {
+    font-family: "Instrument Serif", serif; font-style: italic; font-weight: 400;
+    color: var(--primary); letter-spacing: -.01em; padding-right: .04em;
+  }
+  .sub { color: var(--muted); font-size: 21px; line-height: 1.45; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip {
+    font-size: 16px; font-weight: 600; color: var(--ink);
+    padding: 8px 16px; border-radius: 999px;
+    border: 1px solid var(--border); background: rgba(42,35,30,.7);
+  }
+  .cta {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--primary); color: var(--ground);
+    font-weight: 700; font-size: 19px; padding: 14px 24px; border-radius: 999px;
+  }
+  .cta span { font-size: 22px; }
+
+  /* ---------- automation flow card ---------- */
+  .flow {
+    position: absolute; z-index: 1; width: 640px; height: 400px;
+    border-radius: 24px; border: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(42,35,30,.92), rgba(31,25,21,.92));
+    box-shadow: 0 40px 80px -30px rgba(0,0,0,.7), 0 0 0 6px rgba(255,250,243,.02);
+    transform-origin: top left;
+  }
+  .flow .bar {
+    position: absolute; top: 0; left: 0; right: 0; height: 46px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px; padding: 0 20px;
+    font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: .12em;
+    color: var(--muted); text-transform: uppercase;
+  }
+  .flow .bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--border); display: block; }
+  .flow .bar b { margin-left: 10px; font-weight: 600; }
+  .flow .bar .live { margin-left: auto; color: var(--success); display: flex; gap: 8px; align-items: center; }
+  .flow .bar .live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--success); box-shadow: 0 0 10px var(--success); }
+  .flow svg.wires { position: absolute; inset: 0; }
+  .node {
+    position: absolute; width: 192px; padding: 12px 14px; white-space: nowrap; border-radius: 14px;
+    background: var(--ground); border: 1px solid var(--border);
+    display: flex; gap: 11px; align-items: center;
+  }
+  .node .ic {
+    flex: none; width: 34px; height: 34px; border-radius: 10px;
+    display: grid; place-items: center; font-size: 17px;
+    background: rgba(232,103,58,.14); color: var(--primary);
+  }
+  .node.out .ic { background: rgba(76,195,138,.14); color: var(--success); }
+  .node .t { font-size: 14px; font-weight: 700; line-height: 1.15; }
+  .node .s { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+  .hub {
+    position: absolute; left: 270px; top: 175px; width: 100px; height: 100px;
+    border-radius: 28px; display: grid; place-items: center;
+    background: radial-gradient(circle at 50% 35%, #2f2620, var(--ground));
+    border: 1px solid rgba(232,103,58,.5);
+    box-shadow: 0 0 0 10px rgba(232,103,58,.07), 0 0 60px rgba(232,103,58,.35);
+  }
+  .hub svg { width: 52px; height: 52px; }
+  .hub-label {
+    position: absolute; left: 240px; width: 160px; top: 286px; text-align: center;
+    font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: .14em; color: var(--muted);
+  }
+  .flow .foot {
+    position: absolute; left: 20px; right: 20px; bottom: 16px;
+    font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--success);
+    display: flex; gap: 20px;
+  }
+
+  /* ---------- layouts ---------- */
+
+  /* Facebook cover 1640x624 – mobile crops ~170px each side, keep content inside */
+  .fb .copy { left: 200px; top: 138px; width: 760px; }
+  .fb .logo { height: 46px; }
+  .fb .eyebrow { margin-top: 40px; }
+  .fb h1 { font-size: 66px; margin-top: 18px; }
+  .fb .chips { margin-top: 30px; }
+  .fb .flow { left: 1000px; top: 158px; transform: scale(.75); }
+
+  /* LinkedIn 1584x396 – profile photo covers bottom-left, content sits right of it */
+  .li .copy { left: 440px; top: 58px; width: 640px; }
+  .li .logo { height: 36px; }
+  .li .eyebrow { margin-top: 26px; font-size: 13px; }
+  .li h1 { font-size: 46px; margin-top: 12px; }
+  .li .chips { margin-top: 20px; }
+  .li .chip { font-size: 14px; padding: 6px 13px; }
+  .li .flow { left: 1110px; top: 52px; transform: scale(.66); }
+
+  /* X / Twitter header 1500x500 */
+  .x .copy { left: 120px; top: 70px; width: 720px; }
+  .x .logo { height: 40px; }
+  .x .eyebrow { margin-top: 32px; }
+  .x h1 { font-size: 58px; margin-top: 16px; }
+  .x .chips { margin-top: 26px; }
+  .x .flow { left: 890px; top: 82px; transform: scale(.78); }
+
+  /* Square post 1080x1080 */
+  .sq .copy { left: 80px; top: 80px; width: 920px; }
+  .sq .logo { height: 48px; }
+  .sq .eyebrow { margin-top: 56px; font-size: 16px; }
+  .sq h1 { font-size: 76px; margin-top: 20px; }
+  .sq .flow { left: 80px; top: 440px; transform: scale(1.4375); }
+  .sq .side { position: absolute; z-index: 2; left: 750px; top: 600px; width: 270px; display: none; }
+  .sq .bottom { position: absolute; left: 80px; right: 80px; bottom: 62px; z-index: 2; display: flex; justify-content: space-between; align-items: center; }
+
+  /* Portrait post 1080x1350 */
+  .pt .copy { left: 80px; top: 90px; width: 920px; }
+  .pt .logo { height: 50px; }
+  .pt .eyebrow { margin-top: 70px; font-size: 16px; }
+  .pt h1 { font-size: 84px; margin-top: 22px; }
+  .pt .sub { margin-top: 28px; width: 860px; font-size: 24px; }
+  .pt .flow { left: 80px; top: 590px; transform: scale(1.4375); }
+  .pt .bottom { position: absolute; left: 80px; right: 80px; bottom: 70px; z-index: 2; display: flex; justify-content: space-between; align-items: center; }
+
+  /* Story 1080x1920 */
+  .st .copy { left: 80px; top: 240px; width: 920px; }
+  .st .logo { height: 54px; }
+  .st .eyebrow { margin-top: 90px; font-size: 18px; }
+  .st h1 { font-size: 96px; margin-top: 26px; }
+  .st .sub { margin-top: 34px; font-size: 28px; width: 880px; }
+  .st .flow { left: 80px; top: 1040px; transform: scale(1.4375); }
+  .st .bottom { position: absolute; left: 80px; right: 80px; bottom: 170px; z-index: 2; display: flex; justify-content: center; }
+  .st .cta { font-size: 26px; padding: 20px 36px; }
+
+  .wide-only, .tall-only, .sq-only { display: none; }
+  .fb .wide-only, .li .wide-only, .x .wide-only { display: flex; }
+  .pt .sq-only { display: flex; }
+  .pt .tall-only, .st .tall-only { display: block; }
+  .bottom { display: none; }
+  .sq .bottom, .pt .bottom, .st .bottom { display: flex; }
+  .sq .canvas, .pt .canvas, .st .canvas {
+    background:
+      radial-gradient(ellipse 80% 45% at 50% 78%, rgba(232,103,58,.22), transparent 70%),
+      radial-gradient(ellipse 60% 30% at 0% 0%, rgba(242,178,92,.08), transparent 70%),
+      var(--ground);
+  }
+  .sq .canvas::before, .pt .canvas::before, .st .canvas::before {
+    mask-image: linear-gradient(180deg, transparent 0%, #000 45%, #000 100%);
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="copy">
+    <img class="logo" src="devsrecipe-logo-for-dark-bg.png" alt="devsrecipe">
+    <div class="eyebrow">Software &amp; automation for growing businesses</div>
+    <h1>Cut costs.<br><em>Automate</em> your operations.</h1>
+    <p class="sub tall-only">Ordering, booking and operations software for shops, restaurants, clinics, schools and startups. Built by the engineers you talk to.</p>
+    <div class="chips wide-only">
+      <span class="chip">Shops</span><span class="chip">Restaurants</span><span class="chip">Clinics</span><span class="chip">Schools</span><span class="chip">Startups</span>
+    </div>
+  </div>
+
+  <div class="flow">
+    <div class="bar"><i></i><i></i><i></i><b>Example automation · Restaurant</b><span class="live">Running</span></div>
+    <svg class="wires" viewBox="0 0 640 400" fill="none">
+      <defs>
+        <linearGradient id="gi" x1="0" x2="1"><stop offset="0" stop-color="#e8673a" stop-opacity=".25"/><stop offset="1" stop-color="#e8673a"/></linearGradient>
+        <linearGradient id="go" x1="0" x2="1"><stop offset="0" stop-color="#4cc38a"/><stop offset="1" stop-color="#4cc38a" stop-opacity=".25"/></linearGradient>
+      </defs>
+      <g stroke="url(#gi)" stroke-width="2" stroke-dasharray="5 6">
+        <path d="M212 107 C 245 107, 240 225, 270 225"/>
+        <path d="M212 225 L 270 225"/>
+        <path d="M212 343 C 245 343, 240 225, 270 225"/>
+      </g>
+      <g stroke="url(#go)" stroke-width="2">
+        <path d="M370 225 C 400 225, 400 107, 428 107"/>
+        <path d="M370 225 L 428 225"/>
+        <path d="M370 225 C 400 225, 400 343, 428 343"/>
+      </g>
+      <g fill="#e8673a"><circle cx="241" cy="142" r="4"/><circle cx="241" cy="225" r="4"/><circle cx="241" cy="308" r="4"/></g>
+      <g fill="#4cc38a"><circle cx="399" cy="142" r="4"/><circle cx="399" cy="225" r="4"/><circle cx="399" cy="308" r="4"/></g>
+    </svg>
+    <div class="node" style="left:20px;top:80px"><div class="ic">🛒</div><div><div class="t">Website order</div><div class="s">Order #1042</div></div></div>
+    <div class="node" style="left:20px;top:198px"><div class="ic">💬</div><div><div class="t">WhatsApp order</div><div class="s">2 × Biryani</div></div></div>
+    <div class="node" style="left:20px;top:316px"><div class="ic">📅</div><div><div class="t">Table booking</div><div class="s">Fri · 8:00 PM</div></div></div>
+    <div class="hub">
+      <svg viewBox="0 0 48 48" fill="none">
+        <path d="M5 27h38a19 19 0 0 1-38 0Z" fill="#e8673a"/>
+        <path d="M17 6l-7 7 7 7M31 6l7 7-7 7M27 4l-6 18" stroke="#e8673a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="node out" style="left:428px;top:80px"><div class="ic">🍳</div><div><div class="t">Kitchen screen</div><div class="s">Sent instantly</div></div></div>
+    <div class="node out" style="left:428px;top:198px"><div class="ic">📦</div><div><div class="t">Stock updated</div><div class="s">Auto reorder</div></div></div>
+    <div class="node out" style="left:428px;top:316px"><div class="ic">🧾</div><div><div class="t">Receipt sent</div><div class="s">To customer</div></div></div>
+  </div>
+
+  <div class="bottom">
+    <div class="chips sq-only">
+      <span class="chip">Shops</span><span class="chip">Restaurants</span><span class="chip">Clinics</span><span class="chip">Schools</span><span class="chip">Startups</span>
+    </div>
+    <div class="cta tall-only st-cta">Book a free 30-min call <span>→</span></div>
+  </div>
+</div>
+<script>
+  document.body.className = (location.hash || "#fb").slice(1);
+</script>
+</body>
+</html>
