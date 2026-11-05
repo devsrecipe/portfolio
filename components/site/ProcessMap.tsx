@@ -130,40 +130,117 @@ function StationIcon({ index, className }: { index: number; className?: string }
 }
 
 export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
-  const outerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const pinnedRef = useRef<HTMLDivElement>(null);
+
+  const lineProgressRef = useRef<HTMLDivElement>(null);
+  const pulseOrbRef = useRef<HTMLDivElement>(null);
+
+  const cardRefs = [
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+  ];
+
+  const nodeRefs = [
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+  ];
+
+  const stemRefs = [
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+  ];
+
   const [activeStation, setActiveStation] = useState<number>(0);
-  const [progress, setProgress] = useState<number>(0);
+  const [isCompleted, setIsCompleted] = useState<boolean>(false);
 
   useEffect(() => {
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 1024px)", () => {
-      if (!outerRef.current) return;
+      if (!containerRef.current || !pinnedRef.current) return;
 
-      const trigger = ScrollTrigger.create({
-        trigger: outerRef.current,
-        start: "top top+=64",
-        end: "bottom bottom",
-        scrub: 0.3,
-        onUpdate: (self) => {
-          const p = Math.max(0, Math.min(1, self.progress));
-          setProgress(p);
+      const cards = cardRefs.map((r) => r.current).filter(Boolean) as HTMLElement[];
+      const nodes = nodeRefs.map((r) => r.current).filter(Boolean) as HTMLElement[];
+      const stems = stemRefs.map((r) => r.current).filter(Boolean) as HTMLElement[];
 
-          // Update active station based on scroll progress
-          if (p < 0.22) {
-            setActiveStation(0);
-          } else if (p < 0.52) {
-            setActiveStation(1);
-          } else if (p < 0.82) {
-            setActiveStation(2);
-          } else {
-            setActiveStation(3);
-          }
+      // Initial styles for station 0
+      gsap.set(cards[0], { y: -8, borderColor: "#e8673a" });
+      gsap.set(nodes[0], { scale: 1.25, backgroundColor: "#e8673a", color: "#16120e", borderColor: "#e8673a" });
+      gsap.set(stems[0], { backgroundColor: "#e8673a" });
+
+      // Build pure GPU-driven timeline with ScrollTrigger
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top+=80",
+          end: "+=2200",
+          pin: pinnedRef.current,
+          scrub: 0.5,
+          anticipatePin: 1,
+          onUpdate: (self) => {
+            const p = self.progress;
+            const idx = p < 0.22 ? 0 : p < 0.52 ? 1 : p < 0.82 ? 2 : 3;
+            setActiveStation(idx);
+            setIsCompleted(p >= 0.95);
+          },
         },
       });
 
+      // 1. Line draws continuously from 0% to 100% across duration 3.0
+      tl.fromTo(
+        lineProgressRef.current,
+        { scaleX: 0 },
+        { scaleX: 1, ease: "none", transformOrigin: "left center", duration: 3.0 },
+        0
+      );
+
+      // 2. Pulse orb moves synchronously from 0% to 100% across duration 3.0
+      tl.fromTo(
+        pulseOrbRef.current,
+        { left: "0%" },
+        { left: "100%", ease: "none", duration: 3.0 },
+        0
+      );
+
+      // 3. Stage 1 -> Stage 2 transition at ~t = 0.8
+      tl.to(cards[0], { y: 0, borderColor: "rgba(232, 103, 58, 0.25)", duration: 0.2 }, 0.75);
+      tl.to(nodes[0], { scale: 1, backgroundColor: "#201a16", color: "#e8673a", borderColor: "rgba(232, 103, 58, 0.4)", duration: 0.2 }, 0.75);
+      tl.to(stems[0], { backgroundColor: "rgba(232, 103, 58, 0.4)", duration: 0.2 }, 0.75);
+
+      tl.to(cards[1], { y: -8, borderColor: "#e8673a", duration: 0.2 }, 0.8);
+      tl.to(nodes[1], { scale: 1.25, backgroundColor: "#e8673a", color: "#16120e", borderColor: "#e8673a", duration: 0.2 }, 0.8);
+      tl.to(stems[1], { backgroundColor: "#e8673a", duration: 0.2 }, 0.8);
+
+      // 4. Stage 2 -> Stage 3 transition at ~t = 1.7
+      tl.to(cards[1], { y: 0, borderColor: "rgba(232, 103, 58, 0.25)", duration: 0.2 }, 1.65);
+      tl.to(nodes[1], { scale: 1, backgroundColor: "#201a16", color: "#e8673a", borderColor: "rgba(232, 103, 58, 0.4)", duration: 0.2 }, 1.65);
+      tl.to(stems[1], { backgroundColor: "rgba(232, 103, 58, 0.4)", duration: 0.2 }, 1.65);
+
+      tl.to(cards[2], { y: -8, borderColor: "#e8673a", duration: 0.2 }, 1.7);
+      tl.to(nodes[2], { scale: 1.25, backgroundColor: "#e8673a", color: "#16120e", borderColor: "#e8673a", duration: 0.2 }, 1.7);
+      tl.to(stems[2], { backgroundColor: "#e8673a", duration: 0.2 }, 1.7);
+
+      // 5. Stage 3 -> Stage 4 transition at ~t = 2.6
+      tl.to(cards[2], { y: 0, borderColor: "rgba(232, 103, 58, 0.25)", duration: 0.2 }, 2.55);
+      tl.to(nodes[2], { scale: 1, backgroundColor: "#201a16", color: "#e8673a", borderColor: "rgba(232, 103, 58, 0.4)", duration: 0.2 }, 2.55);
+      tl.to(stems[2], { backgroundColor: "rgba(232, 103, 58, 0.4)", duration: 0.2 }, 2.55);
+
+      tl.to(cards[3], { y: -8, borderColor: "#e8673a", duration: 0.2 }, 2.6);
+      tl.to(nodes[3], { scale: 1.25, backgroundColor: "#e8673a", color: "#16120e", borderColor: "#e8673a", duration: 0.2 }, 2.6);
+      tl.to(stems[3], { backgroundColor: "#e8673a", duration: 0.2 }, 2.6);
+
       return () => {
-        trigger.kill();
+        tl.kill();
+        ScrollTrigger.getAll().forEach((t) => {
+          if (t.trigger === containerRef.current) t.kill();
+        });
       };
     });
 
@@ -173,34 +250,29 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
   }, []);
 
   const jumpToStation = (idx: number) => {
-    if (!outerRef.current) {
+    if (!containerRef.current) return;
+    const scrollTrigger = ScrollTrigger.getById("process-pin") || ScrollTrigger.getAll().find((t) => t.trigger === containerRef.current);
+
+    if (scrollTrigger) {
+      const fractions = [0.05, 0.35, 0.68, 0.96];
+      const targetScroll = scrollTrigger.start + (scrollTrigger.end - scrollTrigger.start) * fractions[idx];
+      window.scrollTo({
+        top: targetScroll,
+        behavior: "smooth",
+      });
+    } else {
       setActiveStation(idx);
-      return;
     }
-
-    const rect = outerRef.current.getBoundingClientRect();
-    const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    const startY = scrollTop + rect.top - 64;
-    const scrollDistance = outerRef.current.offsetHeight - window.innerHeight;
-
-    const targetFraction = idx === 0 ? 0.05 : idx === 1 ? 0.35 : idx === 2 ? 0.68 : 0.96;
-    const targetY = startY + scrollDistance * targetFraction;
-
-    window.scrollTo({
-      top: targetY,
-      behavior: "smooth",
-    });
   };
 
-  // Rail starts at 12.5% (column 1 center) and ends at 87.5% (column 4 center) = span of 75%
-  const currentFraction = Math.max(0, Math.min(1, progress));
-  const activeRailPercent = currentFraction * 75;
-
   return (
-    <div ref={outerRef} className="relative h-auto lg:h-[280vh] select-none">
-      {/* Pinned Sticky Viewport on Desktop */}
-      <div className="lg:sticky lg:top-14 lg:min-h-[calc(100vh-3.5rem)] flex flex-col justify-center py-10 lg:py-14 container-x">
-        {/* Background Architectural Map Grid */}
+    <div ref={containerRef} className="relative select-none">
+      {/* Pinned Viewport Container */}
+      <div
+        ref={pinnedRef}
+        className="flex min-h-[calc(100vh-5rem)] flex-col justify-center py-8 lg:py-12 container-x"
+      >
+        {/* Subtle Architectural Grid */}
         <div
           className="pointer-events-none absolute -inset-6 rounded-3xl opacity-15"
           style={{
@@ -218,11 +290,11 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
             eyebrow={eyebrow}
             title={title}
             intro={intro}
-            className="mb-8"
+            className="mb-6"
           />
         )}
 
-        {/* Map Header / Metadata Strip */}
+        {/* Flight Path Metadata Strip */}
         <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border/80 bg-surface/90 px-5 py-3 backdrop-blur-md shadow-xs">
           <div className="flex items-center gap-2.5">
             <span className="flex size-2 rounded-full bg-primary animate-ping" />
@@ -246,105 +318,79 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
         </div>
 
         {/* ======================================================== */}
-        {/* DESKTOP VIEW: Scroll-Driven Pinned Highway Journey Map   */}
+        {/* DESKTOP VIEW: Pure GPU-Driven Highway Journey Map        */}
         {/* ======================================================== */}
         <div className="relative z-10 mt-8 hidden lg:block">
-          {/* Highway Transit Line (spans precisely from col 1 center to col 4 center) */}
+          {/* Continuous Highway Transit Track (Col 1 center to Col 4 center) */}
           <div className="relative mb-4">
             {/* Background Rail */}
-            <div className="absolute left-[12.5%] right-[12.5%] top-4 h-0.5 bg-border/80" />
+            <div className="absolute left-[12.5%] w-[75%] top-4 h-0.5 bg-border/80" />
 
-            {/* Active Scroll Fill Rail */}
-            <div
-              className="absolute left-[12.5%] top-4 h-0.5 bg-gradient-to-r from-primary via-accent to-primary shadow-sm shadow-primary transition-all duration-150 ease-out"
-              style={{ width: `${activeRailPercent}%` }}
-            />
-
-            {/* Animated Energy Pulse (follows scroll progress continuously) */}
-            <div
-              className="absolute top-2.5 size-3.5 -ml-[7px] rounded-full bg-primary shadow-lg shadow-primary transition-all duration-150 ease-out"
-              style={{ left: `calc(12.5% + ${activeRailPercent}%)` }}
-            >
-              <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75" />
+            {/* Active Scroll Fill Rail (GPU scaleX driven) */}
+            <div className="absolute left-[12.5%] w-[75%] top-4 h-0.5 overflow-hidden">
+              <div
+                ref={lineProgressRef}
+                className="h-full w-full bg-gradient-to-r from-primary via-accent to-primary shadow-sm shadow-primary"
+                style={{ transform: "scaleX(0)", transformOrigin: "left center" }}
+              />
             </div>
 
-            {/* 4 Station Waypoint Pins positioned in exact column centers */}
+            {/* Animated Energy Pulse (GPU position driven) */}
+            <div className="absolute left-[12.5%] w-[75%] top-4 pointer-events-none">
+              <div
+                ref={pulseOrbRef}
+                className="absolute top-1/2 -translate-y-1/2 -ml-2 size-4 rounded-full bg-primary shadow-lg shadow-primary"
+                style={{ left: "0%" }}
+              >
+                <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75" />
+              </div>
+            </div>
+
+            {/* 4 Waypoint Buttons centered on each column */}
             <div className="grid grid-cols-4 gap-5">
-              {STATIONS.map((st, idx) => {
-                const isSelected = activeStation === idx;
-                const isPassed =
-                  idx === 0
-                    ? true
-                    : idx === 1
-                      ? progress >= 0.22
-                      : idx === 2
-                        ? progress >= 0.52
-                        : progress >= 0.82;
-
-                return (
-                  <div key={st.step} className="flex flex-col items-center">
-                    <button
-                      type="button"
-                      onClick={() => jumpToStation(idx)}
-                      className="group flex flex-col items-center focus:outline-none cursor-pointer"
-                      aria-label={`Jump to Milestone ${st.step}: ${st.name}`}
+              {STATIONS.map((st, idx) => (
+                <div key={st.step} className="flex flex-col items-center">
+                  <button
+                    type="button"
+                    onClick={() => jumpToStation(idx)}
+                    className="group flex flex-col items-center focus:outline-none cursor-pointer"
+                    aria-label={`Jump to Milestone ${st.step}: ${st.name}`}
+                  >
+                    {/* Waypoint Interchange Node */}
+                    <div
+                      ref={nodeRefs[idx]}
+                      className="flex size-8 items-center justify-center rounded-full border-2 border-border bg-surface-2 text-muted shadow-sm transition-shadow duration-200"
                     >
-                      {/* Waypoint Interchange Node */}
-                      <div
-                        className={`flex size-8 items-center justify-center rounded-full border-2 transition-all duration-300 ${
-                          isSelected
-                            ? "border-primary bg-primary text-ground scale-125 shadow-lg shadow-primary/40 ring-4 ring-primary/20"
-                            : isPassed
-                              ? "border-primary/60 bg-surface text-primary"
-                              : "border-border bg-surface-2 text-muted group-hover:border-primary/50 group-hover:text-ink"
-                        }`}
-                      >
-                        <span className="font-mono text-xs font-bold">{st.step}</span>
-                      </div>
+                      <span className="font-mono text-xs font-bold">{st.step}</span>
+                    </div>
 
-                      {/* Vertical connector stem dropping into the card */}
-                      <div
-                        className={`h-5 w-0.5 transition-colors duration-300 ${
-                          isSelected
-                            ? "bg-primary"
-                            : isPassed
-                              ? "bg-primary/40"
-                              : "bg-border/60"
-                        }`}
-                      />
-                    </button>
-                  </div>
-                );
-              })}
+                    {/* Vertical connector stem dropping into card */}
+                    <div
+                      ref={stemRefs[idx]}
+                      className="h-5 w-0.5 bg-border/60 transition-colors duration-200"
+                    />
+                  </button>
+                </div>
+              ))}
             </div>
           </div>
 
           {/* 4 Journey Station Cards */}
           <div className="grid grid-cols-4 gap-5 pt-1">
             {STATIONS.map((st, idx) => {
-              const isSelected = activeStation === idx;
               const stepData = steps[idx];
 
               return (
                 <div
                   key={st.step}
+                  ref={cardRefs[idx]}
                   onClick={() => jumpToStation(idx)}
-                  className={`group relative flex flex-col justify-between rounded-3xl p-6 transition-all duration-300 cursor-pointer ${
-                    isSelected
-                      ? "border-2 border-primary bg-surface shadow-2xl shadow-primary/15 -translate-y-2 ring-1 ring-primary/30"
-                      : "border border-border/70 bg-surface/80 hover:border-primary/40 hover:bg-surface hover:-translate-y-1"
-                  }`}
+                  className="group relative flex flex-col justify-between rounded-3xl border border-border/70 bg-surface/80 p-6 cursor-pointer shadow-md transition-shadow duration-300 hover:shadow-xl"
                 >
                   <div>
                     {/* Header: Node Icon + Timing Capsule */}
                     <div className="flex items-center justify-between gap-2">
-                      <div
-                        className={`flex size-11 items-center justify-center rounded-2xl border transition-all duration-300 ${
-                          isSelected
-                            ? "border-primary bg-primary text-ground scale-105 shadow-md shadow-primary/25"
-                            : "border-primary/25 bg-primary-soft text-primary group-hover:border-primary group-hover:scale-105"
-                        }`}
-                      >
+                      <div className="flex size-11 items-center justify-center rounded-2xl border border-primary/25 bg-primary-soft text-primary transition-all duration-300 group-hover:scale-105 group-hover:border-primary">
                         <StationIcon index={idx} className="size-5" />
                       </div>
                       <span className="rounded-full border border-border/70 bg-surface-2 px-2.5 py-0.5 font-mono text-[10px] text-muted">
@@ -386,11 +432,11 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
                       <span>{st.deliverable}</span>
                     </div>
 
-                    {/* Active Indicator Bar */}
+                    {/* Progress Indicator Accent */}
                     <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-border/40">
                       <div
                         className={`h-full bg-gradient-to-r from-primary to-accent transition-all duration-300 ${
-                          isSelected ? "w-full" : "w-3 group-hover:w-full"
+                          activeStation >= idx ? "w-full" : "w-2 group-hover:w-full"
                         }`}
                       />
                     </div>
@@ -479,7 +525,7 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
         </div>
 
         {/* ======================================================== */}
-        {/* Route Flight Details Strip (Bottom Navigation Bar)       */}
+        {/* Navigation & Status Strip (Bottom Bar)                   */}
         {/* ======================================================== */}
         <div className="relative z-10 mt-6 rounded-2xl border border-primary/20 bg-primary-soft/40 px-5 py-3.5 backdrop-blur-sm">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs">
@@ -499,7 +545,7 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
 
             <div className="flex items-center gap-3">
               <span className="font-mono text-[11px] text-muted">
-                {progress < 0.88 ? (
+                {!isCompleted ? (
                   <span className="inline-flex items-center gap-1.5 text-primary">
                     <span>Scroll to navigate</span>
                     <svg
