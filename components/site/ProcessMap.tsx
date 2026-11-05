@@ -1,12 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { SiteContent } from "@/types";
+import { SectionHeading } from "@/components/site/SectionHeading";
+
+gsap.registerPlugin(ScrollTrigger);
 
 type Step = SiteContent["home"]["process"]["steps"][number];
 
 interface ProcessProps {
   steps: Step[];
+  eyebrow?: string;
+  title?: string;
+  intro?: string;
 }
 
 const STATIONS = [
@@ -18,7 +26,6 @@ const STATIONS = [
     punchline:
       "We audit your operations, eliminate bottlenecks, and blueprint the exact software you need.",
     deliverable: "Fixed Architecture Blueprint",
-    tag: "Blueprint Scope",
   },
   {
     step: "02",
@@ -28,7 +35,6 @@ const STATIONS = [
     punchline:
       "You click through interactive prototypes and approve every screen before any code is written.",
     deliverable: "Clickable Figma Prototype",
-    tag: "UI Approval",
   },
   {
     step: "03",
@@ -38,7 +44,6 @@ const STATIONS = [
     punchline:
       "We engineer production code in weekly sprints with working demos you test live every Friday.",
     deliverable: "Weekly Live Demos",
-    tag: "Friday Demos",
   },
   {
     step: "04",
@@ -48,14 +53,12 @@ const STATIONS = [
     punchline:
       "We handle seamless live rollout, team onboarding, and back it with 30 days of included fixes.",
     deliverable: "30-Day Fix Guarantee",
-    tag: "Guaranteed Care",
   },
 ];
 
 function StationIcon({ index, className }: { index: number; className?: string }) {
   switch (index) {
     case 0:
-      // Discover: Compass / Target Waypoint
       return (
         <svg
           viewBox="0 0 24 24"
@@ -73,7 +76,6 @@ function StationIcon({ index, className }: { index: number; className?: string }
         </svg>
       );
     case 1:
-      // Design: Canvas & Precision Pen
       return (
         <svg
           viewBox="0 0 24 24"
@@ -92,7 +94,6 @@ function StationIcon({ index, className }: { index: number; className?: string }
         </svg>
       );
     case 2:
-      // Build: Sprint Terminal / Code
       return (
         <svg
           viewBox="0 0 24 24"
@@ -108,7 +109,6 @@ function StationIcon({ index, className }: { index: number; className?: string }
         </svg>
       );
     case 3:
-      // Launch: Launch Rocket / Destination Flag
       return (
         <svg
           viewBox="0 0 24 24"
@@ -129,117 +129,282 @@ function StationIcon({ index, className }: { index: number; className?: string }
   }
 }
 
-export function ProcessMap({ steps }: ProcessProps) {
+export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
+  const outerRef = useRef<HTMLDivElement>(null);
   const [activeStation, setActiveStation] = useState<number>(0);
+  const [progress, setProgress] = useState<number>(0);
+
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1024px)", () => {
+      if (!outerRef.current) return;
+
+      const trigger = ScrollTrigger.create({
+        trigger: outerRef.current,
+        start: "top top+=64",
+        end: "bottom bottom",
+        scrub: 0.3,
+        onUpdate: (self) => {
+          const p = Math.max(0, Math.min(1, self.progress));
+          setProgress(p);
+
+          // Update active station based on scroll progress
+          if (p < 0.22) {
+            setActiveStation(0);
+          } else if (p < 0.52) {
+            setActiveStation(1);
+          } else if (p < 0.82) {
+            setActiveStation(2);
+          } else {
+            setActiveStation(3);
+          }
+        },
+      });
+
+      return () => {
+        trigger.kill();
+      };
+    });
+
+    return () => {
+      mm.revert();
+    };
+  }, []);
+
+  const jumpToStation = (idx: number) => {
+    if (!outerRef.current) {
+      setActiveStation(idx);
+      return;
+    }
+
+    const rect = outerRef.current.getBoundingClientRect();
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const startY = scrollTop + rect.top - 64;
+    const scrollDistance = outerRef.current.offsetHeight - window.innerHeight;
+
+    const targetFraction = idx === 0 ? 0.05 : idx === 1 ? 0.35 : idx === 2 ? 0.68 : 0.96;
+    const targetY = startY + scrollDistance * targetFraction;
+
+    window.scrollTo({
+      top: targetY,
+      behavior: "smooth",
+    });
+  };
+
+  // Rail starts at 12.5% (column 1 center) and ends at 87.5% (column 4 center) = span of 75%
+  const currentFraction = Math.max(0, Math.min(1, progress));
+  const activeRailPercent = currentFraction * 75;
 
   return (
-    <div className="relative mt-12 select-none">
-      {/* Background Architectural Map Matrix */}
-      <div
-        className="pointer-events-none absolute -inset-6 rounded-3xl opacity-20"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, var(--color-primary) 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-        }}
-        aria-hidden="true"
-      />
+    <div ref={outerRef} className="relative h-auto lg:h-[280vh] select-none">
+      {/* Pinned Sticky Viewport on Desktop */}
+      <div className="lg:sticky lg:top-14 lg:min-h-[calc(100vh-3.5rem)] flex flex-col justify-center py-10 lg:py-14 container-x">
+        {/* Background Architectural Map Grid */}
+        <div
+          className="pointer-events-none absolute -inset-6 rounded-3xl opacity-15"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, var(--color-primary) 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+          }}
+          aria-hidden="true"
+        />
 
-      {/* ======================================================== */}
-      {/* MAP HEADER / METADATA STRIP (Behance Style)              */}
-      {/* ======================================================== */}
-      <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border/80 bg-surface/90 px-5 py-3 backdrop-blur-md">
-        <div className="flex items-center gap-2.5">
-          <span className="flex size-2 rounded-full bg-primary animate-ping" />
-          <span className="font-mono text-xs font-bold tracking-wider text-ink uppercase">
-            Project Flight Path
-          </span>
-          <span className="text-border">·</span>
-          <span className="font-mono text-[11px] text-muted">
-            4 Milestones from Idea to Live Production
-          </span>
-        </div>
-
-        <div className="flex items-center gap-3 text-xs">
-          <span className="rounded-full border border-primary/30 bg-primary-soft px-3 py-1 font-mono text-[11px] font-semibold text-primary">
-            Timeline: 4–6 Weeks
-          </span>
-          <span className="hidden sm:inline font-mono text-[11px] text-muted">
-            Active: Milestone 0{activeStation + 1}
-          </span>
-        </div>
-      </div>
-
-      {/* ======================================================== */}
-      {/* DESKTOP JOURNEY MAP: Highway Route + Station Pods        */}
-      {/* ======================================================== */}
-      <div className="relative z-10 mt-8 hidden lg:block">
-        {/* Continuous Highway Route Line running across all 4 stations */}
-        <div className="relative px-12 pb-6">
-          {/* Background route rail */}
-          <div className="h-0.5 w-full bg-border/80" />
-
-          {/* Active illuminated path up to current station */}
-          <div
-            className="absolute left-12 top-0 h-0.5 bg-gradient-to-r from-primary via-accent to-primary transition-all duration-500 shadow-sm shadow-primary"
-            style={{ width: `${(activeStation / 3) * 100 * 0.76 + 5}%` }}
+        {/* Section Heading */}
+        {title && (
+          <SectionHeading
+            id="process-title"
+            eyebrow={eyebrow}
+            title={title}
+            intro={intro}
+            className="mb-8"
           />
+        )}
 
-          {/* Animated energy pulse traveling along the highway */}
-          <div
-            className="absolute -top-1.5 size-3.5 rounded-full bg-primary shadow-lg shadow-primary transition-all duration-700 ease-out"
-            style={{
-              left: `calc(3rem + ${(activeStation / 3) * 100 * 0.76}%)`,
-            }}
-          >
-            <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75" />
+        {/* Map Header / Metadata Strip */}
+        <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border/80 bg-surface/90 px-5 py-3 backdrop-blur-md shadow-xs">
+          <div className="flex items-center gap-2.5">
+            <span className="flex size-2 rounded-full bg-primary animate-ping" />
+            <span className="font-mono text-xs font-bold tracking-wider text-ink uppercase">
+              Project Flight Path
+            </span>
+            <span className="text-border">·</span>
+            <span className="font-mono text-[11px] text-muted">
+              4 Milestones from Idea to Live Production
+            </span>
           </div>
 
-          {/* 4 Station Waypoint Pins directly on the highway line */}
-          <div className="absolute inset-x-12 -top-4 flex justify-between">
+          <div className="flex items-center gap-3 text-xs">
+            <span className="rounded-full border border-primary/30 bg-primary-soft px-3 py-1 font-mono text-[11px] font-semibold text-primary">
+              Timeline: 4–6 Weeks
+            </span>
+            <span className="font-mono text-[11px] text-muted">
+              Active: Milestone 0{activeStation + 1}
+            </span>
+          </div>
+        </div>
+
+        {/* ======================================================== */}
+        {/* DESKTOP VIEW: Scroll-Driven Pinned Highway Journey Map   */}
+        {/* ======================================================== */}
+        <div className="relative z-10 mt-8 hidden lg:block">
+          {/* Highway Transit Line (spans precisely from col 1 center to col 4 center) */}
+          <div className="relative mb-4">
+            {/* Background Rail */}
+            <div className="absolute left-[12.5%] right-[12.5%] top-4 h-0.5 bg-border/80" />
+
+            {/* Active Scroll Fill Rail */}
+            <div
+              className="absolute left-[12.5%] top-4 h-0.5 bg-gradient-to-r from-primary via-accent to-primary shadow-sm shadow-primary transition-all duration-150 ease-out"
+              style={{ width: `${activeRailPercent}%` }}
+            />
+
+            {/* Animated Energy Pulse (follows scroll progress continuously) */}
+            <div
+              className="absolute top-2.5 size-3.5 -ml-[7px] rounded-full bg-primary shadow-lg shadow-primary transition-all duration-150 ease-out"
+              style={{ left: `calc(12.5% + ${activeRailPercent}%)` }}
+            >
+              <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75" />
+            </div>
+
+            {/* 4 Station Waypoint Pins positioned in exact column centers */}
+            <div className="grid grid-cols-4 gap-5">
+              {STATIONS.map((st, idx) => {
+                const isSelected = activeStation === idx;
+                const isPassed =
+                  idx === 0
+                    ? true
+                    : idx === 1
+                      ? progress >= 0.22
+                      : idx === 2
+                        ? progress >= 0.52
+                        : progress >= 0.82;
+
+                return (
+                  <div key={st.step} className="flex flex-col items-center">
+                    <button
+                      type="button"
+                      onClick={() => jumpToStation(idx)}
+                      className="group flex flex-col items-center focus:outline-none cursor-pointer"
+                      aria-label={`Jump to Milestone ${st.step}: ${st.name}`}
+                    >
+                      {/* Waypoint Interchange Node */}
+                      <div
+                        className={`flex size-8 items-center justify-center rounded-full border-2 transition-all duration-300 ${
+                          isSelected
+                            ? "border-primary bg-primary text-ground scale-125 shadow-lg shadow-primary/40 ring-4 ring-primary/20"
+                            : isPassed
+                              ? "border-primary/60 bg-surface text-primary"
+                              : "border-border bg-surface-2 text-muted group-hover:border-primary/50 group-hover:text-ink"
+                        }`}
+                      >
+                        <span className="font-mono text-xs font-bold">{st.step}</span>
+                      </div>
+
+                      {/* Vertical connector stem dropping into the card */}
+                      <div
+                        className={`h-5 w-0.5 transition-colors duration-300 ${
+                          isSelected
+                            ? "bg-primary"
+                            : isPassed
+                              ? "bg-primary/40"
+                              : "bg-border/60"
+                        }`}
+                      />
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* 4 Journey Station Cards */}
+          <div className="grid grid-cols-4 gap-5 pt-1">
             {STATIONS.map((st, idx) => {
               const isSelected = activeStation === idx;
-              const isPassed = idx <= activeStation;
+              const stepData = steps[idx];
 
               return (
-                <button
+                <div
                   key={st.step}
-                  type="button"
-                  onClick={() => setActiveStation(idx)}
-                  className="group flex flex-col items-center focus:outline-none"
-                  aria-label={`Jump to Milestone ${st.step}: ${st.name}`}
+                  onClick={() => jumpToStation(idx)}
+                  className={`group relative flex flex-col justify-between rounded-3xl p-6 transition-all duration-300 cursor-pointer ${
+                    isSelected
+                      ? "border-2 border-primary bg-surface shadow-2xl shadow-primary/15 -translate-y-2 ring-1 ring-primary/30"
+                      : "border border-border/70 bg-surface/80 hover:border-primary/40 hover:bg-surface hover:-translate-y-1"
+                  }`}
                 >
-                  {/* Waypoint Interchange Node */}
-                  <div
-                    className={`flex size-8 items-center justify-center rounded-full border-2 transition-all duration-300 ${
-                      isSelected
-                        ? "border-primary bg-primary text-ground scale-125 shadow-lg shadow-primary/40 ring-4 ring-primary/20"
-                        : isPassed
-                          ? "border-primary/60 bg-surface text-primary"
-                          : "border-border bg-surface-2 text-muted group-hover:border-primary/50 group-hover:text-ink"
-                    }`}
-                  >
-                    <span className="font-mono text-xs font-bold">{st.step}</span>
+                  <div>
+                    {/* Header: Node Icon + Timing Capsule */}
+                    <div className="flex items-center justify-between gap-2">
+                      <div
+                        className={`flex size-11 items-center justify-center rounded-2xl border transition-all duration-300 ${
+                          isSelected
+                            ? "border-primary bg-primary text-ground scale-105 shadow-md shadow-primary/25"
+                            : "border-primary/25 bg-primary-soft text-primary group-hover:border-primary group-hover:scale-105"
+                        }`}
+                      >
+                        <StationIcon index={idx} className="size-5" />
+                      </div>
+                      <span className="rounded-full border border-border/70 bg-surface-2 px-2.5 py-0.5 font-mono text-[10px] text-muted">
+                        {st.timing}
+                      </span>
+                    </div>
+
+                    {/* Checkpoint Tag */}
+                    <p className="mt-4 font-mono text-[10px] font-bold tracking-widest text-primary/80 uppercase">
+                      {st.checkpoint}
+                    </p>
+
+                    {/* Station Name */}
+                    <h3 className="mt-1 text-2xl font-bold tracking-tight text-ink">
+                      {st.name}
+                    </h3>
+
+                    {/* 1-Sentence Punchline */}
+                    <p className="mt-2.5 text-xs sm:text-[13px] leading-relaxed text-muted group-hover:text-ink/90 transition-colors">
+                      {stepData?.text || st.punchline}
+                    </p>
                   </div>
 
-                  {/* Vertical connector stem dropping into the card */}
-                  <div
-                    className={`h-6 w-0.5 transition-colors duration-300 ${
-                      isSelected
-                        ? "bg-primary"
-                        : isPassed
-                          ? "bg-primary/40"
-                          : "bg-border/60"
-                    }`}
-                  />
-                </button>
+                  {/* Card Footer: Verified Deliverable */}
+                  <div className="mt-6 border-t border-border/60 pt-4">
+                    <div className="flex items-center gap-1.5 text-xs font-semibold text-accent">
+                      <svg
+                        className="size-3.5 shrink-0"
+                        viewBox="0 0 16 16"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      <span>{st.deliverable}</span>
+                    </div>
+
+                    {/* Active Indicator Bar */}
+                    <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-border/40">
+                      <div
+                        className={`h-full bg-gradient-to-r from-primary to-accent transition-all duration-300 ${
+                          isSelected ? "w-full" : "w-3 group-hover:w-full"
+                        }`}
+                      />
+                    </div>
+                  </div>
+                </div>
               );
             })}
           </div>
         </div>
 
-        {/* The 4 Journey Station Cards (Directly beneath the highway nodes) */}
-        <div className="grid grid-cols-4 gap-5 pt-2">
+        {/* ======================================================== */}
+        {/* MOBILE / TABLET VIEW: Vertical Transit Route Map        */}
+        {/* ======================================================== */}
+        <div className="relative z-10 mt-8 space-y-6 lg:hidden">
           {STATIONS.map((st, idx) => {
             const isSelected = activeStation === idx;
             const stepData = steps[idx];
@@ -248,54 +413,57 @@ export function ProcessMap({ steps }: ProcessProps) {
               <div
                 key={st.step}
                 onClick={() => setActiveStation(idx)}
-                className={`group relative flex flex-col justify-between rounded-3xl p-6 transition-all duration-300 cursor-pointer ${
+                className={`relative flex gap-4 rounded-3xl p-5 sm:p-6 transition-all duration-300 ${
                   isSelected
-                    ? "border-2 border-primary bg-surface shadow-2xl shadow-primary/15 -translate-y-2 ring-1 ring-primary/30"
-                    : "border border-border/70 bg-surface/80 hover:border-primary/40 hover:bg-surface hover:-translate-y-1"
+                    ? "border-2 border-primary bg-surface shadow-xl shadow-primary/10"
+                    : "border border-border/70 bg-surface/80"
                 }`}
               >
-                <div>
-                  {/* Card Header: Node Icon + Timing Capsule */}
-                  <div className="flex items-center justify-between gap-2">
-                    <div
-                      className={`flex size-11 items-center justify-center rounded-2xl border transition-all duration-300 ${
-                        isSelected
-                          ? "border-primary bg-primary text-ground scale-105 shadow-md shadow-primary/25"
-                          : "border-primary/25 bg-primary-soft text-primary group-hover:border-primary group-hover:scale-105"
-                      }`}
-                    >
-                      <StationIcon index={idx} className="size-5" />
-                    </div>
+                {/* Vertical Route Connection Line */}
+                {idx < STATIONS.length - 1 && (
+                  <div
+                    aria-hidden="true"
+                    className="absolute left-[33px] top-[74px] bottom-[-24px] w-0.5 border-l-2 border-dashed border-primary/40"
+                  />
+                )}
+
+                {/* Station Node Icon */}
+                <div className="relative z-10 flex flex-col items-center shrink-0">
+                  <div
+                    className={`flex size-12 items-center justify-center rounded-2xl border transition-all ${
+                      isSelected
+                        ? "border-primary bg-primary text-ground scale-105 shadow-md shadow-primary/25"
+                        : "border-primary/30 bg-primary-soft text-primary"
+                    }`}
+                  >
+                    <StationIcon index={idx} className="size-5" />
+                  </div>
+                  <span className="mt-2 font-mono text-[11px] font-bold text-primary">
+                    {st.step}
+                  </span>
+                </div>
+
+                {/* Station Details */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap items-center justify-between gap-1">
+                    <span className="font-mono text-[10px] font-bold tracking-wider text-primary/80 uppercase">
+                      {st.checkpoint}
+                    </span>
                     <span className="rounded-full border border-border/70 bg-surface-2 px-2.5 py-0.5 font-mono text-[10px] text-muted">
                       {st.timing}
                     </span>
                   </div>
 
-                  {/* Checkpoint Tag */}
-                  <p className="mt-4 font-mono text-[10px] font-bold tracking-widest text-primary/80 uppercase">
-                    {st.checkpoint}
-                  </p>
-
-                  {/* Station Name */}
-                  <h3 className="mt-1 text-2xl font-bold tracking-tight text-ink">
+                  <h3 className="mt-1 text-xl font-bold tracking-tight text-ink">
                     {st.name}
                   </h3>
 
-                  {/* 1-Sentence Punchline Description */}
-                  <p className="mt-2.5 text-xs sm:text-[13px] leading-relaxed text-muted group-hover:text-ink/90 transition-colors">
+                  <p className="mt-2 text-xs sm:text-sm leading-relaxed text-muted">
                     {stepData?.text || st.punchline}
                   </p>
-                </div>
 
-                {/* Card Footer: Verified Deliverable */}
-                <div className="mt-6 border-t border-border/60 pt-4">
-                  <div className="flex items-center gap-1.5 text-xs font-semibold text-accent">
-                    <svg
-                      className="size-3.5 shrink-0"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
+                  <div className="mt-4 flex items-center gap-1.5 pt-3 border-t border-border/50 text-xs font-semibold text-accent">
+                    <svg className="size-3.5 shrink-0" viewBox="0 0 16 16" fill="currentColor">
                       <path
                         fillRule="evenodd"
                         d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z"
@@ -304,118 +472,65 @@ export function ProcessMap({ steps }: ProcessProps) {
                     </svg>
                     <span>{st.deliverable}</span>
                   </div>
-
-                  {/* Active Indicator Bar */}
-                  <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-border/40">
-                    <div
-                      className={`h-full bg-gradient-to-r from-primary to-accent transition-all duration-500 ${
-                        isSelected ? "w-full" : "w-3 group-hover:w-full"
-                      }`}
-                    />
-                  </div>
                 </div>
               </div>
             );
           })}
         </div>
-      </div>
 
-      {/* ======================================================== */}
-      {/* MOBILE / TABLET VIEW: Vertical Transit Route Map        */}
-      {/* ======================================================== */}
-      <div className="relative z-10 mt-8 space-y-6 lg:hidden">
-        {STATIONS.map((st, idx) => {
-          const isSelected = activeStation === idx;
-          const stepData = steps[idx];
-
-          return (
-            <div
-              key={st.step}
-              onClick={() => setActiveStation(idx)}
-              className={`relative flex gap-4 rounded-3xl p-5 sm:p-6 transition-all duration-300 ${
-                isSelected
-                  ? "border-2 border-primary bg-surface shadow-xl shadow-primary/10"
-                  : "border border-border/70 bg-surface/80"
-              }`}
-            >
-              {/* Vertical Route Connection Line */}
-              {idx < STATIONS.length - 1 && (
-                <div
-                  aria-hidden="true"
-                  className="absolute left-[33px] top-[74px] bottom-[-24px] w-0.5 border-l-2 border-dashed border-primary/40"
-                />
-              )}
-
-              {/* Station Node Icon */}
-              <div className="relative z-10 flex flex-col items-center shrink-0">
-                <div
-                  className={`flex size-12 items-center justify-center rounded-2xl border transition-all ${
-                    isSelected
-                      ? "border-primary bg-primary text-ground scale-105 shadow-md shadow-primary/25"
-                      : "border-primary/30 bg-primary-soft text-primary"
-                  }`}
-                >
-                  <StationIcon index={idx} className="size-5" />
-                </div>
-                <span className="mt-2 font-mono text-[11px] font-bold text-primary">
-                  {st.step}
-                </span>
-              </div>
-
-              {/* Station Details */}
-              <div className="flex-1 min-w-0">
-                <div className="flex flex-wrap items-center justify-between gap-1">
-                  <span className="font-mono text-[10px] font-bold tracking-wider text-primary/80 uppercase">
-                    {st.checkpoint}
-                  </span>
-                  <span className="rounded-full border border-border/70 bg-surface-2 px-2.5 py-0.5 font-mono text-[10px] text-muted">
-                    {st.timing}
-                  </span>
-                </div>
-
-                <h3 className="mt-1 text-xl font-bold tracking-tight text-ink">
-                  {st.name}
-                </h3>
-
-                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-muted">
-                  {stepData?.text || st.punchline}
-                </p>
-
-                <div className="mt-4 flex items-center gap-1.5 pt-3 border-t border-border/50 text-xs font-semibold text-accent">
-                  <svg className="size-3.5 shrink-0" viewBox="0 0 16 16" fill="currentColor">
-                    <path
-                      fillRule="evenodd"
-                      d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span>{st.deliverable}</span>
-                </div>
-              </div>
+        {/* ======================================================== */}
+        {/* Route Flight Details Strip (Bottom Navigation Bar)       */}
+        {/* ======================================================== */}
+        <div className="relative z-10 mt-6 rounded-2xl border border-primary/20 bg-primary-soft/40 px-5 py-3.5 backdrop-blur-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs">
+            <div className="flex items-center gap-2">
+              <span className="size-2 rounded-full bg-accent animate-pulse" />
+              <span className="font-mono text-muted uppercase tracking-wider text-[11px]">
+                Active Checkpoint:
+              </span>
+              <span className="font-bold text-ink">
+                Milestone 0{activeStation + 1}: {STATIONS[activeStation]?.name}
+              </span>
+              <span className="text-border">·</span>
+              <span className="font-semibold text-accent">
+                {STATIONS[activeStation]?.deliverable}
+              </span>
             </div>
-          );
-        })}
-      </div>
 
-      {/* ======================================================== */}
-      {/* Route Flight Details Strip (Bottom Clean Bar)            */}
-      {/* ======================================================== */}
-      <div className="relative z-10 mt-6 rounded-2xl border border-primary/20 bg-primary-soft/40 px-5 py-4">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs">
-          <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-accent" />
-            <span className="font-mono text-muted uppercase tracking-wider text-[11px]">
-              Active Checkpoint Deliverable:
-            </span>
-            <span className="font-bold text-ink">
-              {STATIONS[activeStation]?.deliverable}
-            </span>
-          </div>
-          <div className="flex items-center gap-2 font-mono text-[11px] text-muted">
-            <span>Guaranteed Timeline:</span>
-            <span className="font-semibold text-primary">
-              {STATIONS[activeStation]?.timing}
-            </span>
+            <div className="flex items-center gap-3">
+              <span className="font-mono text-[11px] text-muted">
+                {progress < 0.88 ? (
+                  <span className="inline-flex items-center gap-1.5 text-primary">
+                    <span>Scroll to navigate</span>
+                    <svg
+                      className="size-3.5 animate-bounce"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M12 5v14M19 12l-7 7-7-7" />
+                    </svg>
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center gap-1.5 text-emerald-400 font-semibold">
+                    <span>Journey complete · Next section</span>
+                    <svg
+                      className="size-3.5 animate-bounce"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M12 5v14M19 12l-7 7-7-7" />
+                    </svg>
+                  </span>
+                )}
+              </span>
+              <span className="rounded-md border border-border/70 bg-surface-2 px-2.5 py-0.5 font-mono text-[10px] text-primary font-bold">
+                {activeStation + 1}/4
+              </span>
+            </div>
           </div>
         </div>
       </div>
