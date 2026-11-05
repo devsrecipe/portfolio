@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 import type { SiteContent } from "@/types";
 
 type Step = SiteContent["home"]["process"]["steps"][number];
@@ -127,29 +126,41 @@ function StationIcon({ index, className }: { index: number; className?: string }
 
 export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [activeStation, setActiveStation] = useState<number>(0);
-  const [isCompleted, setIsCompleted] = useState<boolean>(false);
+  const [progress, setProgress] = useState(0);
+  const [activeStation, setActiveStation] = useState(0);
 
-  // Native Framer Motion scroll tracking over the pinned container
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const windowH = window.innerHeight;
+      const totalScrollable = containerRef.current.offsetHeight - windowH;
 
-  const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
-  const orbLeft = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+      if (totalScrollable <= 0) return;
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const idx = latest < 0.25 ? 0 : latest < 0.55 ? 1 : latest < 0.85 ? 2 : 3;
-    setActiveStation(idx);
-    setIsCompleted(latest >= 0.95);
-  });
+      // Start tracking when container top hits header height (80px)
+      const scrolled = 80 - rect.top;
+      const p = Math.max(0, Math.min(1, scrolled / totalScrollable));
+
+      setProgress(p);
+
+      const idx = p < 0.25 ? 0 : p < 0.52 ? 1 : p < 0.82 ? 2 : 3;
+      setActiveStation(idx);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const jumpToStation = (idx: number) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    const startY = scrollTop + rect.top;
+    const startY = scrollTop + rect.top - 80;
     const totalScroll = containerRef.current.offsetHeight - window.innerHeight;
     const fractions = [0.05, 0.35, 0.68, 0.96];
     const targetY = startY + totalScroll * fractions[idx];
@@ -160,8 +171,10 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
     });
   };
 
+  const isCompleted = progress >= 0.95;
+
   return (
-    <div ref={containerRef} className="relative h-[240vh] bg-ground select-none">
+    <div ref={containerRef} className="relative h-[220vh] bg-ground select-none">
       {/* Sticky Viewport Frame — perfectly sized to never overflow into next section */}
       <div className="sticky top-20 min-h-[calc(100vh-5rem)] flex flex-col justify-center py-6 lg:py-8 container-x">
         {/* Subtle Architectural Grid */}
@@ -226,22 +239,22 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
             {/* Background Rail */}
             <div className="absolute left-[12.5%] w-[75%] top-3.5 h-0.5 bg-border/70" />
 
-            {/* Active Scroll Fill Rail (Driven by Framer Motion scrollYProgress) */}
+            {/* Active Scroll Fill Rail */}
             <div className="absolute left-[12.5%] w-[75%] top-3.5 h-0.5 overflow-hidden">
-              <motion.div
-                className="h-full w-full bg-gradient-to-r from-primary via-accent to-primary shadow-sm shadow-primary"
-                style={{ scaleX, transformOrigin: "left center" }}
+              <div
+                className="h-full bg-gradient-to-r from-primary via-accent to-primary shadow-sm shadow-primary transition-all duration-75"
+                style={{ width: `${progress * 100}%` }}
               />
             </div>
 
             {/* Animated Energy Pulse (Synchronously follows scroll position) */}
             <div className="absolute left-[12.5%] w-[75%] top-3.5 pointer-events-none">
-              <motion.div
-                className="absolute top-1/2 -translate-y-1/2 -ml-2 size-3.5 rounded-full bg-primary shadow-lg shadow-primary"
-                style={{ left: orbLeft }}
+              <div
+                className="absolute top-1/2 -translate-y-1/2 -ml-2 size-3.5 rounded-full bg-primary shadow-lg shadow-primary transition-all duration-75"
+                style={{ left: `${progress * 100}%` }}
               >
                 <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75" />
-              </motion.div>
+              </div>
             </div>
 
             {/* 4 Waypoint Buttons centered on each column */}

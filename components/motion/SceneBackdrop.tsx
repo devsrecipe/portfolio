@@ -7,13 +7,6 @@ import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
-/*
- * Line-art illustrations that sit behind a section, drift slower than the page
- * (parallax) and play a small story as the section scrolls past. Every scene is
- * drawn in its finished state and animated with `from`, so reduced motion simply
- * shows the finished picture.
- */
-
 export type SceneName = "relay" | "key" | "plug";
 
 type Scene = {
@@ -24,7 +17,6 @@ type Scene = {
 
 const line = { fill: "none", stroke: "currentColor", strokeWidth: 3, strokeLinecap: "round", strokeLinejoin: "round" } as const;
 
-/** The `</>` bowl from the brand mark, drawn into a 48x48 box. */
 function Mark({ x, y, size, className }: { x: number; y: number; size: number; className?: string }) {
   return (
     <g transform={`translate(${x} ${y}) scale(${size / 48})`} className={className}>
@@ -45,12 +37,9 @@ const scenes: Record<SceneName, Scene> = {
           ))}
           <path d="M102 85h38m-8-8 8 8-8 8M237 85h38m-8-8 8 8-8 8M372 85h38m-8-8 8 8-8 8" />
           <path d="M55 152H460" strokeDasharray="2 10" />
-          {/* 1. discover / lightbulb */}
           <circle cx={55} cy={80} r={12} />
           <path d="M48 98h14M50 105h10" />
-          {/* 2. design / wireframe pen */}
           <path d="M178 72l24 24M194 66l8 8-4 4-8-8zM172 102l10-4-6-6z" />
-          {/* 4. launch / flag */}
           <path d="M450 110V64M450 66h24l-6 8 6 8h-24" />
         </g>
         <Mark x={302} y={62} size={44} className="text-ink/15" />
@@ -61,11 +50,20 @@ const scenes: Record<SceneName, Scene> = {
       </>
     ),
     play: (tl, q) => {
-      tl.from(q(".baton"), { x: -405, ease: "none", duration: 4 })
+      tl.from(q(".baton"), { x: -405, ease: "none", duration: 3.5 })
         .from(q(".lit-0"), { opacity: 0, duration: 0.3 }, 0)
-        .from(q(".lit-1"), { opacity: 0, duration: 0.3 }, 1.3)
-        .from(q(".lit-2"), { opacity: 0, duration: 0.3 }, 2.6)
-        .from(q(".lit-3"), { opacity: 0, duration: 0.3 }, 3.7);
+        .from(q(".lit-1"), { opacity: 0, duration: 0.3 }, 1.1)
+        .from(q(".lit-2"), { opacity: 0, duration: 0.3 }, 2.2)
+        .from(q(".lit-3"), { opacity: 0, duration: 0.3 }, 3.2);
+
+      // Ambient loop
+      gsap.to(q(".baton"), {
+        x: "+=20",
+        duration: 1.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
     },
   },
 
@@ -74,12 +72,10 @@ const scenes: Record<SceneName, Scene> = {
     art: (
       <>
         <defs>
-          {/* The key is cut off at the keyhole, so its tip disappears into it. */}
           <clipPath id="scene-key-clip">
             <rect x={-200} y={0} width={500} height={340} />
           </clipPath>
         </defs>
-        {/* Short left leg pops free; the long right leg stays seated in the body. */}
         <g className="shackle">
           <path d="M260 180V130a40 40 0 0 1 80 0V222" {...line} strokeWidth={8} className="text-ink/25" />
           <path d="M260 180V130a40 40 0 0 1 80 0V222" {...line} strokeWidth={8} className="unlocked text-primary" />
@@ -104,12 +100,22 @@ const scenes: Record<SceneName, Scene> = {
       </>
     ),
     play: (tl, q) => {
-      tl.from(q(".key"), { x: -120, ease: "power1.inOut", duration: 2 })
-        // Quarter turn: the head goes edge-on.
-        .to(q(".key"), { scaleY: 0.35, svgOrigin: "160 222", duration: 0.4, ease: "power2.inOut" })
-        .from(q(".unlocked"), { opacity: 0, duration: 0.6 }, "<0.2")
-        // Lifts until the short left leg clears the body; the long right leg stays seated.
-        .fromTo(q(".shackle"), { y: 0 }, { y: -36, duration: 0.6, ease: "back.out(2)" }, "<");
+      // Key slides in, turns inside lock, and shackle pops open!
+      tl.from(q(".key"), { x: -140, opacity: 0, ease: "power2.out", duration: 1.2 })
+        .to(q(".key"), { scaleY: 0.35, svgOrigin: "160 222", duration: 0.35, ease: "power2.inOut" })
+        .to(q(".key"), { scaleY: 1, svgOrigin: "160 222", duration: 0.35, ease: "power2.out" })
+        .fromTo(q(".unlocked"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, "<")
+        .fromTo(q(".shackle"), { y: 0 }, { y: -38, duration: 0.6, ease: "back.out(2.5)" }, "<0.1");
+
+      // Ambient breathing loop
+      gsap.to(q(".shackle"), {
+        y: -32,
+        duration: 2.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: 2.5,
+      });
     },
   },
 
@@ -117,9 +123,6 @@ const scenes: Record<SceneName, Scene> = {
     viewBox: "0 0 400 320",
     art: (
       <>
-        {/* Both faces sit at x=218 when connected. On contact the oval faces fade
-            into a single straight seam. The socket is filled with the section
-            colour and drawn last, so the prongs vanish behind it. */}
         <g className="plug text-ink/30" {...line} strokeWidth={5}>
           <path d="M130 190C86 190 70 236 96 262S74 316 20 312" />
           <path d="M224 174h34M224 206h34" strokeWidth={9} />
@@ -143,20 +146,34 @@ const scenes: Record<SceneName, Scene> = {
       </>
     ),
     play: (tl, q) => {
-      tl.from(q(".plug"), { x: -70, ease: "power2.in", duration: 2 })
-        .from(q(".socket"), { x: 70, ease: "power2.in", duration: 2 }, "<")
-        // On contact the oval faces and holes give way to one straight seam.
-        .to(q(".face"), { opacity: 0, duration: 0.2 }, "-=0.15")
-        .from(q(".seam"), { opacity: 0, duration: 0.2 }, "<")
-        .from(q(".spark"), { opacity: 0, scale: 0.3, svgOrigin: "218 190", duration: 0.6, ease: "back.out(3)" });
+      // Plug and socket slide together, snap shut, and sparks flash!
+      tl.from(q(".plug"), { x: -80, opacity: 0, ease: "power2.out", duration: 1.0 })
+        .from(q(".socket"), { x: 80, opacity: 0, ease: "power2.out", duration: 1.0 }, "<")
+        .to(q(".face"), { opacity: 0, duration: 0.15 }, "-=0.1")
+        .from(q(".seam"), { opacity: 0, duration: 0.15 }, "<")
+        .fromTo(
+          q(".spark"),
+          { opacity: 0, scale: 0.2, svgOrigin: "218 190" },
+          { opacity: 1, scale: 1.1, svgOrigin: "218 190", duration: 0.4, ease: "back.out(3)" },
+          "-=0.05"
+        )
+        .to(q(".spark"), { scale: 1, duration: 0.2 });
+
+      // Ambient electrical crackle & pulse loop!
+      gsap.to(q(".spark"), {
+        opacity: 0.35,
+        scale: 0.85,
+        svgOrigin: "218 190",
+        duration: 0.9,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: 1.5,
+      });
     },
   },
 };
 
-/**
- * Put inside a `relative isolate overflow-hidden` section. `className` places and
- * sizes the art, for example "right-0 top-16 w-[420px]".
- */
 export function SceneBackdrop({ scene, className }: { scene: SceneName; className?: string }) {
   const root = useRef<HTMLDivElement>(null);
   const { viewBox, art, play } = scenes[scene];
@@ -164,29 +181,38 @@ export function SceneBackdrop({ scene, className }: { scene: SceneName; classNam
   useEffect(() => {
     const el = root.current;
     if (!el) return;
-    const section = el.parentElement;
+    const section = el.closest("section") || el.parentElement;
     const mm = gsap.matchMedia();
+
     mm.add(
       "(prefers-reduced-motion: no-preference)",
       () => {
         const q = gsap.utils.selector(el);
+
+        // Gentle Parallax Drift
         gsap.fromTo(
           el,
-          { yPercent: 25 },
+          { yPercent: 12 },
           {
-            yPercent: -25,
+            yPercent: -12,
             ease: "none",
-            scrollTrigger: { trigger: section, start: "top bottom", end: "bottom top", scrub: true },
+            scrollTrigger: { trigger: section, start: "top bottom", end: "bottom top", scrub: 0.8 },
           },
         );
+
+        // Story animation triggers when section enters viewport (reliable on any screen)
         const tl = gsap.timeline({
-          // Fully played once the art has travelled 70% of the way up the viewport.
-          scrollTrigger: { trigger: el, start: "top bottom", end: "top 30%", scrub: 0.8 },
+          scrollTrigger: {
+            trigger: section,
+            start: "top 75%",
+            once: true,
+          },
         });
         play(tl, q);
       },
       root,
     );
+
     return () => mm.revert();
   }, [play]);
 
