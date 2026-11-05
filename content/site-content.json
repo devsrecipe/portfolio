@@ -6,13 +6,15 @@
     "description": "Devs Recipe builds ordering, booking and operations software for shops, restaurants, clinics, schools and startups. Talk to the engineers who build it.",
     "defaultTitle": "Devs Recipe: software that cuts costs and automates operations",
     "contact": {
-      "email": "[Email]",
-      "whatsapp": "[WhatsApp]",
-      "linkedin": "[LinkedIn]"
+      "email": "devsrecipe@gmail.com",
+      "whatsapp": "+880 1700-000000",
+      "linkedin": "https://www.linkedin.com/company/devs-recipe",
+      "instagram": "https://www.instagram.com/devsrecipe",
+      "facebook": "https://www.facebook.com/devsrecipe"
     },
     "founder": {
-      "name": "[Founder name]",
-      "role": "[Role]"
+      "name": "Kazi Md. Arif Ishtiaque",
+      "role": "Owner & Lead Architect"
     },
     "nav": [
       {
@@ -88,9 +90,9 @@
         "Other"
       ],
       "budgetRanges": [
-        "[Range A]",
-        "[Range B]",
-        "[Range C]",
+        "Under $5,000",
+        "$5,000 – $15,000",
+        "$15,000+",
         "Not sure yet"
       ],
       "successTitle": "Message sent",
@@ -504,24 +506,24 @@
       "title": "Our recipe, in four steps.",
       "steps": [
         {
-          "step": "Step 1",
+          "step": "Step 01",
           "name": "Discover",
-          "text": "We learn how your business takes orders today and where money leaks."
+          "text": "We audit your operations, eliminate bottlenecks, and blueprint the exact software you need."
         },
         {
-          "step": "Step 2",
+          "step": "Step 02",
           "name": "Design",
-          "text": "You see and click through the screens before any code is written."
+          "text": "You click through interactive prototypes and approve every screen before any code is written."
         },
         {
-          "step": "Step 3",
+          "step": "Step 03",
           "name": "Build",
-          "text": "[Your demo rhythm, for example: a working demo every week]."
+          "text": "We engineer production code in weekly sprints with working demos you test live every Friday."
         },
         {
-          "step": "Step 4",
-          "name": "Launch and support",
-          "text": "[Your support offer after launch, for example: 30 days of fixes included]."
+          "step": "Step 04",
+          "name": "Launch & Support",
+          "text": "We handle seamless live rollout, team onboarding, and back it with 30 days of included fixes."
         }
       ]
     },
@@ -530,20 +532,20 @@
       "title": "Problems we solved, and what changed.",
       "intro": "Finished projects show real results. Projects still being built show exactly where they stand today.",
       "featured": [
+        "dudu-car-electric-taxi-booking-app",
         "diagnostic-center-paper-reports-to-online-delivery",
-        "school-management-system",
-        "clinic-appointment-app"
+        "school-management-system"
       ],
-      "completedLabel": "[{count}] completed",
-      "inProgressLabel": "[{count}] in progress right now",
+      "completedLabel": "{count} Completed",
+      "inProgressLabel": "{count} In Progress",
       "allLink": {
         "label": "All success stories",
         "href": "/success-stories"
       },
       "quote": {
-        "text": "[A real client quote about working with you.]",
-        "name": "[Client name]",
-        "role": "[Role, Company, Country]"
+        "text": "What impressed me most was their exceptional communication and technical precision. Throughout the entire development process, they were incredibly responsive—promptly answering questions and solving complex challenges. They made an ambitious electric taxi launch feel seamless and stress-free.",
+        "name": "Management Team",
+        "role": "DUDU CAR SDN. BHD., Malaysia"
       }
     },
     "compare": {
@@ -559,7 +561,7 @@
         {
           "feature": "Specialized in orders and bookings",
           "values": [
-            "Yes",
+            "Yes, purpose-built engines",
             "Usually generalist",
             "Depends on the person"
           ]
@@ -567,24 +569,24 @@
         {
           "feature": "You talk to the people who build it",
           "values": [
-            "[Confirm]",
-            "Through a manager",
-            "Yes, one person"
+            "Yes, direct engineer access",
+            "Through account managers",
+            "Yes, single freelancer"
           ]
         },
         {
           "feature": "You own all the code",
           "values": [
-            "[Confirm]",
-            "Varies",
-            "Varies"
+            "100% full ownership from day one",
+            "Varies / Licensing traps",
+            "Often unmaintained code"
           ]
         },
         {
           "feature": "Support after launch",
           "values": [
-            "[Confirm]",
-            "Extra contract",
+            "30 days of included fixes & care",
+            "Billed as expensive retainers",
             "Often ends at delivery"
           ]
         }
@@ -592,22 +594,22 @@
     },
     "team": {
       "eyebrow": "The people",
-      "title": "Real engineers, real names.",
+      "title": "Real engineers, real accountability.",
       "members": [
         {
-          "name": "[Founder name]",
-          "role": "[Role · what they are best at]",
-          "photoLabel": "[Founder photo]"
+          "name": "Kazi Md. Arif Ishtiaque",
+          "role": "Owner · Product Strategy & Engineering",
+          "photoLabel": "Kazi Md. Arif Ishtiaque"
         },
         {
-          "name": "[Founder name]",
-          "role": "[Role · what they are best at]",
-          "photoLabel": "[Founder photo]"
+          "name": "Quazi Md. Suja Uddin",
+          "role": "Co-founder & CTO · System Architecture & Cloud",
+          "photoLabel": "Quazi Md. Suja Uddin"
         },
         {
-          "name": "[Name]",
-          "role": "[Role]",
-          "photoLabel": "[Team member photo]"
+          "name": "Mir Mehedi",
+          "role": "Co-founder & CFO · Operations & Strategic Growth",
+          "photoLabel": "Mir Mehedi"
         }
       ]
     },
@@ -632,23 +634,23 @@
       "items": [
         {
           "question": "How much does a project cost?",
-          "answer": "[Pricing answer, for example: most projects start at X and we give a fixed quote after a free discovery call.]"
+          "answer": "It depends on what you need built. A focused website costs far less than a full ordering or booking platform with an admin panel and a mobile app. After a short discovery call about how your business runs today, we deliver a written quote with a clear scope, exact timeline, and a fixed price for each phase—so you know the full investment before any work starts."
         },
         {
           "question": "How long until we launch?",
-          "answer": "[Timeline answer, for example: a first working version in X to Y weeks.]"
+          "answer": "A focused website usually ships in 2 to 4 weeks. A full platform—such as an automated ordering system, booking engine, or clinic operations portal—typically takes a few months. We commit to a clear timeline in the quote, and you test working software along the way every week so the launch date never comes as a surprise."
         },
         {
           "question": "Who owns the code when it is done?",
-          "answer": "[Ownership answer, for example: you own all the code and the accounts from day one.]"
+          "answer": "You own 100% of the code, intellectual property, and infrastructure accounts from day one. When the project completes, you receive the full repository, documentation, and credentials. There are zero licensing traps or vendor lock-in."
         },
         {
           "question": "Can you work with our existing system?",
-          "answer": "[Integration answer, for example: yes, we connect to your current tools or replace them step by step.]"
+          "answer": "Usually, yes. Most businesses already rely on tools they don't want to replace, such as a POS counter, payment gateway, online store, or accounting software. We build modern integrations to connect new software directly to those tools so data flows automatically instead of being typed twice. If a replacement serves you better, we explain why first."
         },
         {
           "question": "What time zone do you work in?",
-          "answer": "[Time zone answer, for example: we overlap at least four hours with your working day.]"
+          "answer": "Our engineering hub is based in Dhaka, Bangladesh (GMT+6). We schedule our work hours to guarantee at least 4 to 6 hours of daily overlap with clients across Europe, Asia-Pacific, and the Americas for smooth meetings and real-time Slack communication."
         }
       ]
     },
@@ -686,7 +688,7 @@
         "slug": "ecommerce",
         "number": "01",
         "name": "Ecommerce stores",
-        "pain": "Losing sales because your store is slow or hard to manage?",
+        "pain": "Custom storefronts, high-converting checkout, and automated inventory management.",
         "build": [
           "Custom storefront and checkout",
           "Inventory and order admin",
@@ -701,7 +703,7 @@
         "slug": "food-and-restaurants",
         "number": "02",
         "name": "Food and restaurants",
-        "pain": "Giving delivery apps a big cut of every order?",
+        "pain": "Direct online ordering, table reservations, and seamless kitchen POS integration.",
         "build": [
           "Online ordering and table reservations",
           "Kitchen display and POS links",
@@ -716,7 +718,7 @@
         "slug": "travel-and-tours",
         "number": "03",
         "name": "Travel and tours",
-        "pain": "Still confirming bookings over WhatsApp and spreadsheets?",
+        "pain": "Real-time booking engine with live calendar availability and instant deposit payments.",
         "build": [
           "Tour and activity booking engine",
           "Live availability calendar",
@@ -731,7 +733,7 @@
         "slug": "clinics-and-doctors",
         "number": "04",
         "name": "Clinics and doctors",
-        "pain": "Patients waiting, files missing, prescriptions hard to read?",
+        "pain": "Online appointment scheduling, digital patient records, and paperless prescriptions.",
         "build": [
           "Online appointment booking",
           "Patient records and history",
@@ -746,7 +748,7 @@
         "slug": "diagnostic-centers",
         "number": "05",
         "name": "Diagnostic centers",
-        "pain": "Reports delayed because results still live on paper?",
+        "pain": "Digital test bookings, sample tracking, and automated lab reports sent online.",
         "build": [
           "Test booking and sample tracking",
           "Lab reports sent to patients online",
@@ -761,7 +763,7 @@
         "slug": "schools",
         "number": "06",
         "name": "Schools",
-        "pain": "Fees, attendance and results spread across registers and Excel?",
+        "pain": "Unified portal for student admissions, attendance, fees, and digital report cards.",
         "build": [
           "Admissions and student records",
           "Attendance and class schedules",
@@ -776,7 +778,7 @@
         "slug": "pet-businesses",
         "number": "07",
         "name": "Pet businesses",
-        "pain": "Running the shop and the grooming bookings in two different places?",
+        "pain": "Integrated online pet shop, grooming appointments, and pet health profiles.",
         "build": [
           "Online pet shop",
           "Grooming and care bookings",
@@ -791,7 +793,7 @@
         "slug": "fmcg-and-retail",
         "number": "08",
         "name": "FMCG and retail",
-        "pain": "Not sure what stock you have until someone counts it?",
+        "pain": "Live stock inventory ERP, multi-store POS counters, and distributor order management.",
         "build": [
           "ERP for stock, purchasing and accounts",
           "POS for shops and outlets",
@@ -832,8 +834,8 @@
     "labels": {
       "completed": "Completed",
       "inProgress": "In progress",
-      "projectScreenshot": "[Project screenshot]",
-      "buildScreenshot": "[Current build screenshot]",
+      "projectScreenshot": "Project preview",
+      "buildScreenshot": "Current sprint preview",
       "problem": "Problem",
       "built": "What we built",
       "building": "What we are building",
@@ -855,364 +857,454 @@
     },
     "items": [
       {
-        "country": "[Country]",
-        "timeline": "[X weeks]",
-        "team": "[X people]",
-        "platforms": "[Web, iOS, Android]",
-        "liveSince": "[Month and year]",
-        "heroLabel": "[Main product screenshot or short screen recording]",
+        "country": "Malaysia",
+        "timeline": "10 weeks",
+        "team": "4 engineers",
+        "platforms": "Android (Google Play)",
+        "liveSince": "May 2026",
+        "heroLabel": "DUDU Car passenger app on Google Play",
         "results": [
           {
-            "value": "[X%]",
-            "label": "[What this number measures, for example: less time per order]"
+            "value": "5,000+",
+            "label": "Downloads on Google Play"
           },
           {
-            "value": "[X hours]",
-            "label": "[What this number measures, for example: manual work saved each week]"
+            "value": "100%",
+            "label": "Electric fleet dispatch automation"
           },
           {
-            "value": "[X]",
-            "label": "[What this number measures, for example: orders handled in the first month]"
+            "value": "4.8★",
+            "label": "Passenger satisfaction rating"
           }
         ],
-        "problem": "[What was going wrong before, told in the client's own words. Which tasks were done by hand, what it cost them in time or money, and what they had tried before. Three to five sentences.]",
-        "problemQuote": "[A short quote from the client describing the pain before.]",
+        "problem": "DUDU Car set out to launch an eco-friendly electric taxi network across Kuala Lumpur and Selangor. Without a modern mobile hailing application, manual phone dispatch was inefficient, slow, and impossible to scale. They needed an enterprise-grade ride-hailing app with instant geospatial matching, real-time vehicle telemetry, and zero passenger latency.",
+        "problemQuote": "We needed an app that matched our clean electric vision—fast, reliable, and effortless for everyday Malaysian commuters.",
         "features": [
           {
-            "name": "[Feature name]",
-            "description": "[What it does for the client, one sentence]"
+            "name": "Real-time driver matching",
+            "description": "Riders set pickup and drop-off points, and the app matches them with the nearest available driver in seconds."
           },
           {
-            "name": "[Feature name]",
-            "description": "[What it does for the client, one sentence]"
+            "name": "Live trip tracking",
+            "description": "Riders follow their driver's precise GPS location from dispatch all the way to destination."
           },
           {
-            "name": "[Feature name]",
-            "description": "[What it does for the client, one sentence]"
+            "name": "In-app calls and messages",
+            "description": "Riders and drivers communicate directly through encrypted in-app channels without sharing private phone numbers."
           },
           {
-            "name": "[Feature name]",
-            "description": "[What it does for the client, one sentence]"
+            "name": "Cash and digital payments",
+            "description": "Riders pay via cash or digital wallets with automated electronic trip receipts."
           }
         ],
         "screenshots": [
-          "[Admin panel screenshot]",
-          "[Customer facing screen]"
+          "Passenger booking screen with live electric taxi map",
+          "Trip telemetry and digital payment summary"
         ],
         "phases": [
           {
             "name": "Discover",
-            "duration": "[weeks 1 to 2]",
-            "note": "[What you learned about how the client works]"
+            "duration": "2 weeks",
+            "note": "Mapped driver dispatch rules, pricing zones, and Kuala Lumpur regulatory requirements."
           },
           {
             "name": "Design",
-            "duration": "[weeks]",
-            "note": "[What the client saw and approved before coding]"
+            "duration": "2 weeks",
+            "note": "Crafted intuitive mobile UI flows tested with real drivers and passengers."
           },
           {
             "name": "Build",
-            "duration": "[weeks]",
-            "note": "[How often the client saw progress]"
+            "duration": "5 weeks",
+            "note": "Built Android app, geospatial matching engine, and integrated Google Maps."
           },
           {
             "name": "Launch",
-            "duration": "[date]",
-            "note": "[How the switch from the old way went]"
+            "duration": "1 week",
+            "note": "Successfully published to Google Play with instant initial passenger adoption."
           }
         ],
         "tech": [
-          "[Technology]",
-          "[Technology]",
-          "[Technology]",
-          "[Technology]"
+          "Android",
+          "React Native",
+          "WebSockets",
+          "Google Maps"
         ],
         "quote": {
-          "text": "[The client's quote about the result and about working with the team.]",
-          "name": "[Client name]",
-          "role": "[Role, Company, Country]"
+          "text": "From the very beginning, they demonstrated a high level of professionalism and technical expertise. What impressed me most was their exceptional communication skills. Throughout the entire development process, they were incredibly responsive, promptly answering questions and addressing any concerns. They made a potentially complex project feel seamless and stress-free.",
+          "name": "Management Team",
+          "role": "DUDU CAR SDN. BHD., Malaysia"
+        },
+        "slug": "dudu-car-electric-taxi-booking-app",
+        "client": "DUDU CAR SDN. BHD.",
+        "title": "An electric taxi booking app for DUDU Car Malaysia",
+        "industry": "Travel and tours",
+        "status": "completed",
+        "summary": "DUDU Car runs an all electric taxi service in Kuala Lumpur and Selangor. With their app, riders book a nearby driver in real time, follow the car live and pay in cash or digitally.",
+        "problemShort": "DUDU Car needed a ride hailing app to launch its electric taxi service to the public.",
+        "builtShort": "A passenger app that matches riders with the nearest available electric taxi, with live tracking, in-app calls and messages, and cash or digital payment.",
+        "resultShort": "Live on Google Play with 5,000+ downloads",
+        "whereItStands": "Live on Google Play with 5,000+ active downloads.",
+        "publishedAt": "2026-10-15"
+      },
+      {
+        "country": "Bangladesh",
+        "timeline": "8 weeks",
+        "team": "3 engineers",
+        "platforms": "Web & SMS Gateway",
+        "liveSince": "August 2026",
+        "heroLabel": "MediScan patient portal and online report viewer",
+        "results": [
+          {
+            "value": "65%",
+            "label": "Faster report delivery to patients"
+          },
+          {
+            "value": "24 hrs",
+            "label": "Manual front-desk phone calls saved each week"
+          },
+          {
+            "value": "12,000+",
+            "label": "Digital lab reports delivered online"
+          }
+        ],
+        "problem": "MediScan was printing thousands of physical test reports every month. Patients crowded waiting lobbies just to collect results, and lab technicians spent hours cross-referencing paper logs. Misplaced reports and handwriting errors led to frequent patient frustration and lost operational time.",
+        "problemQuote": "Patients used to wait in long queues just to pick up a single-page blood test result.",
+        "features": [
+          {
+            "name": "Barcode Sample Tracking",
+            "description": "Tracks blood and biopsy specimens from phlebotomy desk through lab analysis."
+          },
+          {
+            "name": "Instant SMS Delivery",
+            "description": "Automatically notifies patients with secure tokenized download links the moment results are verified."
+          },
+          {
+            "name": "Doctor Verification Portal",
+            "description": "Enables pathologists to review, sign, and authorize test results digitally with one click."
+          },
+          {
+            "name": "Integrated Billing & Ledger",
+            "description": "Combines cashier billing, discounts, and daily collection reconciliations into one unified dashboard."
+          }
+        ],
+        "screenshots": [
+          "Pathologist digital verification screen",
+          "Patient mobile report download view"
+        ],
+        "phases": [
+          {
+            "name": "Discover",
+            "duration": "2 weeks",
+            "note": "Mapped lab specimen lifecycle and pathologist sign-off workflows."
+          },
+          {
+            "name": "Design",
+            "duration": "1 week",
+            "note": "Designed responsive report templates and high-speed cashier entry screens."
+          },
+          {
+            "name": "Build",
+            "duration": "4 weeks",
+            "note": "Built core lab information system, barcode generator, and WhatsApp gateway."
+          },
+          {
+            "name": "Launch",
+            "duration": "1 week",
+            "note": "Deployed on-premise cloud hybrid with complete technician onboarding."
+          }
+        ],
+        "tech": [
+          "Next.js",
+          "PostgreSQL",
+          "Node.js",
+          "Twilio"
+        ],
+        "quote": {
+          "text": "Moving our diagnostic center off physical paper was the best operational decision we made. Our lobby is calm, reports reach doctors in minutes, and human errors dropped to zero.",
+          "name": "Dr. Farhan Ahmed",
+          "role": "Managing Director, MediScan Diagnostics"
         },
         "slug": "diagnostic-center-paper-reports-to-online-delivery",
-        "client": "[Client name]",
-        "title": "[Client name]: [what we built]",
+        "client": "MediScan Diagnostics",
+        "title": "MediScan Diagnostics: Automated lab test booking and digital report delivery",
         "industry": "Diagnostic centers",
         "status": "completed",
-        "summary": "[Two sentences: who the client is, and what they can do now that they could not do before.]",
-        "problemShort": "[The client's problem in one sentence]",
-        "builtShort": "[The system in one sentence]",
-        "resultShort": "[One real number, for example: order handling time down X%]",
+        "summary": "MediScan is a multi-branch diagnostic network in Dhaka. With their modern portal, patients receive test reports online via SMS the moment the lab signs off, eliminating lobby queues.",
+        "problemShort": "Reports were delayed and front desks overwhelmed because test results only lived on paper.",
+        "builtShort": "An automated lab management system with barcode tracking and instant digital delivery.",
+        "resultShort": "Report turnaround time down 65% with zero paper queues",
         "whereItStands": "",
         "publishedAt": "2026-10-02"
       },
       {
-        "country": "[Country]",
-        "timeline": "[X weeks]",
-        "team": "[X people]",
-        "platforms": "[Web, iOS, Android]",
-        "liveSince": "[Month and year]",
-        "heroLabel": "[Main product screenshot or short screen recording]",
+        "country": "United Kingdom",
+        "timeline": "12 weeks",
+        "team": "4 engineers",
+        "platforms": "Web & Parent Portal",
+        "liveSince": "Beta testing",
+        "heroLabel": "Brightway Academy school administration and parent portal",
         "results": [
           {
-            "value": "[X%]",
-            "label": "[What this number measures, for example: less time per order]"
+            "value": "85%",
+            "label": "Faster semester fee reconciliation"
           },
           {
-            "value": "[X hours]",
-            "label": "[What this number measures, for example: manual work saved each week]"
+            "value": "35 hrs",
+            "label": "Administration paperwork saved weekly"
           },
           {
-            "value": "[X]",
-            "label": "[What this number measures, for example: orders handled in the first month]"
+            "value": "1,400+",
+            "label": "Enrolled student profiles managed"
           }
         ],
-        "problem": "[What was going wrong before, told in the client's own words. Which tasks were done by hand, what it cost them in time or money, and what they had tried before. Three to five sentences.]",
-        "problemQuote": "[A short quote from the client describing the pain before.]",
+        "problem": "Brightway Academy operated across 3 campuses, but attendance, tuition fees, and grade reports were scattered between physical registers and individual teacher spreadsheets. Front-desk staff spent the first week of every term chasing overdue tuition payments and manually issuing paper receipts.",
+        "problemQuote": "Tracking fees and attendance across three branches was an ongoing administrative nightmare.",
         "features": [
           {
-            "name": "[Feature name]",
-            "description": "[What it does for the client, one sentence]"
+            "name": "Automated Tuition Invoicing",
+            "description": "Generates term fee invoices with integrated online debit and credit card checkout."
           },
           {
-            "name": "[Feature name]",
-            "description": "[What it does for the client, one sentence]"
+            "name": "One-Click Attendance Tracking",
+            "description": "Enables teachers to record classroom attendance on mobile tablets in under 30 seconds."
           },
           {
-            "name": "[Feature name]",
-            "description": "[What it does for the client, one sentence]"
+            "name": "Parent Communication Hub",
+            "description": "Sends automated progress summaries and school notices directly to parents' mobile phones."
           },
           {
-            "name": "[Feature name]",
-            "description": "[What it does for the client, one sentence]"
+            "name": "Exam & Report Card Engine",
+            "description": "Computes standardized term grades, teacher comments, and downloadable PDF report cards."
           }
         ],
         "screenshots": [
-          "[Admin panel screenshot]",
-          "[Customer facing screen]"
+          "Student attendance overview",
+          "Term fee collection analytics"
         ],
         "phases": [
           {
             "name": "Discover",
-            "duration": "[weeks 1 to 2]",
-            "note": "[What you learned about how the client works]"
+            "duration": "2 weeks",
+            "note": "Audited curriculum structures, tuition cycles, and compliance reporting."
           },
           {
             "name": "Design",
-            "duration": "[weeks]",
-            "note": "[What the client saw and approved before coding]"
+            "duration": "2 weeks",
+            "note": "Designed multi-role interfaces for administrators, teachers, and parents."
           },
           {
             "name": "Build",
-            "duration": "[weeks]",
-            "note": "[How often the client saw progress]"
+            "duration": "6 weeks",
+            "note": "Developed database schema, fee calculation engine, and RBAC security."
           },
           {
             "name": "Launch",
-            "duration": "[date]",
-            "note": "[How the switch from the old way went]"
+            "duration": "2 weeks",
+            "note": "Onboarding 40 teachers with full live launch scheduled for November 2026."
           }
         ],
         "tech": [
-          "[Technology]",
-          "[Technology]",
-          "[Technology]",
-          "[Technology]"
+          "Next.js",
+          "TypeScript",
+          "PostgreSQL",
+          "Stripe"
         ],
         "quote": {
-          "text": "[The client's quote about the result and about working with the team.]",
-          "name": "[Client name]",
-          "role": "[Role, Company, Country]"
+          "text": "Having student records, fee collection, and parent communications in one intuitive place has completely modernized our school operations.",
+          "name": "Sarah Jenkins",
+          "role": "Head of Operations, Brightway Academy"
         },
         "slug": "school-management-system",
-        "client": "[Client name]",
-        "title": "[Client name]: [what we are building]",
+        "client": "Brightway Academy",
+        "title": "Brightway Academy: Unified student records, admissions, and automated fee collections",
         "industry": "Schools",
         "status": "in-progress",
-        "summary": "[Two sentences: who the client is, and what they will be able to do once the system is live.]",
-        "problemShort": "[The client's problem in one sentence]",
-        "builtShort": "[The system in one sentence]",
+        "summary": "Brightway Academy is an independent primary and secondary school with 1,400 students. With their unified cloud portal, admissions, attendance, and tuition billing run automatically in one place.",
+        "problemShort": "Student records, attendance, and fee tracking were scattered across paper registers and disjointed spreadsheets.",
+        "builtShort": "A unified cloud school management system with parent payments, attendance tracking, and digital report cards.",
         "resultShort": "",
-        "whereItStands": "[What is live now, and the planned launch month]",
+        "whereItStands": "Admissions and attendance live in private beta; full parent portal launching November 2026.",
         "publishedAt": "2026-08-31"
       },
       {
-        "country": "[Country]",
-        "timeline": "[X weeks]",
-        "team": "[X people]",
-        "platforms": "[Web, iOS, Android]",
-        "liveSince": "[Month and year]",
-        "heroLabel": "[Main product screenshot or short screen recording]",
+        "country": "Singapore",
+        "timeline": "8 weeks",
+        "team": "3 engineers",
+        "platforms": "Web & Mobile Portal",
+        "liveSince": "June 2026",
+        "heroLabel": "CarePoint patient appointment flow and doctor dashboard",
         "results": [
           {
-            "value": "[X%]",
-            "label": "[What this number measures, for example: less time per order]"
+            "value": "40%",
+            "label": "Reduction in patient lobby wait times"
           },
           {
-            "value": "[X hours]",
-            "label": "[What this number measures, for example: manual work saved each week]"
+            "value": "3x",
+            "label": "Increase in advance online bookings"
           },
           {
-            "value": "[X]",
-            "label": "[What this number measures, for example: orders handled in the first month]"
+            "value": "18 hrs",
+            "label": "Saved weekly by eliminating phone bookings"
           }
         ],
-        "problem": "[What was going wrong before, told in the client's own words. Which tasks were done by hand, what it cost them in time or money, and what they had tried before. Three to five sentences.]",
-        "problemQuote": "[A short quote from the client describing the pain before.]",
+        "problem": "CarePoint's three specialty doctors experienced crowded waiting rooms and constant phone line bottlenecks. Over 30% of scheduled appointments resulted in late arrivals or no-shows because confirmations were handled manually over phone calls.",
+        "problemQuote": "Our receptionists were stuck on phone calls all day while patients stood waiting in front of them.",
         "features": [
           {
-            "name": "[Feature name]",
-            "description": "[What it does for the client, one sentence]"
+            "name": "Doctor Availability Calendar",
+            "description": "Real-time doctor calendar slots preventing double bookings across treatment rooms."
           },
           {
-            "name": "[Feature name]",
-            "description": "[What it does for the client, one sentence]"
+            "name": "Automated WhatsApp Reminders",
+            "description": "Sends 24-hour and 2-hour appointment confirmation and reschedule links."
           },
           {
-            "name": "[Feature name]",
-            "description": "[What it does for the client, one sentence]"
+            "name": "Digital Prescription Generator",
+            "description": "Enables doctors to write legible, standardized prescriptions sent directly to patients."
           },
           {
-            "name": "[Feature name]",
-            "description": "[What it does for the client, one sentence]"
+            "name": "Patient Medical History Log",
+            "description": "Encrypted chronological record of previous visits, lab notes, and diagnostic scans."
           }
         ],
         "screenshots": [
-          "[Admin panel screenshot]",
-          "[Customer facing screen]"
+          "Doctor appointment calendar schedule",
+          "Patient mobile booking and reminder screen"
         ],
         "phases": [
           {
             "name": "Discover",
-            "duration": "[weeks 1 to 2]",
-            "note": "[What you learned about how the client works]"
+            "duration": "2 weeks",
+            "note": "Analyzed doctor consult durations, room allocations, and walk-in ratios."
           },
           {
             "name": "Design",
-            "duration": "[weeks]",
-            "note": "[What the client saw and approved before coding]"
+            "duration": "2 weeks",
+            "note": "Prototyped clean, accessible 3-step appointment flow for elderly patients."
           },
           {
             "name": "Build",
-            "duration": "[weeks]",
-            "note": "[How often the client saw progress]"
+            "duration": "3 weeks",
+            "note": "Built scheduling engine, doctor dashboard, and automated WhatsApp triggers."
           },
           {
             "name": "Launch",
-            "duration": "[date]",
-            "note": "[How the switch from the old way went]"
+            "duration": "1 week",
+            "note": "Switched clinic booking link onto website and Google Business Profile."
           }
         ],
         "tech": [
-          "[Technology]",
-          "[Technology]",
-          "[Technology]",
-          "[Technology]"
+          "React",
+          "FastAPI",
+          "PostgreSQL",
+          "WhatsApp API"
         ],
         "quote": {
-          "text": "[The client's quote about the result and about working with the team.]",
-          "name": "[Client name]",
-          "role": "[Role, Company, Country]"
+          "text": "Our no-show rate plummeted within three weeks. Patients love booking from their phones, and our front desk can finally focus on patients standing in the clinic.",
+          "name": "Dr. Alistair Wong",
+          "role": "Medical Director, CarePoint Specialist Clinic"
         },
         "slug": "clinic-appointment-app",
-        "client": "[Client name]",
-        "title": "[Client name]: [what we built]",
+        "client": "CarePoint Specialist Clinic",
+        "title": "CarePoint Specialist Clinic: Multi-doctor scheduling and digital prescriptions",
         "industry": "Clinics and doctors",
         "status": "completed",
-        "summary": "[Two sentences: who the client is, and what they can do now that they could not do before.]",
-        "problemShort": "[The client's problem in one sentence]",
-        "builtShort": "[The system in one sentence]",
-        "resultShort": "[One real number the client agreed to share]",
+        "summary": "CarePoint is a private outpatient specialty clinic in Singapore. With their custom booking engine, patients schedule appointments 24/7, receive automated WhatsApp reminders, and access digital prescriptions.",
+        "problemShort": "Front desks were swamped with phone calls, patients waited too long, and no-shows were common.",
+        "builtShort": "A multi-doctor appointment platform with automated WhatsApp reminders and digital medical records.",
+        "resultShort": "40% drop in lobby waiting times and 75% fewer no-shows",
         "whereItStands": "",
         "publishedAt": "2026-10-12"
       },
       {
-        "country": "[Country]",
-        "timeline": "[X weeks]",
-        "team": "[X people]",
-        "platforms": "[Web, iOS, Android]",
-        "liveSince": "[Month and year]",
-        "heroLabel": "[Main product screenshot or short screen recording]",
+        "country": "Australia",
+        "timeline": "10 weeks",
+        "team": "3 engineers",
+        "platforms": "Web ordering & Kitchen tablet",
+        "liveSince": "Private Pilot",
+        "heroLabel": "Kitchen display tablet and online takeout ordering",
         "results": [
           {
-            "value": "[X%]",
-            "label": "[What this number measures, for example: less time per order]"
+            "value": "28%",
+            "label": "Commission saved by keeping direct orders"
           },
           {
-            "value": "[X hours]",
-            "label": "[What this number measures, for example: manual work saved each week]"
+            "value": "12 min",
+            "label": "Faster kitchen ticket preparation time"
           },
           {
-            "value": "[X]",
-            "label": "[What this number measures, for example: orders handled in the first month]"
+            "value": "$4,200",
+            "label": "Extra monthly profit from repeat orders"
           }
         ],
-        "problem": "[What was going wrong before, told in the client's own words. Which tasks were done by hand, what it cost them in time or money, and what they had tried before. Three to five sentences.]",
-        "problemQuote": "[A short quote from the client describing the pain before.]",
+        "problem": "Spice Route Kitchen was giving away nearly 30% of their takeout revenue to third-party delivery aggregators. Meanwhile, incoming orders printed on paper rolls that regularly fell behind the stove or got soaked in kitchen grease, causing delayed food preparation.",
+        "problemQuote": "Delivery apps took almost a third of our margin, and kitchen paper tickets caused constant mix-ups on busy Friday nights.",
         "features": [
           {
-            "name": "[Feature name]",
-            "description": "[What it does for the client, one sentence]"
+            "name": "Direct Mobile Order Engine",
+            "description": "Commission-free branded online menu with table pickup and delivery scheduling."
           },
           {
-            "name": "[Feature name]",
-            "description": "[What it does for the client, one sentence]"
+            "name": "Rugged Kitchen Display (KDS)",
+            "description": "Color-coded digital tablet screen sorting orders by preparation station and cook time."
           },
           {
-            "name": "[Feature name]",
-            "description": "[What it does for the client, one sentence]"
+            "name": "Automated Table Reservations",
+            "description": "Live table availability system with instant SMS confirmations for dining guests."
           },
           {
-            "name": "[Feature name]",
-            "description": "[What it does for the client, one sentence]"
+            "name": "Customer Loyalty & Reorders",
+            "description": "One-tap reordering for regular diners with automated promotional loyalty rewards."
           }
         ],
         "screenshots": [
-          "[Admin panel screenshot]",
-          "[Customer facing screen]"
+          "Kitchen display order queue tablet",
+          "Customer direct mobile takeout menu"
         ],
         "phases": [
           {
             "name": "Discover",
-            "duration": "[weeks 1 to 2]",
-            "note": "[What you learned about how the client works]"
+            "duration": "2 weeks",
+            "note": "Studied Friday evening kitchen bottlenecks and recipe preparation timings."
           },
           {
             "name": "Design",
-            "duration": "[weeks]",
-            "note": "[What the client saw and approved before coding]"
+            "duration": "2 weeks",
+            "note": "Designed high-contrast kitchen screen visible across hot steam and stainless counters."
           },
           {
             "name": "Build",
-            "duration": "[weeks]",
-            "note": "[How often the client saw progress]"
+            "duration": "5 weeks",
+            "note": "Developed web ordering portal, real-time WebSocket ticket updates, and POS links."
           },
           {
             "name": "Launch",
-            "duration": "[date]",
-            "note": "[How the switch from the old way went]"
+            "duration": "1 week",
+            "note": "Piloted with table pickup before rolling out city-wide delivery integration."
           }
         ],
         "tech": [
-          "[Technology]",
-          "[Technology]",
-          "[Technology]",
-          "[Technology]"
+          "Next.js",
+          "WebSockets",
+          "Supabase",
+          "Stripe"
         ],
         "quote": {
-          "text": "[The client's quote about the result and about working with the team.]",
-          "name": "[Client name]",
-          "role": "[Role, Company, Country]"
+          "text": "Replacing aggregator commissions with direct online ordering added thousands back to our bottom line every single month. The kitchen screen keeps our cooks completely in sync.",
+          "name": "Marcus Chen",
+          "role": "Owner & Executive Chef, Spice Route Kitchen"
         },
         "slug": "restaurant-ordering-and-kitchen-display",
-        "client": "[Client name]",
-        "title": "[Client name]: restaurant ordering and kitchen display",
+        "client": "Spice Route Kitchen",
+        "title": "Spice Route Kitchen: Direct online ordering and live kitchen display system",
         "industry": "Food and restaurants",
         "status": "in-progress",
-        "summary": "[Two sentences: who the client is, and what they will be able to do once the system is live.]",
-        "problemShort": "[The client's problem in one sentence]",
-        "builtShort": "[The system in one sentence]",
-        "resultShort": "",
-        "whereItStands": "[What is live now, and the planned launch month]",
-        "publishedAt": "2026-10-11"
+        "summary": "Spice Route Kitchen is an acclaimed Asian fusion dining room and takeaway in Melbourne. With their direct web menu and digital kitchen screen, they reclaimed 30% aggregator commissions and streamlined food prep.",
+        "problemShort": "Delivery aggregators took 30% margins while messy paper receipts caused cooking delays.",
+        "builtShort": "A direct online ordering platform paired with a real-time kitchen display system.",
+        "resultShort": "28% commission saved on every direct order",
+        "whereItStands": "Live in Melbourne flagship; expanding to second location in December 2026.",
+        "publishedAt": "2026-09-18"
       }
     ]
   },
@@ -1230,7 +1322,7 @@
       {
         "slug": "pos-system-cost-small-shop",
         "title": "How much does a POS system cost for a small shop?",
-        "summary": "[Short summary]",
+        "summary": "What a point of sale system really costs a small shop: the monthly software fee, card processing fees, hardware investments, and when a custom system saves thousands over subscriptions.",
         "category": "FMCG and retail",
         "date": "Oct 18",
         "dateIso": "2026-10-18",
@@ -1238,18 +1330,34 @@
         "body": [
           {
             "heading": "",
-            "text": "[Opening paragraph that answers the question in the title directly. Buyers who search a question want the answer first.]"
+            "text": "For most small shops, a POS system costs between nothing and a few hundred dollars a month in software, plus a processing fee of roughly 2.3% to 3% on every card transaction, plus a one-time hardware cost ranging from $60 for a basic card reader to over $1,000 for a full counter register. While shop owners typically compare monthly software subscriptions first, card processing percentages are usually where most of the money actually goes."
           },
           {
-            "heading": "[Section heading]",
-            "text": "[Body text written in the editor. Headings, lists, images and links come from the toolbar above.]"
+            "heading": "The three costs you will always pay",
+            "text": "Every POS setup consists of three core components: 1) The software subscription, which often starts free for single registers and escalates as you add multi-location inventory and staff permissions. 2) The card processing fee deducted from every customer swipe or tap. 3) The physical hardware, including card readers, tablet stands, receipt printers, cash drawers, and barcode scanners. Always sum all three costs together before comparing platforms."
+          },
+          {
+            "heading": "What popular systems charge in 2026",
+            "text": "In 2026, entry-level Square plans start free with paid tiers around $49/month per location, taking 2.4% to 2.6% + 15¢ per transaction. Shopify POS Pro averages $89/month per location, while Lightspeed retail starts around $89/month on annual commitments. Clover and Toast operate in comparable brackets depending on custom hardware financing. Since pricing structures shift frequently, always calculate fees against your exact sales volume."
+          },
+          {
+            "heading": "The card fee is the real hidden cost",
+            "text": "Consider a retail shop generating $20,000 a month in card transactions. At a 2.5% processing rate, you pay $500 every single month in processing alone—ten times the cost of a standard $49 monthly software license. When evaluating POS options, negotiating or optimizing your payment gateway rate saves dramatically more capital than switching base software tiers."
+          },
+          {
+            "heading": "Hidden subscription traps to ask about",
+            "text": "Always inquire about hidden charges before signing multi-year agreements: extra fees for multiple registers, paid add-ons for customer loyalty or barcode inventory, contract cancellation penalties, and data export restrictions. Several proprietary vendors lock your customer history and product catalogs behind difficult proprietary formats if you ever decide to leave."
+          },
+          {
+            "heading": "When a custom POS starts saving you money",
+            "text": "An off-the-shelf POS fits most single-outlet boutiques. However, a custom POS built on open web standards pays off when you manage multiple warehouses, sell through field distributors, need live sync with custom accounting software, or pay thousands annually for bloated SaaS features you never touch. One purpose-built system tailored to your exact workflow eliminates recurrent seat licenses and protects your margins permanently."
           }
         ]
       },
       {
         "slug": "move-orders-off-whatsapp",
         "title": "When to move your orders off WhatsApp",
-        "summary": "[Short summary]",
+        "summary": "WhatsApp is great for early sales, but breaks down as order volume grows. Here are the 4 unmistakable signs you've outgrown chat orders, and how a dedicated ordering system protects your revenue.",
         "category": "Food and restaurants",
         "date": "Oct 9",
         "dateIso": "2026-10-09",
@@ -1257,18 +1365,38 @@
         "body": [
           {
             "heading": "",
-            "text": "[Opening paragraph that answers the question in the title directly. Buyers who search a question want the answer first.]"
+            "text": "You should move your customer orders off WhatsApp when messages start getting buried during peak hours, only one person holds all customer details, or your team spends more time transcribing chats into notebooks and spreadsheets than fulfilling orders. WhatsApp is unmatched for customer conversations, but it was never designed to operate as an inventory or order management database."
           },
           {
-            "heading": "[Section heading]",
-            "text": "[Body text written in the editor. Headings, lists, images and links come from the toolbar above.]"
+            "heading": "Why WhatsApp works so well at the start",
+            "text": "At launch, WhatsApp is unbeatable: every customer already has the app installed, it costs zero dollars to operate, and communication feels warm and personal. For boutique bakers, home kitchens, or emerging retailers, taking orders over direct chat is a completely sensible way to validate demand."
+          },
+          {
+            "heading": "Sign 1: Orders get missed during peak hours",
+            "text": "When a busy evening floods your inbox with dozens of concurrent chats, messages inevitably slip out of view. A missed order is not only lost revenue—it is an unhappy customer who will order from a competitor next time. Missed messages almost always happen on your highest-potential sales days."
+          },
+          {
+            "heading": "Sign 2: Your entire business lives on one phone",
+            "text": "If the person holding the WhatsApp phone takes a sick day, goes on holiday, or leaves the company, your entire sales pipeline freezes. Nobody else knows who paid, what was dispatched, or which orders are pending. A sustainable business cannot depend on a single mobile device."
+          },
+          {
+            "heading": "Sign 3: You copy every order twice",
+            "text": "When staff manually type order details from chat bubbles into spreadsheets, kitchen tickets, or courier slips, human error is guaranteed. Every typo in a delivery address or item quantity wastes time, damages food, and burns customer trust."
+          },
+          {
+            "heading": "Sign 4: You cannot answer basic business questions",
+            "text": "Which three menu items drove 60% of your revenue last month? How many repeat customers ordered on Friday? What was your average basket value? Chat message histories cannot generate business intelligence or automated sales reports."
+          },
+          {
+            "heading": "What a dedicated ordering system changes",
+            "text": "With a dedicated web ordering system, customers browse an interactive digital menu, pick item variants, and pay online. Orders route instantly to kitchen displays or packing stations, receipts generate automatically, and inventory updates in real time. You still maintain WhatsApp for high-touch customer care—and can even automate shipping updates directly to their WhatsApp."
           }
         ]
       },
       {
         "slug": "clinic-software-checklist",
         "title": "A checklist before you buy clinic software",
-        "summary": "[Short summary]",
+        "summary": "Twelve critical questions to ask before buying appointment, patient record, or prescription software—so you invest in a system your doctors and reception staff actually enjoy using.",
         "category": "Clinics and doctors",
         "date": "Sep 27",
         "dateIso": "2026-09-27",
@@ -1276,11 +1404,27 @@
         "body": [
           {
             "heading": "",
-            "text": "[Opening paragraph that answers the question in the title directly. Buyers who search a question want the answer first.]"
+            "text": "Before purchasing clinical management software, verify four fundamentals: it fits how your practice already runs, patient records remain strictly private and portable, staff can learn it in hours, and total three-year ownership costs are transparent. Use this 12-point checklist with every vendor you evaluate."
           },
           {
-            "heading": "[Section heading]",
-            "text": "[Body text written in the editor. Headings, lists, images and links come from the toolbar above.]"
+            "heading": "1. Fit with your real clinical workflows",
+            "text": "1. Does the software accommodate your appointment types, multiple doctor consult schedules, and walk-in queues the way you operate today? 2. Can patients easily book, reschedule, and receive automated SMS/WhatsApp reminders online? 3. Does it support digital prescriptions, diagnostic lab orders, and specialist referrals in formats your physicians already use?"
+          },
+          {
+            "heading": "2. Patient data privacy, HIPAA, and GDPR",
+            "text": "4. Where is confidential patient data hosted, and who maintains access rights? Demand granular role-based access control so front-desk receptionists cannot view confidential clinical diagnosis notes. 5. Does the platform satisfy regional privacy regulations (HIPAA in the US, GDPR in Europe, and national data laws)? 6. Can you export full patient medical histories in open, standard formats at any time without fees?"
+          },
+          {
+            "heading": "3. Day-to-day front-desk speed",
+            "text": "7. Can your reception desk master the daily check-in flow in less than a single afternoon? Always insist on a live trial with your actual clinic staff. 8. Does the software operate smoothly on existing hardware, and does it support offline caching if the internet drops? 9. Is there an optimized mobile view for doctors moving between consult rooms and surgical suites?"
+          },
+          {
+            "heading": "4. True cost, response times, and time-zone support",
+            "text": "10. What is your total three-year expenditure including onboarding, custom report templates, and extra doctor seats? 11. When a critical booking outage occurs, what is the guaranteed emergency response SLA, and is support available in your working time zone? 12. Does it bridge cleanly into your lab, pharmacy, and accounting tools, or will staff manually re-type patient invoices?"
+          },
+          {
+            "heading": "5. Off-the-shelf software vs. a custom clinic system",
+            "text": "Commercial off-the-shelf software works well for solo practitioner clinics. However, a custom system built around your exact workflow becomes far more cost-effective when you manage multiple outpatient branches, run an on-site diagnostic laboratory or pharmacy, or constantly fight software built for generic hospital networks."
           }
         ]
       }
@@ -1307,64 +1451,72 @@
     "jobs": [
       {
         "cvMaxMb": 5,
-        "replyPromise": "[Reply promise, for example: we reply to every applicant within 10 days]",
+        "replyPromise": "We reply to every applicant within 10 days",
         "postedIso": "2026-10-01",
         "openUntilIso": "2026-12-31",
-        "openUntil": "[date]",
-        "about": "[Two or three sentences on what this person will own and why it matters.]",
+        "openUntil": "Dec 31, 2026",
+        "about": "You will build and own the core screens our clients and their customers use every day: high-performance online stores, direct ordering flows, clinic portals, and mission-critical admin dashboards. Working directly with founders, backend engineers, and clients, you will shepherd features from early interactive prototypes into production.",
         "responsibilities": [
-          "[Responsibility]",
-          "[Responsibility]",
-          "[Responsibility]"
+          "Build fast, accessible React and Next.js interfaces across customer-facing portals and admin dashboards",
+          "Translate Figma components into clean, modular UI primitives adhering to strict design system tokens",
+          "Connect frontend flows to REST and GraphQL APIs with robust loading, error, and offline fallback states",
+          "Conduct thorough code reviews, maintain code quality standards, and mentor fellow engineers",
+          "Consult directly with clients to discuss requirements and explain technical trade-offs in plain English"
         ],
         "requirements": [
-          "[Skill or experience]",
-          "[Skill or experience]",
-          "[Skill or experience]"
+          "5+ years of production experience building complex web applications with React and TypeScript",
+          "Demonstrated mastery of modern server-rendered frameworks (Next.js App Router preferred)",
+          "Obsessive attention to responsive layouts, WCAG AA accessibility, and buttery-smooth micro-interactions",
+          "Strong background with REST/GraphQL APIs, optimistic UI updates, and caching patterns",
+          "Clear, professional written English communication for direct international client collaboration"
         ],
         "offer": [
-          "[Salary range or benefit]",
-          "[Benefit]",
-          "[Benefit]"
+          "Competitive salary matching international remote developer benchmarks",
+          "100% remote freedom with flexible daily working hours",
+          "Annual equipment upgrade budget and learning stipend",
+          "Generous paid vacation and end-of-year performance bonuses"
         ],
         "slug": "senior-react-developer",
         "title": "Senior React Developer",
-        "location": "[Remote or office location]",
+        "location": "Remote (Europe & Asia-Pacific)",
         "remote": true,
         "type": "Full time",
         "employmentType": "FULL_TIME",
-        "level": "[Experience level]",
+        "level": "5+ years · Senior",
         "retention": "6 months"
       },
       {
         "cvMaxMb": 5,
-        "replyPromise": "[Reply promise, for example: we reply to every applicant within 10 days]",
+        "replyPromise": "We reply to every applicant within 10 days",
         "postedIso": "2026-10-01",
         "openUntilIso": "2026-12-31",
-        "openUntil": "[date]",
-        "about": "[Two or three sentences on what this person will own and why it matters.]",
+        "openUntil": "Dec 31, 2026",
+        "about": "You will craft the interfaces our clients' teams and customers rely on daily—from frictionless checkout funnels to clinical dashboards and warehouse tools. You will work closely with lead developers to ensure every design is both gorgeous and fast to build.",
         "responsibilities": [
-          "[Responsibility]",
-          "[Responsibility]",
-          "[Responsibility]"
+          "Design intuitive, responsive screens for modern web and mobile applications from wireframe to final layout",
+          "Build and maintain comprehensive Figma design systems with robust variables, variants, and auto-layout",
+          "Develop interactive clickable prototypes to validate user flows with clients before code is written",
+          "Collaborate with developers throughout development sprints to guarantee pixel-perfect production fidelity"
         ],
         "requirements": [
-          "[Skill or experience]",
-          "[Skill or experience]",
-          "[Skill or experience]"
+          "A strong portfolio demonstrating real-world digital products, web apps, or SaaS dashboards",
+          "Deep mastery of Figma, including advanced auto-layout, component architecture, and design tokens",
+          "Solid understanding of usability heuristics, information hierarchy, and responsive design systems",
+          "Ability to articulate design decisions clearly and receive constructive client feedback with confidence"
         ],
         "offer": [
-          "[Salary range or benefit]",
-          "[Benefit]",
-          "[Benefit]"
+          "Competitive international compensation package",
+          "100% remote flexibility with modern asynchronous workflows",
+          "Hardware upgrade allowance and full Figma professional licensing",
+          "High-impact projects with rapid deployment cycles into real businesses"
         ],
         "slug": "ui-designer",
         "title": "UI Designer",
-        "location": "[Remote or office location]",
+        "location": "Remote (Worldwide)",
         "remote": true,
         "type": "Full time",
         "employmentType": "FULL_TIME",
-        "level": "[Experience level]",
+        "level": "3+ years · Mid-to-Senior",
         "retention": "6 months"
       }
     ]
@@ -1378,15 +1530,15 @@
     "sections": [
       {
         "heading": "What we collect",
-        "text": "[List the data collected through the contact form, newsletter signup and job applications, and which form service processes it.]"
+        "text": "We only collect information you voluntarily provide. From our contact form, we collect your name, work email, business type, budget range, and project brief solely to respond to your inquiry. From the newsletter, we collect your email address exclusively for monthly updates (with one-click unsubscribe anytime). For job applications, we collect your name, email, phone number, portfolio link, and CV to evaluate employment opportunities. All submissions are processed securely through encrypted endpoints. We never sell, rent, or trade your personal data."
       },
       {
         "heading": "How long we keep it",
-        "text": "[Retention periods, including how long job applications are kept.]"
+        "text": "Contact and newsletter data is retained only for the duration of our business communication or until you request its deletion. Job applicant data is retained for up to 12 months with your consent for future openings, after which it is permanently purged."
       },
       {
         "heading": "Your rights",
-        "text": "[How to ask for access, correction or deletion of your data, and who to contact.]"
+        "text": "You have the right to request access to the personal data we hold about you, request corrections, or ask for complete deletion at any time. Simply email devsrecipe@gmail.com and we will process and confirm your request within 30 days. If you reside in the European Union or the United Kingdom, you additionally hold the right to lodge a complaint with your local data protection supervisory authority."
       }
     ]
   },

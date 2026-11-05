@@ -25,8 +25,8 @@ export default function BlogPage() {
               href={`/blog/${post.slug}`}
               className="lift block h-full rounded-3xl border border-border bg-surface p-6"
             >
-              <p className="text-xs text-muted">
-                [{post.category}] · [{post.date}]
+              <p className="text-xs font-medium text-muted">
+                <span className="text-primary">{post.category}</span> · {post.date}
               </p>
               <h2 className="mt-3 text-xl font-semibold">{post.title}</h2>
               <p className="mt-2 text-sm text-muted">{post.summary}</p>

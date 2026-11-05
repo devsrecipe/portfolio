@@ -40,8 +40,8 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
           ]}
         />
         <header className="mt-8">
-          <p className="text-sm text-muted">
-            [{post.category}] · <time dateTime={post.dateIso}>[{post.date}]</time>
+          <p className="text-sm font-medium text-muted">
+            <span className="text-primary">{post.category}</span> · <time dateTime={post.dateIso}>{post.date}</time>
           </p>
           <h1 className="mt-3 font-display text-5xl leading-[1.02] tracking-[-0.015em] sm:text-6xl">
             {post.title}

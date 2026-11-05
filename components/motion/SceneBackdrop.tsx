@@ -36,32 +36,36 @@ function Mark({ x, y, size, className }: { x: number; y: number; size: number; c
 
 const scenes: Record<SceneName, Scene> = {
   relay: {
-    viewBox: "0 0 420 175",
+    viewBox: "0 0 540 175",
     art: (
       <>
         <g className="text-ink/15" {...line}>
-          {[10, 160, 310].map((x) => (
-            <rect key={x} x={x} y={40} width={100} height={100} rx={20} />
+          {[10, 145, 280, 415].map((x) => (
+            <rect key={x} x={x} y={40} width={90} height={90} rx={18} />
           ))}
-          <path d="M120 90h28m-8-8 8 8-8 8M270 90h28m-8-8 8 8-8 8" />
-          <path d="M60 162H360" strokeDasharray="2 10" />
-          {/* idea, build, finish */}
-          <circle cx={60} cy={84} r={13} />
-          <path d="M53 104h14M55 112h10" />
-          <path d="M346 116V66M346 68h26l-7 9 7 9h-26" />
+          <path d="M102 85h38m-8-8 8 8-8 8M237 85h38m-8-8 8 8-8 8M372 85h38m-8-8 8 8-8 8" />
+          <path d="M55 152H460" strokeDasharray="2 10" />
+          {/* 1. discover / lightbulb */}
+          <circle cx={55} cy={80} r={12} />
+          <path d="M48 98h14M50 105h10" />
+          {/* 2. design / wireframe pen */}
+          <path d="M178 72l24 24M194 66l8 8-4 4-8-8zM172 102l10-4-6-6z" />
+          {/* 4. launch / flag */}
+          <path d="M450 110V64M450 66h24l-6 8 6 8h-24" />
         </g>
-        <Mark x={186} y={66} size={48} className="text-ink/15" />
-        {[10, 160, 310].map((x, i) => (
-          <rect key={x} className={`lit lit-${i} text-primary`} x={x} y={40} width={100} height={100} rx={20} {...line} />
+        <Mark x={302} y={62} size={44} className="text-ink/15" />
+        {[10, 145, 280, 415].map((x, i) => (
+          <rect key={x} className={`lit lit-${i} text-primary`} x={x} y={40} width={90} height={90} rx={18} {...line} />
         ))}
-        <circle className="baton text-primary" cx={360} cy={162} r={9} fill="currentColor" />
+        <circle className="baton text-primary" cx={460} cy={152} r={8} fill="currentColor" />
       </>
     ),
     play: (tl, q) => {
-      tl.from(q(".baton"), { x: -300, ease: "none", duration: 3 })
+      tl.from(q(".baton"), { x: -405, ease: "none", duration: 4 })
         .from(q(".lit-0"), { opacity: 0, duration: 0.3 }, 0)
-        .from(q(".lit-1"), { opacity: 0, duration: 0.3 }, 1.4)
-        .from(q(".lit-2"), { opacity: 0, duration: 0.3 }, 2.7);
+        .from(q(".lit-1"), { opacity: 0, duration: 0.3 }, 1.3)
+        .from(q(".lit-2"), { opacity: 0, duration: 0.3 }, 2.6)
+        .from(q(".lit-3"), { opacity: 0, duration: 0.3 }, 3.7);
     },
   },
 
