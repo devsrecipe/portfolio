@@ -50,19 +50,19 @@ const scenes: Record<SceneName, Scene> = {
       </>
     ),
     play: (tl, q) => {
-      tl.from(q(".baton"), { x: -405, ease: "none", duration: 3.5 })
-        .from(q(".lit-0"), { opacity: 0, duration: 0.3 }, 0)
-        .from(q(".lit-1"), { opacity: 0, duration: 0.3 }, 1.1)
-        .from(q(".lit-2"), { opacity: 0, duration: 0.3 }, 2.2)
-        .from(q(".lit-3"), { opacity: 0, duration: 0.3 }, 3.2);
+      tl.fromTo(q(".baton"), { x: -405 }, { x: 0, ease: "power1.inOut", duration: 2.2 })
+        .fromTo(q(".lit-0"), { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0.1)
+        .fromTo(q(".lit-1"), { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0.8)
+        .fromTo(q(".lit-2"), { opacity: 0 }, { opacity: 1, duration: 0.25 }, 1.5)
+        .fromTo(q(".lit-3"), { opacity: 0 }, { opacity: 1, duration: 0.25 }, 2.0);
 
-      // Ambient loop
       gsap.to(q(".baton"), {
-        x: "+=20",
-        duration: 1.5,
+        x: "+=16",
+        duration: 1.2,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
+        delay: 2.3,
       });
     },
   },
@@ -100,21 +100,32 @@ const scenes: Record<SceneName, Scene> = {
       </>
     ),
     play: (tl, q) => {
-      // Key slides in, turns inside lock, and shackle pops open!
-      tl.from(q(".key"), { x: -140, opacity: 0, ease: "power2.out", duration: 1.2 })
-        .to(q(".key"), { scaleY: 0.35, svgOrigin: "160 222", duration: 0.35, ease: "power2.inOut" })
-        .to(q(".key"), { scaleY: 1, svgOrigin: "160 222", duration: 0.35, ease: "power2.out" })
-        .fromTo(q(".unlocked"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, "<")
-        .fromTo(q(".shackle"), { y: 0 }, { y: -38, duration: 0.6, ease: "back.out(2.5)" }, "<0.1");
+      // 1. Key slides smoothly from left directly into the keyhole (0.6s)
+      tl.fromTo(
+        q(".key"),
+        { x: -140, opacity: 0 },
+        { x: 0, opacity: 1, ease: "power2.out", duration: 0.6 }
+      )
+        // 2. Key turns 90 degrees inside the lock (0.35s)
+        .to(q(".key"), { scaleY: 0.25, svgOrigin: "300 222", duration: 0.18, ease: "power2.inOut" })
+        .to(q(".key"), { scaleY: 1, svgOrigin: "300 222", duration: 0.18, ease: "power2.out" })
+        // 3. Lock illuminates and shackle pops open with a crisp spring click! (0.45s)
+        .fromTo(q(".unlocked"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, "-=0.1")
+        .fromTo(
+          q(".shackle"),
+          { y: 0 },
+          { y: -38, duration: 0.45, ease: "back.out(2.8)" },
+          "-=0.1"
+        );
 
-      // Ambient breathing loop
+      // 4. Subtle ambient breathing loop
       gsap.to(q(".shackle"), {
         y: -32,
-        duration: 2.2,
+        duration: 1.8,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
-        delay: 2.5,
+        delay: 1.5,
       });
     },
   },
@@ -146,29 +157,39 @@ const scenes: Record<SceneName, Scene> = {
       </>
     ),
     play: (tl, q) => {
-      // Plug and socket slide together, snap shut, and sparks flash!
-      tl.from(q(".plug"), { x: -80, opacity: 0, ease: "power2.out", duration: 1.0 })
-        .from(q(".socket"), { x: 80, opacity: 0, ease: "power2.out", duration: 1.0 }, "<")
-        .to(q(".face"), { opacity: 0, duration: 0.15 }, "-=0.1")
-        .from(q(".seam"), { opacity: 0, duration: 0.15 }, "<")
+      // 1. Magnetic pull: plug & socket slide together rapidly (0.5s)
+      tl.fromTo(
+        q(".plug"),
+        { x: -75, opacity: 0.2 },
+        { x: 0, opacity: 1, ease: "power3.in", duration: 0.5 }
+      )
+        .fromTo(
+          q(".socket"),
+          { x: 75, opacity: 0.2 },
+          { x: 0, opacity: 1, ease: "power3.in", duration: 0.5 },
+          "<"
+        )
+        // 2. Contact: straight seam joins (0.1s)
+        .to(q(".face"), { opacity: 0, duration: 0.1 }, "-=0.08")
+        .fromTo(q(".seam"), { opacity: 0 }, { opacity: 1, duration: 0.1 }, "<")
+        // 3. ELECTRIC BURST! High-voltage sparks explode (0.35s)
         .fromTo(
           q(".spark"),
-          { opacity: 0, scale: 0.2, svgOrigin: "218 190" },
-          { opacity: 1, scale: 1.1, svgOrigin: "218 190", duration: 0.4, ease: "back.out(3)" },
-          "-=0.05"
+          { opacity: 0, scale: 0.1, svgOrigin: "218 190" },
+          { opacity: 1, scale: 1.25, svgOrigin: "218 190", duration: 0.35, ease: "back.out(3.5)" }
         )
-        .to(q(".spark"), { scale: 1, duration: 0.2 });
+        .to(q(".spark"), { scale: 1, duration: 0.15 });
 
-      // Ambient electrical crackle & pulse loop!
+      // 4. Live electrical crackle & pulse loop!
       gsap.to(q(".spark"), {
         opacity: 0.35,
-        scale: 0.85,
+        scale: 0.88,
         svgOrigin: "218 190",
-        duration: 0.9,
+        duration: 0.8,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
-        delay: 1.5,
+        delay: 1.2,
       });
     },
   },
@@ -192,20 +213,20 @@ export function SceneBackdrop({ scene, className }: { scene: SceneName; classNam
         // Gentle Parallax Drift
         gsap.fromTo(
           el,
-          { yPercent: 12 },
+          { yPercent: 10 },
           {
-            yPercent: -12,
+            yPercent: -10,
             ease: "none",
             scrollTrigger: { trigger: section, start: "top bottom", end: "bottom top", scrub: 0.8 },
           },
         );
 
-        // Story animation triggers when section enters viewport (reliable on any screen)
+        // Story animation triggers right when THIS illustration scrolls into view
         const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: section,
-            start: "top 75%",
-            once: true,
+            trigger: el,
+            start: "top 88%",
+            toggleActions: "restart none none none",
           },
         });
         play(tl, q);
@@ -220,7 +241,7 @@ export function SceneBackdrop({ scene, className }: { scene: SceneName; classNam
     <div
       ref={root}
       aria-hidden
-      className={cn("pointer-events-none absolute -z-10 hidden opacity-60 lg:block", className)}
+      className={cn("pointer-events-none absolute -z-10 opacity-70 block", className)}
     >
       <svg viewBox={viewBox} className="h-auto w-full overflow-visible">
         {art}
