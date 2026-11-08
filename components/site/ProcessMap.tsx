@@ -188,15 +188,15 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
           aria-hidden="true"
         />
 
-        {/* Section Heading — Pure Hanken Grotesk Sans Font (Matching Logo) */}
+        {/* Section Heading — Bricolage Grotesque Headlines + JetBrains Mono Eyebrow */}
         <div className="max-w-3xl mb-4">
           {eyebrow && (
-            <p className="text-xs font-bold uppercase tracking-wider text-primary mb-1">
+            <p className="font-mono text-xs font-bold uppercase tracking-wider text-primary mb-1">
               {eyebrow}
             </p>
           )}
           {title && (
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink leading-tight">
+            <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-ink leading-tight">
               {title}
             </h2>
           )}
@@ -281,7 +281,7 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
                               : "border-border bg-surface-2 text-muted group-hover:border-primary/50 group-hover:text-ink"
                         }`}
                       >
-                        <span className="text-xs font-bold">{st.step}</span>
+                        <span className="font-mono text-xs font-bold">{st.step}</span>
                       </div>
 
                       {/* Vertical connector stem dropping into card */}
@@ -335,7 +335,7 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
                     </div>
 
                     {/* Checkpoint Tag */}
-                    <p className="mt-3.5 text-[10px] font-bold tracking-wider text-primary/80 uppercase">
+                    <p className="mt-3.5 font-mono text-[10px] font-bold tracking-wider text-primary/80 uppercase">
                       {st.checkpoint}
                     </p>
 
@@ -420,7 +420,7 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
                   >
                     <StationIcon index={idx} className="size-4.5" />
                   </div>
-                  <span className="mt-1.5 text-xs font-bold text-primary">
+                  <span className="mt-1.5 font-mono text-xs font-bold text-primary">
                     {st.step}
                   </span>
                 </div>
@@ -428,7 +428,7 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
                 {/* Station Details */}
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-wrap items-center justify-between gap-1">
-                    <span className="text-[10px] font-bold tracking-wider text-primary/80 uppercase">
+                    <span className="font-mono text-[10px] font-bold tracking-wider text-primary/80 uppercase">
                       {st.checkpoint}
                     </span>
                     <span className="rounded-full border border-border/70 bg-surface-2 px-2 py-0.5 text-[10px] text-muted">
@@ -509,7 +509,7 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
                   </span>
                 )}
               </span>
-              <span className="rounded-md border border-border/70 bg-surface-2 px-2.5 py-0.5 text-xs text-primary font-bold">
+              <span className="font-mono rounded-md border border-border/70 bg-surface-2 px-2.5 py-0.5 text-xs text-primary font-bold">
                 {activeStation + 1}/4
               </span>
             </div>

@@ -31,7 +31,7 @@ export function Logo({ className, markClassName }: LogoProps) {
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
       <LogoMark className={cn("size-8 text-primary", markClassName)} />
-      <span className="text-[1.35rem] font-bold tracking-tight text-ink">devsrecipe</span>
+      <span className="font-display text-[1.35rem] font-bold tracking-tight text-ink">devsrecipe</span>
     </span>
   );
 }
