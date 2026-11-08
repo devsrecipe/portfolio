@@ -150,7 +150,7 @@ export default function HomePage() {
       <section
         id="process"
         aria-labelledby="process-title"
-        className="theme-dark relative isolate scroll-mt-20 bg-ground"
+        className="theme-dark relative isolate scroll-mt-20 overflow-hidden bg-ground"
       >
         <ProcessMap
           steps={home.process.steps}
@@ -161,8 +161,15 @@ export default function HomePage() {
       </section>
 
       {/* Success stories */}
-      <section aria-labelledby="stories-title" className="container-x relative isolate py-24 lg:py-32">
-        <SceneBackdrop scene="key" className="right-6 top-10 w-[320px]" />
+      <section
+        id="stories"
+        aria-labelledby="stories-title"
+        className="container-x relative isolate overflow-hidden py-24 lg:py-32"
+      >
+        <SceneBackdrop
+          scene="key"
+          className="right-6 top-16 w-[280px] sm:w-[320px] lg:top-20 lg:right-12"
+        />
         <SectionHeading
           id="stories-title"
           eyebrow={home.stories.eyebrow}
@@ -409,7 +416,10 @@ export default function HomePage() {
         className="theme-dark relative isolate scroll-mt-20 overflow-hidden bg-ground py-24 lg:py-32"
       >
         <div className="container-x relative grid items-start gap-12 lg:grid-cols-[1fr_1.1fr]">
-          <SceneBackdrop scene="plug" className="-bottom-24 left-6 w-[340px] lg:-bottom-32" />
+          <SceneBackdrop
+            scene="plug"
+            className="bottom-6 left-6 w-[280px] sm:w-[320px] lg:bottom-10 lg:left-8"
+          />
           <div>
             <h2
               id="contact-title"

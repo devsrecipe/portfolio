@@ -78,20 +78,20 @@ const scenes: Record<SceneName, Scene> = {
         </defs>
         <g className="shackle">
           <path d="M260 180V130a40 40 0 0 1 80 0V222" {...line} strokeWidth={8} className="text-ink/25" />
-          <path d="M260 180V130a40 40 0 0 1 80 0V222" {...line} strokeWidth={8} className="unlocked text-primary" />
+          <path d="M260 180V130a40 40 0 0 1 80 0V222" {...line} strokeWidth={8} className="unlocked opacity-0 text-primary transition-opacity" />
         </g>
         <rect x={235} y={170} width={130} height={120} rx={20} {...line} className="fill-ground text-ink/25" />
-        <rect x={235} y={170} width={130} height={120} rx={20} {...line} className="unlocked fill-primary/10 text-primary" />
+        <rect x={235} y={170} width={130} height={120} rx={20} {...line} className="unlocked opacity-0 fill-primary/10 text-primary transition-opacity" />
         <g className="text-ink/25" fill="currentColor">
           <circle cx={300} cy={222} r={10} />
           <path d="M295 226h10l4 26h-18Z" />
         </g>
-        <g className="unlocked text-primary" fill="currentColor">
+        <g className="unlocked opacity-0 text-primary transition-opacity" fill="currentColor">
           <circle cx={300} cy={222} r={10} />
           <path d="M295 226h10l4 26h-18Z" />
         </g>
         <g clipPath="url(#scene-key-clip)">
-          <g className="key text-primary" {...line} strokeWidth={6}>
+          <g className="key opacity-0 text-primary" {...line} strokeWidth={6}>
             <circle cx={160} cy={222} r={32} />
             <circle cx={160} cy={222} r={11} />
             <path d="M192 222H336M306 222v20M322 222v14" />
@@ -100,33 +100,22 @@ const scenes: Record<SceneName, Scene> = {
       </>
     ),
     play: (tl, q) => {
-      // 1. Key slides smoothly from left directly into the keyhole (0.6s)
+      // 1. Key slides smoothly from left directly into the keyhole (0.55s)
       tl.fromTo(
         q(".key"),
-        { x: -140, opacity: 0 },
-        { x: 0, opacity: 1, ease: "power2.out", duration: 0.6 }
+        { x: -120, opacity: 0 },
+        { x: 0, opacity: 1, ease: "power2.out", duration: 0.55 }
       )
-        // 2. Key turns 90 degrees inside the lock (0.35s)
-        .to(q(".key"), { scaleY: 0.25, svgOrigin: "300 222", duration: 0.18, ease: "power2.inOut" })
-        .to(q(".key"), { scaleY: 1, svgOrigin: "300 222", duration: 0.18, ease: "power2.out" })
-        // 3. Lock illuminates and shackle pops open with a crisp spring click! (0.45s)
-        .fromTo(q(".unlocked"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, "-=0.1")
-        .fromTo(
+        // 2. Key turns 90 degrees inside the lock (0.32s)
+        .to(q(".key"), { scaleY: 0.2, svgOrigin: "300 222", duration: 0.16, ease: "power2.inOut" })
+        .to(q(".key"), { scaleY: 1, svgOrigin: "300 222", duration: 0.16, ease: "power2.out" })
+        // 3. Lock illuminates and shackle pops open with a crisp mechanical click! (0.4s)
+        .to(q(".unlocked"), { opacity: 1, duration: 0.15 }, "-=0.08")
+        .to(
           q(".shackle"),
-          { y: 0 },
-          { y: -38, duration: 0.45, ease: "back.out(2.8)" },
+          { y: -36, duration: 0.4, ease: "back.out(2.4)" },
           "-=0.1"
         );
-
-      // 4. Subtle ambient breathing loop
-      gsap.to(q(".shackle"), {
-        y: -32,
-        duration: 1.8,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        delay: 1.5,
-      });
     },
   },
 
@@ -144,64 +133,54 @@ const scenes: Record<SceneName, Scene> = {
           <path d="M306 190C350 190 366 236 340 262S362 316 416 312" />
           <path d="M218 148 264 149C290 150 306 160 306 176V204C306 220 290 230 264 231L218 232" className="fill-ground" />
           <ellipse cx={218} cy={190} rx={10} ry={42} className="face fill-ground" />
-          <path d="M218 151V229" className="seam" />
+          <path d="M218 151V229" className="seam opacity-0" />
           <g className="face" fill="currentColor" stroke="none">
             <ellipse cx={218} cy={174} rx={3.5} ry={6} />
             <ellipse cx={218} cy={206} rx={3.5} ry={6} />
           </g>
         </g>
-        <g className="spark text-primary" fill="currentColor">
+        <g className="spark opacity-0 text-primary" fill="currentColor">
           <path d="M226 74 210 104h12l-8 28 24-36h-13l9-22Z" />
           <path d="M226 254 210 284h12l-8 28 24-36h-13l9-22Z" />
         </g>
       </>
     ),
     play: (tl, q) => {
-      // 1. Magnetic pull: plug & socket slide together rapidly (0.5s)
+      // 1. Magnetic pull: plug & socket slide together rapidly (0.45s)
       tl.fromTo(
         q(".plug"),
-        { x: -75, opacity: 0.2 },
-        { x: 0, opacity: 1, ease: "power3.in", duration: 0.5 }
+        { x: -65, opacity: 0.3 },
+        { x: 0, opacity: 1, ease: "power3.in", duration: 0.45 }
       )
         .fromTo(
           q(".socket"),
-          { x: 75, opacity: 0.2 },
-          { x: 0, opacity: 1, ease: "power3.in", duration: 0.5 },
+          { x: 65, opacity: 0.3 },
+          { x: 0, opacity: 1, ease: "power3.in", duration: 0.45 },
           "<"
         )
-        // 2. Contact: straight seam joins (0.1s)
-        .to(q(".face"), { opacity: 0, duration: 0.1 }, "-=0.08")
-        .fromTo(q(".seam"), { opacity: 0 }, { opacity: 1, duration: 0.1 }, "<")
-        // 3. ELECTRIC BURST! High-voltage sparks explode (0.35s)
+        // 2. Contact: straight seam joins (0.08s)
+        .to(q(".face"), { opacity: 0, duration: 0.08 }, "-=0.06")
+        .to(q(".seam"), { opacity: 1, duration: 0.08 }, "<")
+        // 3. ELECTRIC BURST! High-voltage sparks explode (0.3s)
         .fromTo(
           q(".spark"),
-          { opacity: 0, scale: 0.1, svgOrigin: "218 190" },
-          { opacity: 1, scale: 1.25, svgOrigin: "218 190", duration: 0.35, ease: "back.out(3.5)" }
+          { opacity: 0, scale: 0.2, svgOrigin: "218 190" },
+          { opacity: 1, scale: 1.2, svgOrigin: "218 190", duration: 0.3, ease: "back.out(3.2)" }
         )
         .to(q(".spark"), { scale: 1, duration: 0.15 });
-
-      // 4. Live electrical crackle & pulse loop!
-      gsap.to(q(".spark"), {
-        opacity: 0.35,
-        scale: 0.88,
-        svgOrigin: "218 190",
-        duration: 0.8,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        delay: 1.2,
-      });
     },
   },
 };
 
 export function SceneBackdrop({ scene, className }: { scene: SceneName; className?: string }) {
   const root = useRef<HTMLDivElement>(null);
+  const artRef = useRef<SVGGElement>(null);
   const { viewBox, art, play } = scenes[scene];
 
   useEffect(() => {
     const el = root.current;
-    if (!el) return;
+    const artEl = artRef.current;
+    if (!el || !artEl) return;
     const section = el.closest("section") || el.parentElement;
     const mm = gsap.matchMedia();
 
@@ -210,23 +189,26 @@ export function SceneBackdrop({ scene, className }: { scene: SceneName; classNam
       () => {
         const q = gsap.utils.selector(el);
 
-        // Gentle Parallax Drift
-        gsap.fromTo(
-          el,
-          { yPercent: 10 },
-          {
-            yPercent: -10,
-            ease: "none",
-            scrollTrigger: { trigger: section, start: "top bottom", end: "bottom top", scrub: 0.8 },
-          },
-        );
+        // Gentle Parallax Drift on inner SVG art group (preserves root position stability)
+        if (section) {
+          gsap.fromTo(
+            artEl,
+            { y: 16 },
+            {
+              y: -16,
+              ease: "none",
+              scrollTrigger: { trigger: section, start: "top bottom", end: "bottom top", scrub: 0.8 },
+            },
+          );
+        }
 
-        // Story animation triggers right when THIS illustration scrolls into view
+        // Story animation triggers right when THIS illustration scrolls comfortably into view (top 72%)
+        // Reverses cleanly when scrolled back up, plays forward again on scroll down!
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: el,
-            start: "top 88%",
-            toggleActions: "restart none none none",
+            start: "top 72%",
+            toggleActions: "play none none reverse",
           },
         });
         play(tl, q);
@@ -244,7 +226,7 @@ export function SceneBackdrop({ scene, className }: { scene: SceneName; classNam
       className={cn("pointer-events-none absolute -z-10 opacity-70 block", className)}
     >
       <svg viewBox={viewBox} className="h-auto w-full overflow-visible">
-        {art}
+        <g ref={artRef}>{art}</g>
       </svg>
     </div>
   );
