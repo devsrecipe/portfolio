@@ -211,7 +211,7 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
         <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border/70 bg-surface/80 px-4 py-2 backdrop-blur-md shadow-xs">
           <div className="flex items-center gap-2">
             <span className="flex size-2 rounded-full bg-primary animate-ping" />
-            <span className="text-xs font-bold tracking-wide text-ink uppercase">
+            <span className="text-xs font-bold tracking-wide text-ink uppercase font-mono">
               Project Flight Path
             </span>
             <span className="text-border">·</span>
@@ -220,12 +220,12 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
             </span>
           </div>
 
-          <div className="flex items-center gap-3 text-xs">
+          <div className="flex items-center gap-3 text-xs font-mono">
             <span className="rounded-full border border-primary/30 bg-primary-soft px-2.5 py-0.5 text-xs font-semibold text-primary">
               Timeline: 4–6 Weeks
             </span>
             <span className="text-xs text-muted">
-              Active: Milestone 0{activeStation + 1}
+              Active: 0{activeStation + 1} / 04
             </span>
           </div>
         </div>
@@ -235,12 +235,12 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
         {/* ======================================================== */}
         <div className="relative z-10 mt-5 hidden lg:block">
           {/* Continuous Highway Transit Track (Col 1 center to Col 4 center = 75% span) */}
-          <div className="relative mb-3">
+          <div className="relative mb-2">
             {/* Background Rail */}
-            <div className="absolute left-[12.5%] w-[75%] top-3.5 h-0.5 bg-border/70" />
+            <div className="absolute left-[12.5%] w-[75%] top-4 h-0.5 bg-border/70 z-0" />
 
             {/* Active Scroll Fill Rail */}
-            <div className="absolute left-[12.5%] w-[75%] top-3.5 h-0.5 overflow-hidden">
+            <div className="absolute left-[12.5%] w-[75%] top-4 h-0.5 overflow-hidden z-0">
               <div
                 className="h-full bg-gradient-to-r from-primary via-accent to-primary shadow-sm shadow-primary transition-all duration-75"
                 style={{ width: `${progress * 100}%` }}
@@ -248,7 +248,7 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
             </div>
 
             {/* Animated Energy Pulse (Synchronously follows scroll position) */}
-            <div className="absolute left-[12.5%] w-[75%] top-3.5 pointer-events-none">
+            <div className="absolute left-[12.5%] w-[75%] top-4 pointer-events-none z-0">
               <div
                 className="absolute top-1/2 -translate-y-1/2 -ml-2 size-3.5 rounded-full bg-primary shadow-lg shadow-primary transition-all duration-75"
                 style={{ left: `${progress * 100}%` }}
@@ -258,7 +258,7 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
             </div>
 
             {/* 4 Waypoint Buttons centered on each column */}
-            <div className="grid grid-cols-4 gap-4">
+            <div className="relative z-10 grid grid-cols-4 gap-4">
               {STATIONS.map((st, idx) => {
                 const isSelected = activeStation === idx;
                 const isPassed = activeStation >= idx;
@@ -271,26 +271,26 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
                       className="group flex flex-col items-center focus:outline-none cursor-pointer"
                       aria-label={`Jump to Milestone ${st.step}: ${st.name}`}
                     >
-                      {/* Waypoint Interchange Node */}
+                      {/* Waypoint Interchange Node (Opaque solid disc so rail line never slices through digits) */}
                       <div
-                        className={`flex size-7 items-center justify-center rounded-full border-2 transition-all duration-300 ${
+                        className={`flex size-8 items-center justify-center rounded-full border-2 transition-all duration-300 ${
                           isSelected
-                            ? "border-primary bg-primary text-ground scale-125 shadow-lg shadow-primary/40 ring-4 ring-primary/20"
+                            ? "border-primary bg-primary text-ground scale-110 shadow-lg shadow-primary/40 ring-4 ring-primary/20"
                             : isPassed
-                              ? "border-primary/60 bg-surface text-primary"
-                              : "border-border bg-surface-2 text-muted group-hover:border-primary/50 group-hover:text-ink"
+                              ? "border-primary/70 bg-ground text-primary group-hover:border-primary group-hover:scale-105"
+                              : "border-border bg-ground text-muted group-hover:border-primary/50 group-hover:text-ink group-hover:scale-105"
                         }`}
                       >
                         <span className="font-mono text-xs font-bold">{st.step}</span>
                       </div>
 
-                      {/* Vertical connector stem dropping into card */}
+                      {/* Vertical connector stem dropping cleanly into card without collision */}
                       <div
-                        className={`h-4 w-0.5 transition-colors duration-300 ${
+                        className={`h-5 w-0.5 transition-colors duration-300 ${
                           isSelected
                             ? "bg-primary"
                             : isPassed
-                              ? "bg-primary/40"
+                              ? "bg-primary/50"
                               : "bg-border/60"
                         }`}
                       />
@@ -301,10 +301,11 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
             </div>
           </div>
 
-          {/* 4 Journey Station Cards (Compact, Balanced, Unified Sans Font) */}
-          <div className="grid grid-cols-4 gap-4 pt-1">
+          {/* 4 Journey Station Cards (Locked Baseline, Zero Collision, Unified Sans Font) */}
+          <div className="grid grid-cols-4 gap-4">
             {STATIONS.map((st, idx) => {
               const isSelected = activeStation === idx;
+              const isPassed = activeStation >= idx;
               const stepData = steps[idx];
 
               return (
@@ -313,8 +314,8 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
                   onClick={() => jumpToStation(idx)}
                   className={`group relative flex flex-col justify-between rounded-2xl p-5 cursor-pointer transition-all duration-300 ${
                     isSelected
-                      ? "border-2 border-primary bg-surface shadow-2xl shadow-primary/15 -translate-y-2 ring-1 ring-primary/30"
-                      : "border border-border/70 bg-surface/80 hover:border-primary/40 hover:bg-surface hover:-translate-y-1 shadow-sm"
+                      ? "border-2 border-primary bg-surface shadow-2xl shadow-primary/20 ring-1 ring-primary/30"
+                      : "border border-border/70 bg-surface/80 hover:border-primary/40 hover:bg-surface shadow-sm"
                   }`}
                 >
                   <div>
@@ -329,7 +330,7 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
                       >
                         <StationIcon index={idx} className="size-4.5" />
                       </div>
-                      <span className="rounded-full border border-border/70 bg-surface-2 px-2 py-0.5 text-[11px] text-muted">
+                      <span className="font-mono rounded-full border border-border/70 bg-surface-2 px-2.5 py-0.5 text-[11px] text-muted">
                         {st.timing}
                       </span>
                     </div>
@@ -368,11 +369,15 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
                       <span className="truncate">{st.deliverable}</span>
                     </div>
 
-                    {/* Progress Indicator Accent */}
+                    {/* Progress Indicator Accent (Eliminates broken 8px stubs) */}
                     <div className="mt-2.5 h-1 w-full overflow-hidden rounded-full bg-border/40">
                       <div
-                        className={`h-full bg-gradient-to-r from-primary to-accent transition-all duration-300 ${
-                          isSelected ? "w-full" : "w-2 group-hover:w-full"
+                        className={`h-full transition-all duration-300 ${
+                          isSelected
+                            ? "w-full bg-gradient-to-r from-primary to-accent shadow-sm shadow-primary/50"
+                            : isPassed
+                              ? "w-full bg-primary/40"
+                              : "w-0 group-hover:w-full group-hover:bg-primary/20"
                         }`}
                       />
                     </div>
@@ -467,7 +472,7 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 text-xs">
             <div className="flex items-center gap-2">
               <span className="size-2 rounded-full bg-accent animate-pulse" />
-              <span className="text-muted uppercase tracking-wider text-[11px] font-medium">
+              <span className="text-muted uppercase tracking-wider text-[11px] font-mono font-medium">
                 Active Checkpoint:
               </span>
               <span className="font-bold text-ink">
@@ -482,7 +487,7 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
             <div className="flex items-center gap-3">
               <span className="text-xs text-muted">
                 {!isCompleted ? (
-                  <span className="inline-flex items-center gap-1 text-primary font-medium">
+                  <span className="inline-flex items-center gap-1.5 text-primary font-medium">
                     <span>Scroll to navigate</span>
                     <svg
                       className="size-3 animate-bounce"
@@ -495,7 +500,7 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
                     </svg>
                   </span>
                 ) : (
-                  <span className="inline-flex items-center gap-1 text-emerald-400 font-semibold">
+                  <span className="inline-flex items-center gap-1.5 text-emerald-400 font-semibold">
                     <span>Journey complete · Next section</span>
                     <svg
                       className="size-3 animate-bounce"
