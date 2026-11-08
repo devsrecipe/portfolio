@@ -440,7 +440,7 @@ export default function HomePage() {
               </Link>
             </div>
 
-            <div className="mt-12 w-64 sm:w-72 opacity-60">
+            <div className="mt-16 w-56 sm:w-64 opacity-50">
               <SceneBackdrop scene="plug" className="relative w-full" />
             </div>
           </div>
