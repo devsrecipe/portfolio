@@ -219,11 +219,13 @@ export function SceneBackdrop({ scene, className }: { scene: SceneName; classNam
     return () => mm.revert();
   }, [play]);
 
+  const isPositioned = className?.includes("absolute") || className?.includes("relative");
+
   return (
     <div
       ref={root}
       aria-hidden
-      className={cn("pointer-events-none absolute -z-10 opacity-70 block", className)}
+      className={cn("pointer-events-none -z-10 opacity-70 block", !isPositioned && "absolute", className)}
     >
       <svg viewBox={viewBox} className="h-auto w-full overflow-visible">
         <g ref={artRef}>{art}</g>

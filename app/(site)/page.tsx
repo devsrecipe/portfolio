@@ -150,7 +150,7 @@ export default function HomePage() {
       <section
         id="process"
         aria-labelledby="process-title"
-        className="theme-dark relative isolate scroll-mt-20 overflow-hidden bg-ground"
+        className="theme-dark relative isolate scroll-mt-20 bg-ground"
       >
         <ProcessMap
           steps={home.process.steps}
@@ -416,31 +416,33 @@ export default function HomePage() {
         className="theme-dark relative isolate scroll-mt-20 overflow-hidden bg-ground py-24 lg:py-32"
       >
         <div className="container-x relative grid items-start gap-12 lg:grid-cols-[1fr_1.1fr]">
-          <SceneBackdrop
-            scene="plug"
-            className="bottom-6 left-6 w-[280px] sm:w-[320px] lg:bottom-10 lg:left-8"
-          />
-          <div>
-            <h2
-              id="contact-title"
-              className="font-display text-6xl leading-[1.02] tracking-[-0.015em]"
-            >
-              {home.contact.title}
-            </h2>
-            <p className="mt-6 max-w-md text-lg text-muted">{home.contact.text}</p>
-            <div className="mt-8 flex items-center gap-4">
-              <span aria-hidden className="size-14 rounded-full bg-surface-2" />
-              <p>
-                <span className="block font-semibold">{site.founder.name}</span>
-                <span className="block text-sm text-muted">{site.founder.role}</span>
-              </p>
+          <div className="flex flex-col justify-between h-full">
+            <div>
+              <h2
+                id="contact-title"
+                className="font-display text-6xl leading-[1.02] tracking-[-0.015em]"
+              >
+                {home.contact.title}
+              </h2>
+              <p className="mt-6 max-w-md text-lg text-muted">{home.contact.text}</p>
+              <div className="mt-8 flex items-center gap-4">
+                <span aria-hidden className="size-14 rounded-full bg-surface-2" />
+                <p>
+                  <span className="block font-semibold">{site.founder.name}</span>
+                  <span className="block text-sm text-muted">{site.founder.role}</span>
+                </p>
+              </div>
+              <Link
+                href={home.contact.calendar.href}
+                className="mt-8 inline-flex h-12 items-center rounded-full border border-ink-border px-6 font-semibold hover:bg-surface-2"
+              >
+                {home.contact.calendar.label}
+              </Link>
             </div>
-            <Link
-              href={home.contact.calendar.href}
-              className="mt-8 inline-flex h-12 items-center rounded-full border border-ink-border px-6 font-semibold hover:bg-surface-2"
-            >
-              {home.contact.calendar.label}
-            </Link>
+
+            <div className="mt-12 w-64 sm:w-72 opacity-60">
+              <SceneBackdrop scene="plug" className="relative w-full" />
+            </div>
           </div>
           <ContactForm
             config={forms.contact}
