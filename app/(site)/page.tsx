@@ -344,7 +344,7 @@ export default function HomePage() {
         <div className="container-x grid gap-12 lg:grid-cols-[1.6fr_1fr]">
           <div>
             <div className="flex items-baseline justify-between gap-4">
-              <h2 className="font-display text-4xl tracking-[-0.015em]">{home.blog.title}</h2>
+              <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-[-0.02em]">{home.blog.title}</h2>
               <Link href={home.blog.allLink.href} className={textLink}>
                 {home.blog.allLink.label} →
               </Link>
@@ -370,7 +370,7 @@ export default function HomePage() {
           </div>
           <div>
             <div className="flex items-baseline justify-between gap-4">
-              <h2 className="font-display text-4xl tracking-[-0.015em]">{home.roles.title}</h2>
+              <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-[-0.02em]">{home.roles.title}</h2>
               <Link href={home.roles.allLink.href} className={textLink}>
                 {home.roles.allLink.label} →
               </Link>
@@ -402,7 +402,7 @@ export default function HomePage() {
       {/* FAQ */}
       <section aria-labelledby="faq-title" className="container-x py-24 lg:py-32">
         <div className="mx-auto max-w-3xl">
-          <h2 id="faq-title" className="mb-8 font-display text-5xl tracking-[-0.015em]">
+          <h2 id="faq-title" className="mb-8 font-display text-4xl sm:text-5xl font-bold tracking-[-0.02em]">
             {home.faq.title}
           </h2>
           <Accordion items={home.faq.items} />
@@ -420,7 +420,7 @@ export default function HomePage() {
             <div>
               <h2
                 id="contact-title"
-                className="font-display text-6xl leading-[1.02] tracking-[-0.015em]"
+                className="font-display text-5xl sm:text-6xl font-bold leading-[1.04] tracking-[-0.025em]"
               >
                 {home.contact.title}
               </h2>

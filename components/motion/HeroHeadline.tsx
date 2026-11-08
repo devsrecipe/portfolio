@@ -28,7 +28,7 @@ export function HeroHeadline({ id, parts }: { id: string; parts: Part[] }) {
       initial="hidden"
       animate="show"
       style={{ perspective: 600 }}
-      className="mt-6 font-display text-[3.25rem] leading-[1] tracking-[-0.02em] sm:text-6xl lg:text-[4.5rem]"
+      className="mt-6 font-display text-[3.25rem] font-bold leading-[1.04] tracking-[-0.03em] sm:text-6xl lg:text-[4.5rem]"
     >
       {parts.flatMap((part, p) =>
         part.text.split(" ").map((w, i) => (
@@ -37,7 +37,7 @@ export function HeroHeadline({ id, parts }: { id: string; parts: Part[] }) {
             variants={word}
             className={
               part.highlight
-                ? "mr-[0.25em] inline-block italic text-primary"
+                ? "mr-[0.25em] inline-block text-primary"
                 : "mr-[0.25em] inline-block"
             }
           >

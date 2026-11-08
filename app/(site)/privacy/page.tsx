@@ -9,7 +9,7 @@ export const metadata: Metadata = buildMetadata({ ...privacy.seo, path: "/privac
 export default function PrivacyPage() {
   return (
     <article className="container-x max-w-3xl py-16">
-      <h1 className="font-display text-6xl tracking-[-0.015em]">{privacy.title}</h1>
+      <h1 className="font-display text-5xl sm:text-6xl font-bold tracking-[-0.025em]">{privacy.title}</h1>
       <div className="mt-10 space-y-8">
         {privacy.sections.map((s) => (
           <section key={s.heading}>

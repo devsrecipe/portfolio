@@ -1,22 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Hanken_Grotesk, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import { content } from "@/content";
 import { absoluteUrl } from "@/lib/utils";
 import "./globals.css";
 
-const sans = Hanken_Grotesk({
+const sans = Plus_Jakarta_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-// Display serif for h1/h2 headlines; Hanken Grotesk stays for everything else.
-const display = Instrument_Serif({
+const display = Plus_Jakarta_Sans({
   variable: "--font-display",
-  weight: "400",
-  style: ["normal", "italic"],
   subsets: ["latin"],
   display: "swap",
+  weight: ["600", "700", "800"],
 });
 
 const mono = JetBrains_Mono({
