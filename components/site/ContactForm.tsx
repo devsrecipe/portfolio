@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { Field, Input, Select, Textarea } from "@/components/ui/Field";
 import type { SiteContent } from "@/types";
 import { FormError } from "./FormError";
+import { FormHiddenFields } from "./FormHiddenFields";
 import { useFormService, type FormMessages } from "./useFormService";
 
 type Props = {
@@ -30,7 +31,7 @@ export function ContactForm({ config, messages, contactEmail }: Props) {
       onSubmit={onSubmit}
       className="rounded-3xl border border-border bg-surface p-6 sm:p-8"
     >
-      <input type="hidden" name="_subject" value="New message from the website" />
+      <FormHiddenFields form="Contact" subject="New message from the website" />
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label={labels.name} htmlFor="c-name">
           <Input id="c-name" name="name" autoComplete="name" required />

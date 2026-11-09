@@ -259,9 +259,21 @@ export const contentSchema = z.object({
     }),
     compare: z.object({
       ...section,
+      intro: text,
       caption: text,
-      columns: z.array(text),
-      rows: z.array(z.object({ feature: text, values: z.array(text) })),
+      /** First column is Devs Recipe and is highlighted. */
+      columns: z.array(text).length(3),
+      /** Text for each verdict mark, in the legend and for screen readers. */
+      verdicts: z.object({ yes: text, partly: text, no: text }),
+      note: text,
+      rows: z.array(
+        z.object({
+          question: text,
+          answers: z
+            .array(z.object({ verdict: z.enum(["yes", "partly", "no"]), text }))
+            .length(3),
+        }),
+      ),
     }),
     team: z.object({ ...section, members: z.array(teamMemberSchema) }),
     blog: z.object({ title: text, count: z.number().int().min(0), allLink: link }),

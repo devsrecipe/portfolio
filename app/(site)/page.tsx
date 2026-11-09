@@ -241,6 +241,7 @@ export default function HomePage() {
             id="compare-title"
             eyebrow={home.compare.eyebrow}
             title={home.compare.title}
+            intro={home.compare.intro}
           />
           <div className="mt-12">
             <CompareTable />

@@ -2,12 +2,12 @@
   "site": {
     "name": "Devs Recipe",
     "domain": "yourdomain.com",
-    "tagline": "Software for businesses that sell, serve and book.",
-    "description": "Devs Recipe builds ordering, booking and operations software for shops, restaurants, clinics, schools and startups. Talk to the engineers who build it.",
+    "tagline": "Custom software for every kind of business.",
+    "description": "Devs Recipe builds custom software of every kind: web and mobile apps, business systems and automation. Talk to the engineers who build it.",
     "defaultTitle": "Devs Recipe: software that cuts costs and automates operations",
     "contact": {
       "email": "devsrecipe@gmail.com",
-      "whatsapp": "+880 1700-000000",
+      "whatsapp": "+880 1632-354252",
       "linkedin": "https://www.linkedin.com/company/devs-recipe",
       "instagram": "https://www.instagram.com/devsrecipe",
       "facebook": "https://www.facebook.com/devsrecipe"
@@ -39,7 +39,7 @@
       "href": "/#contact"
     },
     "footer": {
-      "industriesTitle": "Industries",
+      "industriesTitle": "Featured industries",
       "companyTitle": "Company",
       "companyLinks": [
         {
@@ -132,7 +132,7 @@
   "home": {
     "seo": {
       "title": "Software that cuts costs and automates operations",
-      "description": "We build ordering, booking and operations software for shops, restaurants, clinics, schools and startups. Talk to the engineers who build it."
+      "description": "We build custom software of every kind: web and mobile apps, business systems and automation. Talk to the engineers who build it."
     },
     "hero": {
       "eyebrow": "Software and automation for growing businesses",
@@ -141,7 +141,7 @@
         "highlight": "automate",
         "after": "their operations, so they move faster."
       },
-      "intro": "Still doing by hand what software could do for you? We build the systems that take orders, book appointments and keep records straight, for shops, restaurants, clinics, schools and more.",
+      "intro": "Still doing by hand what software could do for you? We design and build web apps, mobile apps, business systems and automation for every kind of business, from local shops to growing startups.",
       "primaryCta": {
         "label": "Book a 30 minute call",
         "href": "/#contact"
@@ -155,7 +155,7 @@
     "showcase": {
       "eyebrow": "Made for your kind of business",
       "title": "See what changes in a business like yours.",
-      "intro": "Scroll through the businesses we work with. For each one: what usually goes wrong, and how the right software quietly fixes it.",
+      "intro": "Scroll through a few of the industries we work with most. For each one: what usually goes wrong, and how the right software quietly fixes it.",
       "navLabel": "Choose a business",
       "problemsLabel": "Sounds familiar?",
       "fixesLabel": "How we fix it",
@@ -604,8 +604,8 @@
         {
           "id": "others",
           "nav": "Others",
-          "name": "Something else?",
-          "headline": "Your business is not on this list? We probably still fit.",
+          "name": "Every other business",
+          "headline": "Not on this list? We build software for every kind of business.",
           "problems": [
             "You juggle spreadsheets, chats and paper to keep things running.",
             "Ready-made software almost fits, but not quite.",
@@ -618,7 +618,7 @@
           ],
           "example": "Gyms, salons, repair workshops, charities, delivery teams: if the same work repeats every day, software can take it off your hands.",
           "link": {
-            "label": "Tell us about your business",
+            "label": "Tell us what you need",
             "href": "/#contact"
           },
           "visual": {
@@ -698,9 +698,9 @@
       }
     },
     "industries": {
-      "eyebrow": "Industries we serve",
+      "eyebrow": "Featured industries",
       "title": "Different industries. The same problems underneath.",
-      "intro": "Manual work, scattered data and slow processes cost every business money. We build the systems that remove them, whether you sell products, book appointments or run a school.",
+      "intro": "Manual work, scattered data and slow processes cost every business money. These are some of the industries we know well, and we build for every other kind of business too.",
       "buildLabel": "What we build",
       "startup": {
         "eyebrow": "For startups",
@@ -771,43 +771,103 @@
     "compare": {
       "eyebrow": "Why Devs Recipe",
       "title": "Compare before you choose.",
-      "caption": "Devs Recipe compared with a typical agency and a freelance marketplace",
+      "intro": "Five questions every business owner should ask before hiring anyone to build their software, answered for us, a typical agency and a freelancer.",
+      "caption": "Devs Recipe compared with a typical agency and a freelancer",
       "columns": [
         "Devs Recipe",
         "Typical agency",
-        "Freelance marketplace"
+        "Freelancer"
       ],
+      "verdicts": {
+        "yes": "Yes",
+        "partly": "Sometimes",
+        "no": "Usually not"
+      },
+      "note": "Every agency and freelancer is different. Whoever you talk to, ask them these five questions.",
       "rows": [
         {
-          "feature": "Specialized in orders and bookings",
-          "values": [
-            "Yes, purpose-built engines",
-            "Usually generalist",
-            "Depends on the person"
+          "question": "Do they understand businesses like mine?",
+          "answers": [
+            {
+              "verdict": "yes",
+              "text": "Yes, we have built software for businesses in many industries"
+            },
+            {
+              "verdict": "partly",
+              "text": "Often generalists who build a bit of everything"
+            },
+            {
+              "verdict": "partly",
+              "text": "Depends on the person"
+            }
           ]
         },
         {
-          "feature": "You talk to the people who build it",
-          "values": [
-            "Yes, direct engineer access",
-            "Through account managers",
-            "Yes, single freelancer"
+          "question": "Can I talk directly to the people building it?",
+          "answers": [
+            {
+              "verdict": "yes",
+              "text": "Yes, you talk to the engineers"
+            },
+            {
+              "verdict": "no",
+              "text": "Usually through an account manager"
+            },
+            {
+              "verdict": "yes",
+              "text": "Yes, though it is one person doing everything"
+            }
           ]
         },
         {
-          "feature": "You own all the code",
-          "values": [
-            "100% full ownership from day one",
-            "Varies / Licensing traps",
-            "Often unmaintained code"
+          "question": "Will I see progress before it is finished?",
+          "answers": [
+            {
+              "verdict": "yes",
+              "text": "A working demo every Friday"
+            },
+            {
+              "verdict": "partly",
+              "text": "At a few set milestones"
+            },
+            {
+              "verdict": "partly",
+              "text": "Depends on the person"
+            }
           ]
         },
         {
-          "feature": "Support after launch",
-          "values": [
-            "30 days of included fixes & care",
-            "Billed as expensive retainers",
-            "Often ends at delivery"
+          "question": "Will I own everything when it is done?",
+          "answers": [
+            {
+              "verdict": "yes",
+              "text": "Yes, all the code is yours from day one"
+            },
+            {
+              "verdict": "partly",
+              "text": "Varies, so check the contract"
+            },
+            {
+              "verdict": "partly",
+              "text": "Usually, but often with little documentation"
+            }
+          ]
+        },
+        {
+          "question": "Is help included after launch?",
+          "answers": [
+            {
+              "verdict": "yes",
+              "text": "30 days of fixes, included"
+            },
+            {
+              "verdict": "no",
+              "text": "Usually a paid monthly retainer"
+            },
+            {
+              "verdict": "no",
+              "text": "Often ends on delivery day"
+            }
           ]
         }
       ]
@@ -854,11 +914,11 @@
       "items": [
         {
           "question": "How much does a project cost?",
-          "answer": "It depends on what you need built. A focused website costs far less than a full ordering or booking platform with an admin panel and a mobile app. After a short discovery call about how your business runs today, we deliver a written quote with a clear scope, exact timeline, and a fixed price for each phase—so you know the full investment before any work starts."
+          "answer": "It depends on what you need built. A focused website costs far less than a full platform with an admin panel and a mobile app. After a short discovery call about how your business runs today, we deliver a written quote with a clear scope, exact timeline, and a fixed price for each phase—so you know the full investment before any work starts."
         },
         {
           "question": "How long until we launch?",
-          "answer": "A focused website usually ships in 2 to 4 weeks. A full platform—such as an automated ordering system, booking engine, or clinic operations portal—typically takes a few months. We commit to a clear timeline in the quote, and you test working software along the way every week so the launch date never comes as a surprise."
+          "answer": "A focused website usually ships in 2 to 4 weeks. A full platform, such as a business management system, a customer app or an online marketplace, typically takes a few months. We commit to a clear timeline in the quote, and you test working software along the way every week so the launch date never comes as a surprise."
         },
         {
           "question": "Who owns the code when it is done?",
@@ -875,7 +935,7 @@
       ]
     },
     "contact": {
-      "title": "Tell us what you want to sell or book.",
+      "title": "Tell us what you want to build.",
       "text": "You will hear back from a founder, not a sales team.",
       "calendar": {
         "label": "Or pick a time on our calendar",

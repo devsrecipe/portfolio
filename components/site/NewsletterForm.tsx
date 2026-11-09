@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Field";
 import type { SiteContent } from "@/types";
 import { FormError } from "./FormError";
+import { FormHiddenFields } from "./FormHiddenFields";
 import { useFormService, type FormMessages } from "./useFormService";
 
 type Props = {
@@ -25,7 +26,7 @@ export function NewsletterForm({ config, messages, contactEmail }: Props) {
 
   return (
     <form onSubmit={onSubmit} className="mt-4">
-      <input type="hidden" name="_subject" value="New newsletter subscriber" />
+      <FormHiddenFields form="Newsletter" subject="New newsletter subscriber" />
       <div className="flex gap-2">
         <label htmlFor="newsletter-email" className="sr-only">
           {config.emailLabel}

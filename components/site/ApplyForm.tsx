@@ -6,6 +6,7 @@ import { Field, Input, Textarea } from "@/components/ui/Field";
 import { fill } from "@/lib/utils";
 import type { Job, SiteContent } from "@/types";
 import { FormError } from "./FormError";
+import { FormHiddenFields } from "./FormHiddenFields";
 import { useFormService, type FormMessages } from "./useFormService";
 
 const CV_TYPES = [
@@ -58,7 +59,7 @@ export function ApplyForm({ job, config, messages, contactEmail, privacyLabel }:
     >
       <h2 className="text-2xl font-bold">{config.title}</h2>
       <input type="hidden" name="job" value={job.title} />
-      <input type="hidden" name="_subject" value={`New application: ${job.title}`} />
+      <FormHiddenFields form="Applications" subject={`New application: ${job.title}`} />
 
       <Field label={labels.name} htmlFor="a-name">
         <Input id="a-name" name="name" autoComplete="name" required />
