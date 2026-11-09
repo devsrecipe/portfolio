@@ -3,7 +3,7 @@ import Link from "next/link";
 import { HeroGlow } from "@/components/motion/HeroGlow";
 import { HeroHeadline } from "@/components/motion/HeroHeadline";
 import { Magnetic } from "@/components/motion/Magnetic";
-import { Marquee } from "@/components/motion/Marquee";
+// import { Marquee } from "@/components/motion/Marquee"; // Trusted by is hidden for now
 import {
   Reveal,
   StaggerItem,
@@ -90,13 +90,15 @@ export default function HomePage() {
         </section>
       </div>
 
-      {/* Trusted by */}
+      {/* Trusted by: hidden until real client logos are added. To restore, uncomment
+          this block and the Marquee import at the top.
       <section aria-label={home.trustedBy.label} className="border-y border-border">
         <div className="container-x flex items-center gap-6 py-7">
           <p className="shrink-0 text-sm font-semibold">{home.trustedBy.label}</p>
           <Marquee items={home.trustedBy.items} />
         </div>
       </section>
+      */}
 
       {/* One business at a time: problems and fixes, told by scrolling */}
       <section aria-labelledby="showcase-title" className="pt-24 lg:pt-32">

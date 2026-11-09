@@ -163,6 +163,61 @@
       "swipeHint": "Swipe to see more",
       "categories": [
         {
+          "id": "diagnostics",
+          "slug": "diagnostic-centers",
+          "nav": "Diagnostics",
+          "name": "Diagnostic centers",
+          "headline": "Reports reach patients the moment they are ready.",
+          "problems": [
+            "Patients call again and again to ask if their report is ready.",
+            "Samples get mixed up when they are tracked on paper.",
+            "Printing and handing over reports eats up staff time."
+          ],
+          "fixes": [
+            "Every sample gets a code and is tracked from collection to result.",
+            "Reports go out automatically as soon as a doctor signs them.",
+            "Patients download their report from a secure link on their phone."
+          ],
+          "example": "A lab stops getting “is my report ready?” calls, because patients receive a message the minute it is signed.",
+          "link": {
+            "label": "See solutions for diagnostic centers",
+            "href": "/solutions/diagnostic-centers"
+          },
+          "visual": {
+            "kind": "report",
+            "title": "Blood test · CBC",
+            "items": [
+              {
+                "label": "Haemoglobin",
+                "meta": "13.8 g/dL",
+                "state": "done"
+              },
+              {
+                "label": "White blood cells",
+                "meta": "6.2 × 10⁹/L",
+                "state": "done"
+              },
+              {
+                "label": "Platelets",
+                "meta": "250 × 10⁹/L",
+                "state": "done"
+              },
+              {
+                "label": "Signed · Dr. Sen",
+                "state": "active"
+              }
+            ],
+            "note": {
+              "title": "Your report is ready",
+              "text": "Tap to download it securely"
+            },
+            "badge": {
+              "value": "#5521",
+              "label": "Sample tracked"
+            }
+          }
+        },
+        {
           "id": "store",
           "slug": "ecommerce",
           "nav": "Online stores",
@@ -381,61 +436,6 @@
             "badge": {
               "value": "#3",
               "label": "Your place in line"
-            }
-          }
-        },
-        {
-          "id": "diagnostics",
-          "slug": "diagnostic-centers",
-          "nav": "Diagnostics",
-          "name": "Diagnostic centers",
-          "headline": "Reports reach patients the moment they are ready.",
-          "problems": [
-            "Patients call again and again to ask if their report is ready.",
-            "Samples get mixed up when they are tracked on paper.",
-            "Printing and handing over reports eats up staff time."
-          ],
-          "fixes": [
-            "Every sample gets a code and is tracked from collection to result.",
-            "Reports go out automatically as soon as a doctor signs them.",
-            "Patients download their report from a secure link on their phone."
-          ],
-          "example": "A lab stops getting “is my report ready?” calls, because patients receive a message the minute it is signed.",
-          "link": {
-            "label": "See solutions for diagnostic centers",
-            "href": "/solutions/diagnostic-centers"
-          },
-          "visual": {
-            "kind": "report",
-            "title": "Blood test · CBC",
-            "items": [
-              {
-                "label": "Haemoglobin",
-                "meta": "13.8 g/dL",
-                "state": "done"
-              },
-              {
-                "label": "White blood cells",
-                "meta": "6.2 × 10⁹/L",
-                "state": "done"
-              },
-              {
-                "label": "Platelets",
-                "meta": "250 × 10⁹/L",
-                "state": "done"
-              },
-              {
-                "label": "Signed · Dr. Sen",
-                "state": "active"
-              }
-            ],
-            "note": {
-              "title": "Your report is ready",
-              "text": "Tap to download it securely"
-            },
-            "badge": {
-              "value": "#5521",
-              "label": "Sample tracked"
             }
           }
         },
