@@ -714,26 +714,36 @@
     "process": {
       "eyebrow": "How we work",
       "title": "Our recipe, in four steps.",
+      "intro": "From the first call to launch day, you always know what is happening, what you will see next and when it goes live.",
+      "outcomeLabel": "You get",
       "steps": [
         {
-          "step": "Step 01",
+          "step": "01",
           "name": "Discover",
-          "text": "We audit your operations, eliminate bottlenecks, and blueprint the exact software you need."
+          "timing": "Week 1",
+          "text": "We learn how your business runs today, find where time and money leak, and agree on exactly what to build.",
+          "outcome": "A written plan of what we will build"
         },
         {
-          "step": "Step 02",
+          "step": "02",
           "name": "Design",
-          "text": "You click through interactive prototypes and approve every screen before any code is written."
+          "timing": "Week 2",
+          "text": "You click through the real screens and approve each one before we write any code.",
+          "outcome": "A clickable preview of your software"
         },
         {
-          "step": "Step 03",
+          "step": "03",
           "name": "Build",
-          "text": "We engineer production code in weekly sprints with working demos you test live every Friday."
+          "timing": "Weeks 3–6",
+          "text": "We build in small steps and show you a working version every Friday, so there are no surprises.",
+          "outcome": "A working demo every week"
         },
         {
-          "step": "Step 04",
-          "name": "Launch & Support",
-          "text": "We handle seamless live rollout, team onboarding, and back it with 30 days of included fixes."
+          "step": "04",
+          "name": "Launch & support",
+          "timing": "After launch",
+          "text": "We put it live, train your team and fix anything that comes up for the first 30 days.",
+          "outcome": "30 days of fixes, included"
         }
       ]
     },

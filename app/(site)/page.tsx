@@ -163,12 +163,7 @@ export default function HomePage() {
         aria-labelledby="process-title"
         className="theme-dark relative isolate scroll-mt-20 bg-ground"
       >
-        <ProcessMap
-          steps={home.process.steps}
-          eyebrow={home.process.eyebrow}
-          title={home.process.title}
-          intro="An architectural project roadmap from day one. You always know exactly what station your software is at, what gets tested on Friday, and when it goes live."
-        />
+        <ProcessMap data={home.process} />
       </section>
 
       {/* Success stories */}

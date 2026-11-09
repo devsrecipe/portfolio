@@ -241,7 +241,12 @@ export const contentSchema = z.object({
     }),
     process: z.object({
       ...section,
-      steps: z.array(z.object({ step: text, name: text, text })),
+      intro: text,
+      /** Label before each step's outcome, e.g. "You get". */
+      outcomeLabel: text,
+      steps: z
+        .array(z.object({ step: text, name: text, timing: text, text, outcome: text }))
+        .length(4),
     }),
     stories: z.object({
       ...section,

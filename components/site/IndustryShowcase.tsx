@@ -318,7 +318,8 @@ function PinnedStory({ data }: { data: Data }) {
                         ref={(el) => {
                           fills.current[i] = el;
                         }}
-                        className="block h-full origin-left scale-x-0 bg-primary"
+                        style={{ transform: "scaleX(0)" }}
+                        className="block h-full origin-left bg-primary"
                       />
                     </span>
                     <span className="mt-2.5 flex items-baseline gap-1.5 text-xs font-medium">
