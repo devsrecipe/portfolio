@@ -4,7 +4,7 @@ import type {
   industrySchema,
   jobSchema,
   postSchema,
-  scenarioSchema,
+  showcaseCategorySchema,
   storySchema,
   teamMemberSchema,
 } from "@/content/schema";
@@ -18,5 +18,5 @@ export type Post = z.infer<typeof postSchema>;
 export type Job = z.infer<typeof jobSchema>;
 export type FaqItem = z.infer<typeof faqItemSchema>;
 export type TeamMember = z.infer<typeof teamMemberSchema>;
-export type AutomationScenario = z.infer<typeof scenarioSchema>;
+export type ShowcaseCategory = z.infer<typeof showcaseCategorySchema>;
 export type { SiteContent } from "@/content/schema";

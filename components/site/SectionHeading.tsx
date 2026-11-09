@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Reveal } from "@/components/motion/Reveal";
 import { ScrubText } from "@/components/motion/ScrubText";
+import { SplitHeading } from "@/components/motion/SplitHeading";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -26,15 +27,18 @@ export function SectionHeading({
   const introClass = "mt-5 max-w-2xl text-lg text-muted";
   return (
     <div className={cn("max-w-3xl", className)}>
-      <Reveal>
-        {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
-        <Tag
-          id={id}
-          className="mt-4 font-display text-4xl font-bold leading-[1.05] tracking-[-0.025em] sm:text-5xl lg:text-6xl"
-        >
-          {title}
-        </Tag>
-      </Reveal>
+      {eyebrow ? (
+        <Reveal>
+          <p className="eyebrow">{eyebrow}</p>
+        </Reveal>
+      ) : null}
+      <SplitHeading
+        as={Tag}
+        id={id}
+        className="mt-4 font-display text-[clamp(2.25rem,4.6vw,4.5rem)] font-bold leading-[1.02] tracking-[-0.035em]"
+      >
+        {title}
+      </SplitHeading>
       {intro && scrubIntro ? (
         <ScrubText text={intro} className={cn(introClass, "text-ink")} />
       ) : intro ? (

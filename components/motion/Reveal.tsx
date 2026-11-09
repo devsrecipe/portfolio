@@ -2,13 +2,13 @@
 
 import { motion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
+import { EASE_OUT as ease } from "@/components/motion/ease";
 
-const ease = [0.2, 0.7, 0.2, 1] as const;
 const viewport = { once: true, margin: "0px 0px -80px 0px" } as const;
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
+  hidden: { opacity: 0, y: 32 },
+  show: { opacity: 1, y: 0, transition: { duration: 1, ease } },
 };
 
 /** Fades and lifts its children in once, when they scroll into view. */
@@ -24,10 +24,10 @@ export function Reveal({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 28 }}
+      initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={viewport}
-      transition={{ duration: 0.6, ease, delay }}
+      transition={{ duration: 1, ease, delay }}
     >
       {children}
     </motion.div>

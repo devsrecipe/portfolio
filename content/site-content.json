@@ -152,331 +152,538 @@
       },
       "note": "We reply to every message within one business day."
     },
-    "automation": {
-      "label": "Example automation",
-      "pickLabel": "Pick an industry",
-      "comesIn": "Comes in",
-      "getsDone": "Gets done",
-      "hubLabel": "Your system",
-      "handledTitle": "Handled automatically",
-      "footnote": "An example of the systems we build. Every step above is usually done by hand.",
-      "scenarios": [
-         {
-          "id": "diagnostics",
-          "tab": "Diagnostics",
-          "title": "Diagnostics",
-          "inputs": [
-            {
-              "title": "Test booking",
-              "meta": "CBC · home sample"
-            },
-            {
-              "title": "Sample received",
-              "meta": "Tube #5521"
-            },
-            {
-              "title": "Result entered",
-              "meta": "Lab 2"
-            }
+    "showcase": {
+      "eyebrow": "Made for your kind of business",
+      "title": "See what changes in a business like yours.",
+      "intro": "Scroll through the businesses we work with. For each one: what usually goes wrong, and how the right software quietly fixes it.",
+      "navLabel": "Choose a business",
+      "problemsLabel": "Sounds familiar?",
+      "fixesLabel": "How we fix it",
+      "exampleLabel": "For example",
+      "swipeHint": "Swipe to see more",
+      "categories": [
+        {
+          "id": "store",
+          "slug": "ecommerce",
+          "nav": "Online stores",
+          "name": "Online stores",
+          "headline": "Sell more without answering the same messages all day.",
+          "problems": [
+            "Customers give up because checkout is slow or confusing.",
+            "You find out an item is sold out only after someone has paid.",
+            "Orders arrive by chat, phone and website, and some get missed."
           ],
-          "outputs": [
-            {
-              "title": "Sample tracked",
-              "meta": "In analysis"
-            },
-            {
-              "title": "Report generated",
-              "meta": "PDF"
-            },
-            {
-              "title": "Patient notified",
-              "meta": "SMS and email"
-            }
+          "fixes": [
+            "A fast shop where customers pay in a few taps.",
+            "Stock updates with every sale and warns you before you run out.",
+            "Every order, from every channel, lands in one list."
           ],
-          "handled": [
-            "Sample #5521 tracked from collection to lab",
-            "Report generated the moment the result is signed off",
-            "Patient gets a secure link to download it"
-          ]
+          "example": "A clothing shop gets an alert when a best seller drops to 3 left, reorders in time, and stops refunding paid orders.",
+          "link": {
+            "label": "See solutions for online stores",
+            "href": "/solutions/ecommerce"
+          },
+          "visual": {
+            "kind": "shop",
+            "title": "Linen shirt · Sand",
+            "items": [
+              {
+                "label": "$38.00",
+                "meta": "Free delivery this week"
+              },
+              {
+                "label": "Only 3 left",
+                "state": "alert"
+              },
+              {
+                "label": "Buy now",
+                "state": "active"
+              }
+            ],
+            "note": {
+              "title": "New order #2041",
+              "text": "Paid · packing now"
+            },
+            "badge": {
+              "value": "3 left",
+              "label": "Restock alert sent"
+            }
+          }
         },
         {
           "id": "restaurant",
-          "tab": "Restaurant",
-          "title": "Restaurant",
-          "inputs": [
-            {
-              "title": "Website order",
-              "meta": "#1042 · €28.50"
-            },
-            {
-              "title": "WhatsApp order",
-              "meta": "2 × Margherita"
-            },
-            {
-              "title": "Table booking",
-              "meta": "Fri · 4 guests"
-            }
+          "slug": "food-and-restaurants",
+          "nav": "Restaurants",
+          "name": "Restaurants",
+          "headline": "Every order reaches the kitchen. Nothing gets lost on the way.",
+          "problems": [
+            "Delivery apps take a big cut of every order.",
+            "Phone and WhatsApp orders get written down wrong.",
+            "The kitchen only hears about an order when someone shouts it."
           ],
-          "outputs": [
-            {
-              "title": "Kitchen screen",
-              "meta": "Order #1042"
-            },
-            {
-              "title": "Stock updated",
-              "meta": "Mozzarella low"
-            },
-            {
-              "title": "Receipt sent",
-              "meta": "By email"
-            }
+          "fixes": [
+            "Your own ordering page, so you keep the full price.",
+            "Orders go straight to a kitchen screen, exactly as the customer typed them.",
+            "Table bookings and rewards for regulars in the same place."
           ],
-          "handled": [
-            "Order #1042 sent to the kitchen screen",
-            "Mozzarella running low, reorder drafted",
-            "Receipt emailed to the customer"
-          ]
-        },
-        {
-          "id": "store",
-          "tab": "Store",
-          "title": "Store",
-          "inputs": [
-            {
-              "title": "Web order",
-              "meta": "#2210 · 3 items"
+          "example": "A pizzeria shares one ordering link on WhatsApp. The kitchen sees each order the second it is placed, with no handwriting to read.",
+          "link": {
+            "label": "See solutions for restaurants",
+            "href": "/solutions/food-and-restaurants"
+          },
+          "visual": {
+            "kind": "kitchen",
+            "title": "Kitchen screen",
+            "labels": [
+              "Cooking",
+              "Ready"
+            ],
+            "items": [
+              {
+                "label": "Table 4",
+                "meta": "2 × Margherita, 1 × Cola",
+                "state": "active"
+              },
+              {
+                "label": "Delivery #1042",
+                "meta": "Chicken biryani",
+                "state": "active"
+              },
+              {
+                "label": "Table 2",
+                "meta": "Pasta alfredo",
+                "state": "done"
+              },
+              {
+                "label": "Pickup #1039",
+                "meta": "3 × Classic burger",
+                "state": "done"
+              }
+            ],
+            "note": {
+              "title": "New WhatsApp order",
+              "text": "Sent straight to the kitchen"
             },
-            {
-              "title": "Marketplace order",
-              "meta": "Blue sneakers"
-            },
-            {
-              "title": "Return request",
-              "meta": "Order #2188"
+            "badge": {
+              "value": "12 min",
+              "label": "Average wait today"
             }
-          ],
-          "outputs": [
-            {
-              "title": "Pick list",
-              "meta": "Warehouse A"
-            },
-            {
-              "title": "Inventory synced",
-              "meta": "All channels"
-            },
-            {
-              "title": "Label printed",
-              "meta": "Courier ready"
-            }
-          ],
-          "handled": [
-            "Order #2210 sent to the warehouse pick list",
-            "Stock updated on every sales channel",
-            "Shipping label created and emailed"
-          ]
+          }
         },
         {
           "id": "tours",
-          "tab": "Tours",
-          "title": "Tours",
-          "inputs": [
-            {
-              "title": "Website booking",
-              "meta": "City walk · 6 guests"
-            },
-            {
-              "title": "WhatsApp enquiry",
-              "meta": "Sat sunrise tour"
-            },
-            {
-              "title": "Deposit paid",
-              "meta": "30% · card"
-            }
+          "slug": "travel-and-tours",
+          "nav": "Travel & tours",
+          "name": "Travel and tours",
+          "headline": "Take bookings while you sleep, without double-booking a seat.",
+          "problems": [
+            "You confirm every single booking by hand over chat.",
+            "Two people book the last spot on the same trip.",
+            "Customers cancel at the last minute and you lose the money."
           ],
-          "outputs": [
-            {
-              "title": "Calendar blocked",
-              "meta": "Sat · 06:00"
-            },
-            {
-              "title": "Guide notified",
-              "meta": "By message"
-            },
-            {
-              "title": "Confirmation sent",
-              "meta": "With meeting point"
-            }
+          "fixes": [
+            "A booking page that shows real availability, day and night.",
+            "A spot disappears the moment it is taken, so no double bookings.",
+            "Customers pay a deposit when they book."
           ],
-          "handled": [
-            "Saturday slot blocked as soon as the deposit lands",
-            "Guide told the group size and pickup point",
-            "Confirmation and reminder sent to the guest"
-          ]
+          "example": "A trekking company opens bookings for the season and wakes up to confirmed, paid trips instead of fifty unread chats.",
+          "link": {
+            "label": "See solutions for travel and tours",
+            "href": "/solutions/travel-and-tours"
+          },
+          "visual": {
+            "kind": "calendar",
+            "title": "Sunset hill trek · March",
+            "labels": [
+              "M",
+              "T",
+              "W",
+              "T",
+              "F",
+              "S",
+              "S"
+            ],
+            "items": [
+              {
+                "label": "Sat 14",
+                "meta": "2 spots left",
+                "state": "active"
+              },
+              {
+                "label": "Sun 15",
+                "meta": "Fully booked",
+                "state": "muted"
+              },
+              {
+                "label": "Sat 21",
+                "meta": "8 spots left"
+              }
+            ],
+            "note": {
+              "title": "Booking confirmed",
+              "text": "Deposit paid · 2 guests"
+            },
+            "badge": {
+              "value": "24/7",
+              "label": "Bookings open"
+            }
+          }
         },
         {
           "id": "clinic",
-          "tab": "Clinic",
-          "title": "Clinic",
-          "inputs": [
-            {
-              "title": "Online appointment",
-              "meta": "Dr. Rahman · Tue 10:30"
-            },
-            {
-              "title": "Prescription",
-              "meta": "Patient #318"
-            },
-            {
-              "title": "Test order",
-              "meta": "Blood panel"
-            }
+          "slug": "clinics-and-doctors",
+          "nav": "Clinics",
+          "name": "Clinics and doctors",
+          "headline": "Shorter waits for patients and fewer empty appointment slots.",
+          "problems": [
+            "Patients wait for hours with no idea when they will be seen.",
+            "People forget their appointment and the slot goes to waste.",
+            "Paper files go missing between visits."
           ],
-          "outputs": [
-            {
-              "title": "Schedule updated",
-              "meta": "Dr. Rahman"
-            },
-            {
-              "title": "Record opened",
-              "meta": "Patient history"
-            },
-            {
-              "title": "Reminder queued",
-              "meta": "Day before"
-            }
+          "fixes": [
+            "Patients book a time online and see their place in the queue.",
+            "Automatic reminders the day before, by SMS or WhatsApp.",
+            "Each patient's history and prescriptions in one safe place."
           ],
-          "handled": [
-            "Slot reserved and the doctor's day updated",
-            "Patient history ready before the visit",
-            "Reminder scheduled for the day before"
-          ]
+          "example": "A family clinic reminds every patient the day before, and offers cancelled slots to people on the waiting list.",
+          "link": {
+            "label": "See solutions for clinics",
+            "href": "/solutions/clinics-and-doctors"
+          },
+          "visual": {
+            "kind": "queue",
+            "title": "Dr. Rahman · Today",
+            "items": [
+              {
+                "label": "Now seeing",
+                "meta": "#14",
+                "state": "active"
+              },
+              {
+                "label": "10:30 · Ayesha K.",
+                "meta": "Checked in",
+                "state": "done"
+              },
+              {
+                "label": "10:45 · Rafi H.",
+                "meta": "On the way"
+              },
+              {
+                "label": "11:00 · Cancelled slot",
+                "meta": "Filled from waitlist",
+                "state": "done"
+              }
+            ],
+            "note": {
+              "title": "Reminder sent",
+              "text": "Your visit is tomorrow at 10:30"
+            },
+            "badge": {
+              "value": "#3",
+              "label": "Your place in line"
+            }
+          }
         },
-       
+        {
+          "id": "diagnostics",
+          "slug": "diagnostic-centers",
+          "nav": "Diagnostics",
+          "name": "Diagnostic centers",
+          "headline": "Reports reach patients the moment they are ready.",
+          "problems": [
+            "Patients call again and again to ask if their report is ready.",
+            "Samples get mixed up when they are tracked on paper.",
+            "Printing and handing over reports eats up staff time."
+          ],
+          "fixes": [
+            "Every sample gets a code and is tracked from collection to result.",
+            "Reports go out automatically as soon as a doctor signs them.",
+            "Patients download their report from a secure link on their phone."
+          ],
+          "example": "A lab stops getting “is my report ready?” calls, because patients receive a message the minute it is signed.",
+          "link": {
+            "label": "See solutions for diagnostic centers",
+            "href": "/solutions/diagnostic-centers"
+          },
+          "visual": {
+            "kind": "report",
+            "title": "Blood test · CBC",
+            "items": [
+              {
+                "label": "Haemoglobin",
+                "meta": "13.8 g/dL",
+                "state": "done"
+              },
+              {
+                "label": "White blood cells",
+                "meta": "6.2 × 10⁹/L",
+                "state": "done"
+              },
+              {
+                "label": "Platelets",
+                "meta": "250 × 10⁹/L",
+                "state": "done"
+              },
+              {
+                "label": "Signed · Dr. Sen",
+                "state": "active"
+              }
+            ],
+            "note": {
+              "title": "Your report is ready",
+              "text": "Tap to download it securely"
+            },
+            "badge": {
+              "value": "#5521",
+              "label": "Sample tracked"
+            }
+          }
+        },
         {
           "id": "school",
-          "tab": "School",
-          "title": "School",
-          "inputs": [
-            {
-              "title": "Admission form",
-              "meta": "Grade 5"
-            },
-            {
-              "title": "Attendance",
-              "meta": "Class 7B"
-            },
-            {
-              "title": "Fee payment",
-              "meta": "Term 2"
-            }
+          "slug": "schools",
+          "nav": "Schools",
+          "name": "Schools",
+          "headline": "Less paperwork for staff, clearer updates for parents.",
+          "problems": [
+            "Fees, attendance and results live in separate registers.",
+            "Parents call the office for every small update.",
+            "Report cards take days to put together by hand."
           ],
-          "outputs": [
-            {
-              "title": "Student record",
-              "meta": "Created"
-            },
-            {
-              "title": "Parent alerted",
-              "meta": "Absent today"
-            },
-            {
-              "title": "Receipt issued",
-              "meta": "Fee cleared"
-            }
+          "fixes": [
+            "Admissions, attendance, fees and results in one place.",
+            "Parents see attendance and pay fees from their phone.",
+            "Report cards are made from the marks teachers already enter."
           ],
-          "handled": [
-            "Student record created from the admission form",
-            "Parents told the same morning when a child is absent",
-            "Fee receipt issued and the ledger balanced"
-          ]
+          "example": "A school sends fee reminders automatically. Parents pay online, and the queue at the office window disappears.",
+          "link": {
+            "label": "See solutions for schools",
+            "href": "/solutions/schools"
+          },
+          "visual": {
+            "kind": "school",
+            "title": "Grade 6 · Section B",
+            "labels": [
+              "Present",
+              "Absent"
+            ],
+            "items": [
+              {
+                "label": "Attendance today",
+                "meta": "28 of 30",
+                "state": "done"
+              },
+              {
+                "label": "Term 2 fees",
+                "meta": "Paid online",
+                "state": "done"
+              },
+              {
+                "label": "Maths test",
+                "meta": "Results out",
+                "state": "active"
+              }
+            ],
+            "note": {
+              "title": "Ayaan arrived at school",
+              "text": "Marked present at 8:02"
+            },
+            "badge": {
+              "value": "A+",
+              "label": "Report card ready"
+            }
+          }
         },
         {
           "id": "pet-care",
-          "tab": "Pet care",
-          "title": "Pet care",
-          "inputs": [
-            {
-              "title": "Grooming booking",
-              "meta": "Max · Sat 11:00"
-            },
-            {
-              "title": "Shop order",
-              "meta": "Dog food 10 kg"
-            },
-            {
-              "title": "Vaccine due",
-              "meta": "Luna"
-            }
+          "slug": "pet-businesses",
+          "nav": "Pet care",
+          "name": "Pet businesses",
+          "headline": "Bookings, reminders and pet records that look after themselves.",
+          "problems": [
+            "Grooming slots are managed in a notebook.",
+            "Owners forget vaccines and check-ups.",
+            "Your shop and your grooming side keep separate records."
           ],
-          "outputs": [
-            {
-              "title": "Groomer scheduled",
-              "meta": "Sat · Sam"
-            },
-            {
-              "title": "Order packed",
-              "meta": "Delivery today"
-            },
-            {
-              "title": "Reminder sent",
-              "meta": "To owner"
-            }
+          "fixes": [
+            "Owners book grooming and vet visits online.",
+            "Automatic reminders when a vaccine or check-up is due.",
+            "One profile per pet, shared by your shop and your staff."
           ],
-          "handled": [
-            "Grooming slot confirmed and added to the groomer's day",
-            "Shop order packed from live stock",
-            "Owner reminded when a vaccine is due"
-          ]
+          "example": "A pet salon reminds owners when a groom is due, and they rebook straight from the message.",
+          "link": {
+            "label": "See solutions for pet businesses",
+            "href": "/solutions/pet-businesses"
+          },
+          "visual": {
+            "kind": "pet",
+            "title": "Milo · Golden retriever",
+            "items": [
+              {
+                "label": "Rabies booster",
+                "meta": "Due next week",
+                "state": "alert"
+              },
+              {
+                "label": "Full groom",
+                "meta": "Sat · 11:00",
+                "state": "active"
+              },
+              {
+                "label": "Deworming",
+                "meta": "Done · 2 March",
+                "state": "done"
+              }
+            ],
+            "note": {
+              "title": "A reminder for Milo",
+              "text": "Book his booster in one tap"
+            },
+            "badge": {
+              "value": "Sat 11:00",
+              "label": "Groom booked"
+            }
+          }
         },
         {
           "id": "retail",
-          "tab": "Retail",
-          "title": "Retail",
-          "inputs": [
-            {
-              "title": "POS sale",
-              "meta": "Outlet 3 · 12 items"
-            },
-            {
-              "title": "Distributor order",
-              "meta": "Northside Foods"
-            },
-            {
-              "title": "Stock count",
-              "meta": "Aisle 4"
-            }
+          "slug": "fmcg-and-retail",
+          "nav": "Retail & FMCG",
+          "name": "Retail and FMCG",
+          "headline": "Know what is on the shelf, in the store room and on the way.",
+          "problems": [
+            "Stock is counted by hand, so the numbers are always out of date.",
+            "Fast sellers run out while slow ones pile up.",
+            "Orders from shops and distributors come in by phone and get missed."
           ],
-          "outputs": [
-            {
-              "title": "Stock updated",
-              "meta": "All outlets"
-            },
-            {
-              "title": "Purchase drafted",
-              "meta": "Low items"
-            },
-            {
-              "title": "Daily report",
-              "meta": "Sent 18:00"
-            }
+          "fixes": [
+            "Every sale updates stock across all your branches.",
+            "Low-stock alerts and suggested reorders before shelves go empty.",
+            "Shops and distributors order from an app, straight into your system."
           ],
-          "handled": [
-            "Every sale deducts stock across all outlets",
-            "Purchase order drafted when items run low",
-            "Daily sales report sent to the owner"
-          ]
+          "example": "A chain of mini-marts sees every branch's stock on one screen and reorders before the weekend rush.",
+          "link": {
+            "label": "See solutions for retail",
+            "href": "/solutions/fmcg-and-retail"
+          },
+          "visual": {
+            "kind": "stock",
+            "title": "Stock · all branches",
+            "labels": [
+              "Low"
+            ],
+            "items": [
+              {
+                "label": "Rice 25 kg",
+                "meta": "18",
+                "state": "alert"
+              },
+              {
+                "label": "Cooking oil 5 L",
+                "meta": "64"
+              },
+              {
+                "label": "Tea 400 g",
+                "meta": "82"
+              },
+              {
+                "label": "Soap bar",
+                "meta": "47"
+              }
+            ],
+            "note": {
+              "title": "Reorder suggested",
+              "text": "Rice 25 kg × 40 bags"
+            },
+            "badge": {
+              "value": "4",
+              "label": "Branches in sync"
+            }
+          }
+        },
+        {
+          "id": "others",
+          "nav": "Others",
+          "name": "Something else?",
+          "headline": "Your business is not on this list? We probably still fit.",
+          "problems": [
+            "You juggle spreadsheets, chats and paper to keep things running.",
+            "Ready-made software almost fits, but not quite.",
+            "You pay for several tools that don't talk to each other."
+          ],
+          "fixes": [
+            "We start from how you work today, not from a template.",
+            "We build from proven parts: bookings, payments, stock, reminders and reports.",
+            "It connects to the tools you already use."
+          ],
+          "example": "Gyms, salons, repair workshops, charities, delivery teams: if the same work repeats every day, software can take it off your hands.",
+          "link": {
+            "label": "Tell us about your business",
+            "href": "/#contact"
+          },
+          "visual": {
+            "kind": "blocks",
+            "title": "Your system",
+            "items": [
+              {
+                "label": "Bookings",
+                "state": "active"
+              },
+              {
+                "label": "Payments"
+              },
+              {
+                "label": "Stock"
+              },
+              {
+                "label": "Reminders"
+              },
+              {
+                "label": "Reports"
+              },
+              {
+                "label": "Customer app"
+              }
+            ],
+            "note": {
+              "title": "Connected",
+              "text": "Works with the tools you already use"
+            },
+            "badge": {
+              "value": "Your way",
+              "label": "Built around how you work"
+            }
+          }
         }
       ]
     },
     "trustedBy": {
       "label": "Trusted by",
       "items": [
-        { "name": "Green Leaf Grocers", "logo": "/clients/green-leaf-grocers.png" },
-        { "name": "Spice Route Kitchen", "logo": "/clients/spice-route-kitchen.png" },
-        { "name": "CarePoint Clinic", "logo": "/clients/carepoint-clinic.png" },
-        { "name": "Brightway School", "logo": "/clients/brightway-school.png" },
-        { "name": "MediScan Diagnostics", "logo": "/clients/mediscan-diagnostics.png" },
-        { "name": "UrbanFit Studio", "logo": "/clients/urbanfit-studio.png" }
+        {
+          "name": "Green Leaf Grocers",
+          "logo": "/clients/green-leaf-grocers.png"
+        },
+        {
+          "name": "Spice Route Kitchen",
+          "logo": "/clients/spice-route-kitchen.png"
+        },
+        {
+          "name": "CarePoint Clinic",
+          "logo": "/clients/carepoint-clinic.png"
+        },
+        {
+          "name": "Brightway School",
+          "logo": "/clients/brightway-school.png"
+        },
+        {
+          "name": "MediScan Diagnostics",
+          "logo": "/clients/mediscan-diagnostics.png"
+        },
+        {
+          "name": "UrbanFit Studio",
+          "logo": "/clients/urbanfit-studio.png"
+        }
       ]
     },
     "fit": {
@@ -485,7 +692,10 @@
       "intro": "You bring the vision and know your business. We bring the engineers who design, build and ship it. Same goals, same tools, one team.",
       "yours": "Your vision and core team",
       "ours": "Dedicated Devs Recipe engineers",
-      "badge": { "before": "We just", "highlight": "fit." }
+      "badge": {
+        "before": "We just",
+        "highlight": "fit."
+      }
     },
     "industries": {
       "eyebrow": "Industries we serve",

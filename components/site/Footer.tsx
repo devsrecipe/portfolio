@@ -1,17 +1,18 @@
 import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
+import { FooterWordmark } from "@/components/motion/FooterWordmark";
 import { content, formMessages } from "@/content";
 import { NewsletterForm } from "./NewsletterForm";
 
 const colTitle = "text-sm font-semibold text-ink";
-const colLink = "text-sm text-muted hover:text-ink";
+const colLink = "link-underline text-sm text-muted hover:text-ink";
 
 export function Footer() {
   const { site, solutions, forms } = content;
   const { footer } = site;
   return (
     <footer className="theme-dark border-t border-border bg-ground">
-      <div className="container-x grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr_1fr_1.6fr]">
+      <div className="container-x grid gap-10 py-14 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1.6fr)]">
         <div>
           <Logo />
           <p className="mt-4 max-w-xs text-sm text-muted">{site.tagline}</p>
@@ -169,11 +170,16 @@ export function Footer() {
         </div>
       </div>
 
+      {/* Signature: the brand name, edge to edge. */}
+      <div className="container-x pt-6">
+        <FooterWordmark text="devsrecipe" />
+      </div>
+
       <div className="border-t border-border/50 py-6">
         <div className="container-x flex flex-col items-center justify-between gap-4 text-xs text-muted sm:flex-row">
           <p>© 2026 {site.name}. All rights reserved.</p>
           <p className="flex items-center gap-2">
-            <span className="inline-block size-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="inline-block size-1.5 rounded-full bg-success" />
             <span>Available for new projects</span>
           </p>
         </div>

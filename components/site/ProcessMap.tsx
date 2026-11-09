@@ -179,7 +179,7 @@ export function ProcessMap({ steps, eyebrow, title, intro }: ProcessProps) {
       <div className="sticky top-20 min-h-[calc(100vh-5rem)] flex flex-col justify-center py-6 lg:py-8 container-x">
         {/* Subtle Architectural Grid */}
         <div
-          className="pointer-events-none absolute -inset-6 rounded-3xl opacity-10"
+          className="pointer-events-none absolute inset-x-0 -inset-y-6 rounded-3xl opacity-10"
           style={{
             backgroundImage:
               "radial-gradient(circle, var(--color-primary) 1px, transparent 1px)",

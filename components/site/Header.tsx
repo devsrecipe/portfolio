@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
+import { SmartHeader } from "@/components/motion/SmartHeader";
 import { ButtonLink } from "@/components/ui/Button";
 import { content } from "@/content";
 
 export function Header() {
   const { nav, bookCall, name } = content.site;
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-ground/90 backdrop-blur">
+    <SmartHeader>
       <div className="container-x flex h-20 items-center justify-between gap-6">
         <Link href="/" aria-label={`${name} home`}>
           <Logo />
@@ -17,12 +18,12 @@ export function Header() {
             <Link
               key={link.label}
               href={link.href}
-              className="text-[0.95rem] hover:text-primary"
+              className="link-underline text-[0.95rem]"
             >
               {link.label}
             </Link>
           ))}
-          <ButtonLink href={bookCall.href} size="sm">
+          <ButtonLink href={bookCall.href} size="sm" arrow>
             {bookCall.label}
           </ButtonLink>
         </nav>
@@ -59,6 +60,6 @@ export function Header() {
           </nav>
         </details>
       </div>
-    </header>
+    </SmartHeader>
   );
 }

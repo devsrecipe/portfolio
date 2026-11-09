@@ -1,91 +1,56 @@
 import Link from "next/link";
-import { Card } from "@/components/ui/Card";
 import { content } from "@/content";
 import type { Story } from "@/types";
 
+/**
+ * Editorial story column: no box, just a hairline that fills with the primary
+ * colour on hover, a quiet meta line, the title and the one result that matters.
+ * The whole column is the link.
+ */
 export function StoryCard({ story }: { story: Story; index?: number }) {
   const t = content.stories.labels;
   const done = story.status === "completed";
+  const highlight = done ? story.resultShort : story.whereItStands;
 
   return (
-    <Card className="group lift spotlight-card relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-border/80 bg-surface/90 p-6 sm:p-7 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:bg-surface hover:shadow-2xl hover:shadow-primary/10">
-      <div>
-        {/* Top Badges Row */}
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <div className="flex flex-wrap items-center gap-1.5">
-            <span className="rounded-full border border-border/70 bg-surface-2/80 px-2.5 py-0.5 text-xs font-medium text-muted">
-              {story.industry}
-            </span>
-            <span className="rounded-full border border-border/70 bg-surface-2/80 px-2.5 py-0.5 text-xs font-medium text-muted">
-              {story.country}
-            </span>
-          </div>
-          <span
-            className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold ${
-              done
-                ? "border border-success/30 bg-success-soft text-success"
-                : "border border-accent/30 bg-accent-soft text-accent"
-            }`}
-          >
-            <span
-              className={`size-1.5 rounded-full ${
-                done ? "bg-success" : "bg-accent animate-pulse"
-              }`}
-            />
-            {done ? t.completed : t.inProgress}
-          </span>
-        </div>
+    <Link
+      href={`/success-stories/${story.slug}`}
+      className="group relative flex h-full flex-col pt-7 focus-visible:outline-offset-8"
+    >
+      <span aria-hidden className="absolute inset-x-0 top-0 h-px bg-border" />
+      <span
+        aria-hidden
+        className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-primary transition-transform duration-700 ease-(--ease-out) group-hover:scale-x-100"
+      />
 
-        {/* Title */}
-        <h3 className="mt-5 text-xl font-bold tracking-tight text-ink transition-colors duration-200 group-hover:text-primary">
-          {story.title}
-        </h3>
+      <p className="flex flex-wrap items-center gap-x-2 font-mono text-[0.7rem] uppercase tracking-[0.12em] text-muted">
+        <span>{story.industry}</span>
+        <span aria-hidden>·</span>
+        <span>{story.country}</span>
+        <span aria-hidden>·</span>
+        <span className={done ? "text-success" : "text-accent"}>
+          {done ? t.completed : t.inProgress}
+        </span>
+      </p>
 
-        {/* Headline Result / Progress Callout */}
-        {done && story.resultShort ? (
-          <div className="mt-4 flex items-center gap-2 rounded-2xl border border-primary/20 bg-primary-soft p-3.5 text-sm font-semibold text-primary">
-            <svg
-              className="size-4 shrink-0"
-              viewBox="0 0 16 16"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M4 12 12 4M12 4H6M12 4v6" />
-            </svg>
-            <span className="truncate">{story.resultShort}</span>
-          </div>
-        ) : story.whereItStands ? (
-          <div className="mt-4 flex items-center gap-2 rounded-2xl border border-accent/20 bg-accent-soft p-3.5 text-xs font-medium text-accent">
-            <span className="size-1.5 shrink-0 rounded-full bg-accent animate-pulse" />
-            <span className="truncate">{story.whereItStands}</span>
-          </div>
-        ) : null}
+      <h3 className="mt-5 font-display text-2xl font-bold leading-[1.15] tracking-[-0.025em] transition-colors duration-500 group-hover:text-primary sm:text-[1.7rem]">
+        {story.title}
+      </h3>
 
-        {/* System Summary */}
-        <p className="mt-4 text-sm leading-relaxed text-muted transition-colors duration-200 group-hover:text-ink/90">
-          {story.builtShort}
-        </p>
-      </div>
+      {highlight ? (
+        <p className="mt-5 text-[0.95rem] font-semibold leading-snug text-primary">{highlight}</p>
+      ) : null}
 
-      {/* Action Footer Link */}
-      <div className="mt-6 border-t border-border/50 pt-5">
-        <Link
-          href={`/success-stories/${story.slug}`}
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-primary-hover"
-        >
+      <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">{story.builtShort}</p>
+
+      <span className="mt-auto inline-flex items-center gap-2 pt-8 text-sm font-semibold">
+        <span className="btn-roll">
           <span>{done ? t.readStory : t.followBuild}</span>
-          <span
-            className="inline-block transition-transform duration-200 group-hover:translate-x-1"
-            aria-hidden="true"
-          >
-            →
-          </span>
-        </Link>
-      </div>
-    </Card>
+        </span>
+        <span aria-hidden className="btn-arrow">
+          <span>→</span>
+        </span>
+      </span>
+    </Link>
   );
 }

@@ -86,13 +86,39 @@ export const jobSchema = z.object({
 export const faqItemSchema = z.object({ question: text, answer: text });
 export const teamMemberSchema = z.object({ name: text, role: text, photoLabel: text });
 
-export const scenarioSchema = z.object({
+/**
+ * One business in the home page showcase (components/site/IndustryShowcase).
+ * `visual.kind` picks which mini UI is drawn; `items`, `labels`, `note` and
+ * `badge` fill it (see components/site/ShowcaseVisual for what each kind shows).
+ */
+export const showcaseCategorySchema = z.object({
   id: text,
-  tab: text,
-  title: text,
-  inputs: z.array(z.object({ title: text, meta: text })),
-  outputs: z.array(z.object({ title: text, meta: text })),
-  handled: z.array(text),
+  /** Industry slug for the icon; omit for "Others". */
+  slug: text.optional(),
+  /** Short name for the progress bar and chips. */
+  nav: text,
+  name: text,
+  headline: text,
+  problems: z.array(text).length(3),
+  fixes: z.array(text).length(3),
+  example: text,
+  link,
+  visual: z.object({
+    kind: z.enum(["shop", "kitchen", "calendar", "queue", "report", "school", "pet", "stock", "blocks"]),
+    title: text,
+    items: z
+      .array(
+        z.object({
+          label: text,
+          meta: text.optional(),
+          state: z.enum(["done", "alert", "active", "muted"]).optional(),
+        }),
+      )
+      .min(1),
+    labels: z.array(text).optional(),
+    note: z.object({ title: text, text }),
+    badge: z.object({ value: text, label: text }),
+  }),
 });
 
 /** A form-service endpoint (e.g. Formspree). Empty = form shows "not connected yet". */
@@ -185,15 +211,15 @@ export const contentSchema = z.object({
       secondaryCta: link,
       note: text,
     }),
-    automation: z.object({
-      label: text,
-      pickLabel: text,
-      comesIn: text,
-      getsDone: text,
-      hubLabel: text,
-      handledTitle: text,
-      footnote: text,
-      scenarios: z.array(scenarioSchema).min(1),
+    showcase: z.object({
+      ...section,
+      intro: text,
+      navLabel: text,
+      problemsLabel: text,
+      fixesLabel: text,
+      exampleLabel: text,
+      swipeHint: text,
+      categories: z.array(showcaseCategorySchema).min(2),
     }),
     trustedBy: z.object({
       label: text,

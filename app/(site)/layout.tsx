@@ -18,6 +18,7 @@ export default function SiteLayout({ children }: LayoutProps<"/">) {
       <Header />
       <main id="main">{children}</main>
       <Footer />
+      <div aria-hidden className="grain" />
     </MotionProvider>
   );
 }
