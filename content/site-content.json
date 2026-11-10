@@ -67,6 +67,7 @@
     "notConfigured": "This form is not connected yet. Please email us instead.",
     "error": "Something went wrong while sending. Please try again, or email us instead.",
     "sending": "Sending…",
+    "invalid": "Please check the highlighted fields. Your message needs at least 10 characters.",
     "contact": {
       "endpoint": "https://script.google.com/macros/s/AKfycbyi778T-Hg7m580jipklETgxPsxaf0jFKTsxKWAWZgYtqVagQI2HIQASLPJtC1oxQ6v7w/exec",
       "labels": {

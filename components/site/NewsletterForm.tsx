@@ -14,7 +14,7 @@ type Props = {
 };
 
 export function NewsletterForm({ config, messages, contactEmail }: Props) {
-  const { status, error, sending, onSubmit } = useFormService(config.endpoint, messages);
+  const { status, error, sending, onSubmit, onInvalid } = useFormService(config.endpoint, messages);
 
   if (status === "success") {
     return (
@@ -25,7 +25,13 @@ export function NewsletterForm({ config, messages, contactEmail }: Props) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="mt-4">
+    <form
+      action={config.endpoint || undefined}
+      method="post"
+      onSubmit={onSubmit}
+      onInvalidCapture={onInvalid}
+      className="mt-4"
+    >
       <FormHiddenFields form="Newsletter" subject="New newsletter subscriber" />
       <div className="flex gap-2">
         <label htmlFor="newsletter-email" className="sr-only">

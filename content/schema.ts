@@ -154,6 +154,8 @@ export const contentSchema = z.object({
     notConfigured: text,
     error: text,
     sending: text,
+    /** Shown when the browser blocks a submit because a field is missing or invalid. */
+    invalid: text,
     contact: z.object({
       endpoint,
       labels: z.object({

@@ -36,7 +36,7 @@ export function ApplyForm({ job, config, messages, contactEmail, privacyLabel }:
     return null;
   }
 
-  const { status, error, sending, onSubmit } = useFormService(
+  const { status, error, sending, onSubmit, onInvalid } = useFormService(
     config.endpoint,
     messages,
     checkCv,
@@ -54,7 +54,10 @@ export function ApplyForm({ job, config, messages, contactEmail, privacyLabel }:
 
   return (
     <form
+      action={config.endpoint || undefined}
+      method="post"
       onSubmit={onSubmit}
+      onInvalidCapture={onInvalid}
       className="space-y-5 rounded-3xl border border-border bg-surface p-6 sm:p-8"
     >
       <h2 className="text-2xl font-bold">{config.title}</h2>

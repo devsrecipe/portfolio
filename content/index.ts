@@ -24,4 +24,5 @@ export const formMessages = {
   notConfigured: content.forms.notConfigured,
   error: content.forms.error,
   sending: content.forms.sending,
+  invalid: content.forms.invalid,
 };

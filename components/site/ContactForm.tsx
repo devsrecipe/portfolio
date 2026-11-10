@@ -14,7 +14,7 @@ type Props = {
 };
 
 export function ContactForm({ config, messages, contactEmail }: Props) {
-  const { status, error, sending, onSubmit } = useFormService(config.endpoint, messages);
+  const { status, error, sending, onSubmit, onInvalid } = useFormService(config.endpoint, messages);
   const { labels } = config;
 
   if (status === "success") {
@@ -28,7 +28,10 @@ export function ContactForm({ config, messages, contactEmail }: Props) {
 
   return (
     <form
+      action={config.endpoint || undefined}
+      method="post"
       onSubmit={onSubmit}
+      onInvalidCapture={onInvalid}
       className="rounded-3xl border border-border bg-surface p-6 sm:p-8"
     >
       <FormHiddenFields form="Contact" subject="New message from the website" />

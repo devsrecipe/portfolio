@@ -7,6 +7,8 @@ export type FormMessages = {
   notConfigured: string;
   error: string;
   sending: string;
+  /** Shown when the browser blocks a submit (missing or invalid field). */
+  invalid: string;
 };
 
 type Status = "idle" | "sending" | "success" | "error";
@@ -58,10 +60,11 @@ export function useFormService(
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    // Spam trap (see FormHiddenFields): bots fill it, people never see it.
+    // Spam trap (see FormHiddenFields). Autofill or a password manager can fill it for a
+    // real person too, so never drop the message: send it with a visible flag instead.
     if (data.get("_gotcha")) {
-      setStatus("success");
-      return;
+      data.delete("_gotcha");
+      data.set("spamCheck", "Trap field was filled: possibly spam");
     }
 
     const problem = validate?.(data) ?? (endpoint ? null : messages.notConfigured);
@@ -91,5 +94,11 @@ export function useFormService(
     }
   }
 
-  return { status, error, sending: status === "sending", onSubmit };
+  /** The browser blocked the submit (required, minLength, type="email"…): say so visibly. */
+  function onInvalid() {
+    setError(messages.invalid);
+    setStatus("error");
+  }
+
+  return { status, error, sending: status === "sending", onSubmit, onInvalid };
 }
