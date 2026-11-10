@@ -100,5 +100,11 @@ export function useFormService(
     setStatus("error");
   }
 
-  return { status, error, sending: status === "sending", onSubmit, onInvalid };
+  /** Back to an empty form, e.g. "Send another message". */
+  function reset() {
+    setError("");
+    setStatus("idle");
+  }
+
+  return { status, error, sending: status === "sending", onSubmit, onInvalid, reset };
 }

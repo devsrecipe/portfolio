@@ -73,6 +73,9 @@
       "labels": {
         "name": "Name",
         "email": "Work email",
+        "phone": "Phone number",
+        "country": "Country",
+        "whatsapp": "This number is on WhatsApp",
         "businessType": "Business type",
         "budget": "Budget range",
         "message": "What do you need?",
@@ -91,13 +94,15 @@
         "Other"
       ],
       "budgetRanges": [
-        "Under $5,000",
+        "Under $1,000",
+        "$1,000 – $5,000",
         "$5,000 – $15,000",
         "$15,000+",
         "Not sure yet"
       ],
       "successTitle": "Message sent",
-      "successText": "Thanks. A founder will reply to you personally."
+      "successText": "Thanks. An engineer from our specialist team will call you personally.",
+      "sendAnother": "Send another message"
     },
     "newsletter": {
       "endpoint": "https://script.google.com/macros/s/AKfycbyi778T-Hg7m580jipklETgxPsxaf0jFKTsxKWAWZgYtqVagQI2HIQASLPJtC1oxQ6v7w/exec",

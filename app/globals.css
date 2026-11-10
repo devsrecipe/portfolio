@@ -102,6 +102,17 @@ details > summary::-webkit-details-marker {
   display: none;
 }
 
+/* Tailwind v4 gives buttons and selects the default arrow; everything clickable shows the pointer. */
+button:not(:disabled),
+[role="button"],
+select:not(:disabled),
+summary,
+input[type="checkbox"],
+input[type="radio"],
+input[type="file"] {
+  cursor: pointer;
+}
+
 /* Fluid side padding: 20px on phones, growing with the screen to 80px on wide
  * desktops. Content only stops widening at 100rem (1600px) on very large screens. */
 :root {

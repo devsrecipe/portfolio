@@ -161,6 +161,9 @@ export const contentSchema = z.object({
       labels: z.object({
         name: text,
         email: text,
+        phone: text,
+        country: text,
+        whatsapp: text,
         businessType: text,
         budget: text,
         message: text,
@@ -170,6 +173,8 @@ export const contentSchema = z.object({
       budgetRanges: z.array(text).min(1),
       successTitle: text,
       successText: text,
+      /** Button on the success message that brings the empty form back. */
+      sendAnother: text,
     }),
     newsletter: z.object({
       endpoint,
