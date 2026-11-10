@@ -74,11 +74,15 @@ export function useFormService(
     setStatus("sending");
     setError("");
     try {
-      const response = APPS_SCRIPT.test(endpoint)
+      const appsScript = APPS_SCRIPT.test(endpoint);
+      const response = appsScript
         ? await fetch(endpoint, { method: "POST", body: await toAppsScriptBody(data) })
         : await fetch(endpoint, { method: "POST", body: data, headers: { Accept: "application/json" } });
       const result: { ok?: boolean } | null = await response.json().catch(() => null);
-      if (!response.ok || result?.ok === false) throw new Error(`Form endpoint answered ${response.status}`);
+      // Google answers a broken or outdated script with an HTML error page and status 200,
+      // so for Apps Script only an explicit { ok: true } from our script counts as saved.
+      const saved = appsScript ? result?.ok === true : response.ok && result?.ok !== false;
+      if (!saved) throw new Error(`Form endpoint answered ${response.status}`);
       setStatus("success");
     } catch (err) {
       console.error(err);

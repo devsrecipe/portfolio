@@ -68,7 +68,7 @@
     "error": "Something went wrong while sending. Please try again, or email us instead.",
     "sending": "Sending…",
     "contact": {
-      "endpoint": "",
+      "endpoint": "https://script.google.com/macros/s/AKfycbyi778T-Hg7m580jipklETgxPsxaf0jFKTsxKWAWZgYtqVagQI2HIQASLPJtC1oxQ6v7w/exec",
       "labels": {
         "name": "Name",
         "email": "Work email",
@@ -99,7 +99,7 @@
       "successText": "Thanks. A founder will reply to you personally."
     },
     "newsletter": {
-      "endpoint": "",
+      "endpoint": "https://script.google.com/macros/s/AKfycbyi778T-Hg7m580jipklETgxPsxaf0jFKTsxKWAWZgYtqVagQI2HIQASLPJtC1oxQ6v7w/exec",
       "title": "Get updates",
       "text": "New success stories and articles, about once a month.",
       "emailLabel": "Email address",
@@ -108,7 +108,7 @@
       "successText": "You are subscribed. Thank you."
     },
     "application": {
-      "endpoint": "",
+      "endpoint": "https://script.google.com/macros/s/AKfycbyi778T-Hg7m580jipklETgxPsxaf0jFKTsxKWAWZgYtqVagQI2HIQASLPJtC1oxQ6v7w/exec",
       "title": "Apply for this role",
       "labels": {
         "name": "Full name",
