@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
 import { FooterWordmark } from "@/components/motion/FooterWordmark";
 import { content, formMessages } from "@/content";
+import { HomeLink } from "./HomeLink";
 import { NewsletterForm } from "./NewsletterForm";
 
 const colTitle = "text-sm font-semibold text-ink";
@@ -14,7 +15,9 @@ export function Footer() {
     <footer className="theme-dark border-t border-border bg-ground">
       <div className="container-x grid gap-10 py-14 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1.6fr)]">
         <div>
-          <Logo />
+          <HomeLink label={`${site.name} home`} className="inline-block">
+            <Logo />
+          </HomeLink>
           <p className="mt-4 max-w-xs text-sm text-muted">{site.tagline}</p>
         </div>
 

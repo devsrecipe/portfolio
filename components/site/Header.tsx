@@ -3,15 +3,16 @@ import { Logo } from "@/components/brand/Logo";
 import { SmartHeader } from "@/components/motion/SmartHeader";
 import { ButtonLink } from "@/components/ui/Button";
 import { content } from "@/content";
+import { HomeLink } from "./HomeLink";
 
 export function Header() {
   const { nav, bookCall, name } = content.site;
   return (
     <SmartHeader>
       <div className="container-x flex h-20 items-center justify-between gap-6">
-        <Link href="/" aria-label={`${name} home`}>
+        <HomeLink label={`${name} home`}>
           <Logo />
-        </Link>
+        </HomeLink>
 
         <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
           {nav.map((link) => (

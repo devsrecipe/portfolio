@@ -11,6 +11,13 @@ const link = z.object({ label: text, href: text });
 const seo = z.object({ title: text.max(60), description: text.max(160) });
 const section = { eyebrow: text, title: text };
 
+/** An image under public/ with its real pixel size, e.g. { "src": "/stories/x/hero.png", "width": 3000, "height": 1000 }. */
+const imageSchema = z.object({
+  src: text,
+  width: z.number().int().positive(),
+  height: z.number().int().positive(),
+});
+
 export const industrySchema = z.object({
   slug: text,
   number: text,
@@ -41,11 +48,14 @@ export const storySchema = z.object({
   platforms: text,
   liveSince: text,
   heroLabel: text,
+  /** Top image under public/, at its real pixel size. Without it a labelled placeholder shows. */
+  heroImage: imageSchema.optional(),
   results: z.array(z.object({ value: text, label: text })),
   problem: text,
   problemQuote: text,
   features: z.array(z.object({ name: text, description: text })),
-  screenshots: z.array(text),
+  /** `label` is the alt text; without `image` a labelled placeholder shows. */
+  screenshots: z.array(z.object({ label: text, image: imageSchema.optional() })),
   phases: z.array(z.object({ name: text, duration: text, note: text })),
   tech: z.array(text),
   quote: z.object({ text, name: text, role: text }),

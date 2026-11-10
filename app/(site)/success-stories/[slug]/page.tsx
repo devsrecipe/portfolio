@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -88,11 +89,24 @@ export default async function StoryPage({
         </header>
 
         <div className="container-x">
-          <Placeholder
-            label={story.heroLabel}
-            tone="primary"
-            className="h-80 rounded-3xl sm:h-[28rem]"
-          />
+          {story.heroImage ? (
+            <Image
+              src={story.heroImage.src}
+              width={story.heroImage.width}
+              height={story.heroImage.height}
+              alt={story.heroLabel}
+              loading="eager"
+              fetchPriority="high"
+              sizes="(min-width: 1760px) 1600px, calc(100vw - 2 * var(--gutter))"
+              className="h-auto w-full rounded-3xl border border-border"
+            />
+          ) : (
+            <Placeholder
+              label={story.heroLabel}
+              tone="primary"
+              className="h-80 rounded-3xl sm:h-[28rem]"
+            />
+          )}
         </div>
 
         <section aria-labelledby="results-title" className="container-x py-16">
@@ -149,9 +163,20 @@ export default async function StoryPage({
             {t.inside}
           </h2>
           <ul className="mt-5 grid gap-4 md:grid-cols-2">
-            {story.screenshots.map((label, i) => (
+            {story.screenshots.map(({ label, image }, i) => (
               <li key={`${label}-${i}`}>
-                <Placeholder label={label} className="h-64 rounded-2xl" />
+                {image ? (
+                  <Image
+                    src={image.src}
+                    width={image.width}
+                    height={image.height}
+                    alt={label}
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="h-auto w-full rounded-2xl border border-border"
+                  />
+                ) : (
+                  <Placeholder label={label} className="h-64 rounded-2xl" />
+                )}
               </li>
             ))}
           </ul>

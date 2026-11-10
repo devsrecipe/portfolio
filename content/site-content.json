@@ -82,14 +82,14 @@
         "submit": "Send message"
       },
       "businessTypes": [
-        "Ecommerce store",
-        "Food and restaurants",
-        "Travel and tours",
-        "Clinic or doctor",
         "Diagnostic center",
-        "School",
-        "Pet business",
         "FMCG and retail",
+        "Clinic or doctor",
+        "School",
+        "Travel and tours",
+        "Franchise",
+        "Pet business",
+        "Ecommerce store",
         "Startup MVP",
         "Other"
       ],
@@ -224,169 +224,58 @@
           }
         },
         {
-          "id": "store",
-          "slug": "ecommerce",
-          "nav": "Online stores",
-          "name": "Online stores",
-          "headline": "Sell more without answering the same messages all day.",
+          "id": "retail",
+          "slug": "fmcg-and-retail",
+          "nav": "Retail & FMCG",
+          "name": "Retail and FMCG",
+          "headline": "Know what is on the shelf, in the store room and on the way.",
           "problems": [
-            "Customers give up because checkout is slow or confusing.",
-            "You find out an item is sold out only after someone has paid.",
-            "Orders arrive by chat, phone and website, and some get missed."
+            "Stock is counted by hand, so the numbers are always out of date.",
+            "Fast sellers run out while slow ones pile up.",
+            "Orders from shops and distributors come in by phone and get missed."
           ],
           "fixes": [
-            "A fast shop where customers pay in a few taps.",
-            "Stock updates with every sale and warns you before you run out.",
-            "Every order, from every channel, lands in one list."
+            "Every sale updates stock across all your branches.",
+            "Low-stock alerts and suggested reorders before shelves go empty.",
+            "Shops and distributors order from an app, straight into your system."
           ],
-          "example": "A clothing shop gets an alert when a best seller drops to 3 left, reorders in time, and stops refunding paid orders.",
+          "example": "A chain of mini-marts sees every branch's stock on one screen and reorders before the weekend rush.",
           "link": {
-            "label": "See solutions for online stores",
-            "href": "/solutions/ecommerce"
+            "label": "See solutions for retail",
+            "href": "/solutions/fmcg-and-retail"
           },
           "visual": {
-            "kind": "shop",
-            "title": "Linen shirt · Sand",
+            "kind": "stock",
+            "title": "Stock · all branches",
+            "labels": [
+              "Low"
+            ],
             "items": [
               {
-                "label": "$38.00",
-                "meta": "Free delivery this week"
-              },
-              {
-                "label": "Only 3 left",
+                "label": "Rice 25 kg",
+                "meta": "18",
                 "state": "alert"
               },
               {
-                "label": "Buy now",
-                "state": "active"
+                "label": "Cooking oil 5 L",
+                "meta": "64"
+              },
+              {
+                "label": "Tea 400 g",
+                "meta": "82"
+              },
+              {
+                "label": "Soap bar",
+                "meta": "47"
               }
             ],
             "note": {
-              "title": "New order #2041",
-              "text": "Paid · packing now"
+              "title": "Reorder suggested",
+              "text": "Rice 25 kg × 40 bags"
             },
             "badge": {
-              "value": "3 left",
-              "label": "Restock alert sent"
-            }
-          }
-        },
-        {
-          "id": "restaurant",
-          "slug": "food-and-restaurants",
-          "nav": "Restaurants",
-          "name": "Restaurants",
-          "headline": "Every order reaches the kitchen. Nothing gets lost on the way.",
-          "problems": [
-            "Delivery apps take a big cut of every order.",
-            "Phone and WhatsApp orders get written down wrong.",
-            "The kitchen only hears about an order when someone shouts it."
-          ],
-          "fixes": [
-            "Your own ordering page, so you keep the full price.",
-            "Orders go straight to a kitchen screen, exactly as the customer typed them.",
-            "Table bookings and rewards for regulars in the same place."
-          ],
-          "example": "A pizzeria shares one ordering link on WhatsApp. The kitchen sees each order the second it is placed, with no handwriting to read.",
-          "link": {
-            "label": "See solutions for restaurants",
-            "href": "/solutions/food-and-restaurants"
-          },
-          "visual": {
-            "kind": "kitchen",
-            "title": "Kitchen screen",
-            "labels": [
-              "Cooking",
-              "Ready"
-            ],
-            "items": [
-              {
-                "label": "Table 4",
-                "meta": "2 × Margherita, 1 × Cola",
-                "state": "active"
-              },
-              {
-                "label": "Delivery #1042",
-                "meta": "Chicken biryani",
-                "state": "active"
-              },
-              {
-                "label": "Table 2",
-                "meta": "Pasta alfredo",
-                "state": "done"
-              },
-              {
-                "label": "Pickup #1039",
-                "meta": "3 × Classic burger",
-                "state": "done"
-              }
-            ],
-            "note": {
-              "title": "New WhatsApp order",
-              "text": "Sent straight to the kitchen"
-            },
-            "badge": {
-              "value": "12 min",
-              "label": "Average wait today"
-            }
-          }
-        },
-        {
-          "id": "tours",
-          "slug": "travel-and-tours",
-          "nav": "Travel & tours",
-          "name": "Travel and tours",
-          "headline": "Take bookings while you sleep, without double-booking a seat.",
-          "problems": [
-            "You confirm every single booking by hand over chat.",
-            "Two people book the last spot on the same trip.",
-            "Customers cancel at the last minute and you lose the money."
-          ],
-          "fixes": [
-            "A booking page that shows real availability, day and night.",
-            "A spot disappears the moment it is taken, so no double bookings.",
-            "Customers pay a deposit when they book."
-          ],
-          "example": "A trekking company opens bookings for the season and wakes up to confirmed, paid trips instead of fifty unread chats.",
-          "link": {
-            "label": "See solutions for travel and tours",
-            "href": "/solutions/travel-and-tours"
-          },
-          "visual": {
-            "kind": "calendar",
-            "title": "Sunset hill trek · March",
-            "labels": [
-              "M",
-              "T",
-              "W",
-              "T",
-              "F",
-              "S",
-              "S"
-            ],
-            "items": [
-              {
-                "label": "Sat 14",
-                "meta": "2 spots left",
-                "state": "active"
-              },
-              {
-                "label": "Sun 15",
-                "meta": "Fully booked",
-                "state": "muted"
-              },
-              {
-                "label": "Sat 21",
-                "meta": "8 spots left"
-              }
-            ],
-            "note": {
-              "title": "Booking confirmed",
-              "text": "Deposit paid · 2 guests"
-            },
-            "badge": {
-              "value": "24/7",
-              "label": "Bookings open"
+              "value": "4",
+              "label": "Branches in sync"
             }
           }
         },
@@ -501,6 +390,125 @@
           }
         },
         {
+          "id": "tours",
+          "slug": "travel-and-tours",
+          "nav": "Travel & tours",
+          "name": "Travel and tours",
+          "headline": "Take bookings while you sleep, without double-booking a seat.",
+          "problems": [
+            "You confirm every single booking by hand over chat.",
+            "Two people book the last spot on the same trip.",
+            "Customers cancel at the last minute and you lose the money."
+          ],
+          "fixes": [
+            "A booking page that shows real availability, day and night.",
+            "A spot disappears the moment it is taken, so no double bookings.",
+            "Customers pay a deposit when they book."
+          ],
+          "example": "A trekking company opens bookings for the season and wakes up to confirmed, paid trips instead of fifty unread chats.",
+          "link": {
+            "label": "See solutions for travel and tours",
+            "href": "/solutions/travel-and-tours"
+          },
+          "visual": {
+            "kind": "calendar",
+            "title": "Sunset hill trek · March",
+            "labels": [
+              "M",
+              "T",
+              "W",
+              "T",
+              "F",
+              "S",
+              "S"
+            ],
+            "items": [
+              {
+                "label": "Sat 14",
+                "meta": "2 spots left",
+                "state": "active"
+              },
+              {
+                "label": "Sun 15",
+                "meta": "Fully booked",
+                "state": "muted"
+              },
+              {
+                "label": "Sat 21",
+                "meta": "8 spots left"
+              }
+            ],
+            "note": {
+              "title": "Booking confirmed",
+              "text": "Deposit paid · 2 guests"
+            },
+            "badge": {
+              "value": "24/7",
+              "label": "Bookings open"
+            }
+          }
+        },
+        {
+          "id": "franchise",
+          "slug": "franchises",
+          "nav": "Franchises",
+          "name": "Franchises",
+          "headline": "Every outlet runs the same way. You see all of them from one screen.",
+          "problems": [
+            "Each branch keeps its own sales and stock, so head office sees totals days late.",
+            "Menus, prices and offers drift from one outlet to the next.",
+            "Phone and WhatsApp orders get written down wrong."
+          ],
+          "fixes": [
+            "One system for every outlet, with live sales for the whole chain.",
+            "Menus, prices and offers set once at head office and sent to every branch.",
+            "Orders go straight to each kitchen screen, exactly as the customer typed them."
+          ],
+          "example": "A burger chain with six outlets changes a price once at head office. Every branch menu and kitchen screen updates the same minute.",
+          "link": {
+            "label": "See solutions for franchises",
+            "href": "/solutions/franchises"
+          },
+          "visual": {
+            "kind": "kitchen",
+            "title": "Kitchen screen",
+            "labels": [
+              "Cooking",
+              "Ready"
+            ],
+            "items": [
+              {
+                "label": "Table 4",
+                "meta": "2 × Margherita, 1 × Cola",
+                "state": "active"
+              },
+              {
+                "label": "Delivery #1042",
+                "meta": "Chicken biryani",
+                "state": "active"
+              },
+              {
+                "label": "Table 2",
+                "meta": "Pasta alfredo",
+                "state": "done"
+              },
+              {
+                "label": "Pickup #1039",
+                "meta": "3 × Classic burger",
+                "state": "done"
+              }
+            ],
+            "note": {
+              "title": "New order, Banani outlet",
+              "text": "Sent straight to that kitchen"
+            },
+            "badge": {
+              "value": "6 outlets",
+              "label": "Live on one dashboard"
+            }
+          }
+        },
+        {
           "id": "pet-care",
           "slug": "pet-businesses",
           "nav": "Pet care",
@@ -552,58 +560,50 @@
           }
         },
         {
-          "id": "retail",
-          "slug": "fmcg-and-retail",
-          "nav": "Retail & FMCG",
-          "name": "Retail and FMCG",
-          "headline": "Know what is on the shelf, in the store room and on the way.",
+          "id": "store",
+          "slug": "ecommerce",
+          "nav": "Online stores",
+          "name": "Online stores",
+          "headline": "Sell more without answering the same messages all day.",
           "problems": [
-            "Stock is counted by hand, so the numbers are always out of date.",
-            "Fast sellers run out while slow ones pile up.",
-            "Orders from shops and distributors come in by phone and get missed."
+            "Customers give up because checkout is slow or confusing.",
+            "You find out an item is sold out only after someone has paid.",
+            "Orders arrive by chat, phone and website, and some get missed."
           ],
           "fixes": [
-            "Every sale updates stock across all your branches.",
-            "Low-stock alerts and suggested reorders before shelves go empty.",
-            "Shops and distributors order from an app, straight into your system."
+            "A fast shop where customers pay in a few taps.",
+            "Stock updates with every sale and warns you before you run out.",
+            "Every order, from every channel, lands in one list."
           ],
-          "example": "A chain of mini-marts sees every branch's stock on one screen and reorders before the weekend rush.",
+          "example": "A clothing shop gets an alert when a best seller drops to 3 left, reorders in time, and stops refunding paid orders.",
           "link": {
-            "label": "See solutions for retail",
-            "href": "/solutions/fmcg-and-retail"
+            "label": "See solutions for online stores",
+            "href": "/solutions/ecommerce"
           },
           "visual": {
-            "kind": "stock",
-            "title": "Stock · all branches",
-            "labels": [
-              "Low"
-            ],
+            "kind": "shop",
+            "title": "Linen shirt · Sand",
             "items": [
               {
-                "label": "Rice 25 kg",
-                "meta": "18",
+                "label": "$38.00",
+                "meta": "Free delivery this week"
+              },
+              {
+                "label": "Only 3 left",
                 "state": "alert"
               },
               {
-                "label": "Cooking oil 5 L",
-                "meta": "64"
-              },
-              {
-                "label": "Tea 400 g",
-                "meta": "82"
-              },
-              {
-                "label": "Soap bar",
-                "meta": "47"
+                "label": "Buy now",
+                "state": "active"
               }
             ],
             "note": {
-              "title": "Reorder suggested",
-              "text": "Rice 25 kg × 40 bags"
+              "title": "New order #2041",
+              "text": "Paid · packing now"
             },
             "badge": {
-              "value": "4",
-              "label": "Branches in sync"
+              "value": "3 left",
+              "label": "Restock alert sent"
             }
           }
         },
@@ -734,7 +734,7 @@
           "step": "02",
           "name": "Design",
           "timing": "Week 2",
-          "text": "You click through the real screens and approve each one before we write any code.",
+          "text": "You click through the real screens and know exactly how the final system will work and look.",
           "outcome": "A clickable preview of your software"
         },
         {
@@ -769,7 +769,7 @@
         "href": "/success-stories"
       },
       "quote": {
-        "text": "What impressed me most was their exceptional communication and technical precision. Throughout the entire development process, they were incredibly responsive—promptly answering questions and solving complex challenges. They made an ambitious electric taxi launch feel seamless and stress-free.",
+        "text": "What impressed me most was their exceptional communication and technical precision. Throughout the entire development process, they were incredibly responsive promptly answering questions and solving complex challenges. They made an ambitious electric taxi launch feel seamless and stress  free.",
         "name": "Management Team",
         "role": "DUDU CAR SDN. BHD., Malaysia"
       }
@@ -971,68 +971,8 @@
     },
     "industries": [
       {
-        "slug": "ecommerce",
-        "number": "01",
-        "name": "Ecommerce stores",
-        "pain": "Custom storefronts, high-converting checkout, and automated inventory management.",
-        "build": [
-          "Custom storefront and checkout",
-          "Inventory and order admin",
-          "Multi vendor marketplaces"
-        ],
-        "linkLabel": "Ecommerce solutions",
-        "seoTitle": "Custom Ecommerce Development",
-        "seoDescription": "Custom storefronts, checkout, inventory and multi vendor marketplaces for online stores that have outgrown their template.",
-        "intro": "A fast storefront and an admin your team can run without a developer."
-      },
-      {
-        "slug": "food-and-restaurants",
-        "number": "02",
-        "name": "Food and restaurants",
-        "pain": "Direct online ordering, table reservations, and seamless kitchen POS integration.",
-        "build": [
-          "Online ordering and table reservations",
-          "Kitchen display and POS links",
-          "Loyalty and repeat orders"
-        ],
-        "linkLabel": "Food solutions",
-        "seoTitle": "Restaurant Ordering and Booking Software",
-        "seoDescription": "Direct online ordering, table reservations and kitchen display systems that keep the margin that delivery apps take.",
-        "intro": "Take orders and bookings directly, and send them straight to the kitchen."
-      },
-      {
-        "slug": "travel-and-tours",
-        "number": "03",
-        "name": "Travel and tours",
-        "pain": "Real-time booking engine with live calendar availability and instant deposit payments.",
-        "build": [
-          "Tour and activity booking engine",
-          "Live availability calendar",
-          "Deposits and online payments"
-        ],
-        "linkLabel": "Travel solutions",
-        "seoTitle": "Tour and Activity Booking Software",
-        "seoDescription": "Booking engines with live availability, deposits and online payments for tour operators and travel businesses.",
-        "intro": "Let guests book and pay online while your calendar stays correct."
-      },
-      {
-        "slug": "clinics-and-doctors",
-        "number": "04",
-        "name": "Clinics and doctors",
-        "pain": "Online appointment scheduling, digital patient records, and paperless prescriptions.",
-        "build": [
-          "Online appointment booking",
-          "Patient records and history",
-          "Digital prescriptions and test orders"
-        ],
-        "linkLabel": "Clinic solutions",
-        "seoTitle": "Clinic Management and Appointment Software",
-        "seoDescription": "Appointment booking, patient records and digital prescriptions for clinics and doctors who want less paperwork.",
-        "intro": "Shorter waiting rooms and records that are always where you need them."
-      },
-      {
         "slug": "diagnostic-centers",
-        "number": "05",
+        "number": "01",
         "name": "Diagnostic centers",
         "pain": "Digital test bookings, sample tracking, and automated lab reports sent online.",
         "build": [
@@ -1046,8 +986,38 @@
         "intro": "From sample to report, tracked and delivered to the patient online."
       },
       {
+        "slug": "fmcg-and-retail",
+        "number": "02",
+        "name": "FMCG and retail",
+        "pain": "Live stock inventory ERP, multi-store POS counters, and distributor order management.",
+        "build": [
+          "ERP for stock, purchasing and accounts",
+          "POS for shops and outlets",
+          "Distributor order management"
+        ],
+        "linkLabel": "Retail solutions",
+        "seoTitle": "ERP and POS Software for Retail and FMCG",
+        "seoDescription": "Stock, purchasing, POS and distributor ordering for FMCG and retail businesses that need to see inventory live.",
+        "intro": "Know what you have, what you sold and what to reorder."
+      },
+      {
+        "slug": "clinics-and-doctors",
+        "number": "03",
+        "name": "Clinics and doctors",
+        "pain": "Online appointment scheduling, digital patient records, and paperless prescriptions.",
+        "build": [
+          "Online appointment booking",
+          "Patient records and history",
+          "Digital prescriptions and test orders"
+        ],
+        "linkLabel": "Clinic solutions",
+        "seoTitle": "Clinic Management and Appointment Software",
+        "seoDescription": "Appointment booking, patient records and digital prescriptions for clinics and doctors who want less paperwork.",
+        "intro": "Shorter waiting rooms and records that are always where you need them."
+      },
+      {
         "slug": "schools",
-        "number": "06",
+        "number": "04",
         "name": "Schools",
         "pain": "Unified portal for student admissions, attendance, fees, and digital report cards.",
         "build": [
@@ -1059,6 +1029,36 @@
         "seoTitle": "School Management Software",
         "seoDescription": "Admissions, attendance, fees and report cards in one system for schools replacing registers and spreadsheets.",
         "intro": "One place for students, classes, fees and results."
+      },
+      {
+        "slug": "travel-and-tours",
+        "number": "05",
+        "name": "Travel and tours",
+        "pain": "Real-time booking engine with live calendar availability and instant deposit payments.",
+        "build": [
+          "Tour and activity booking engine",
+          "Live availability calendar",
+          "Deposits and online payments"
+        ],
+        "linkLabel": "Travel solutions",
+        "seoTitle": "Tour and Activity Booking Software",
+        "seoDescription": "Booking engines with live availability, deposits and online payments for tour operators and travel businesses.",
+        "intro": "Let guests book and pay online while your calendar stays correct."
+      },
+      {
+        "slug": "franchises",
+        "number": "06",
+        "name": "Franchises",
+        "pain": "One system for every outlet: central menus and prices, branch POS and live sales across the chain.",
+        "build": [
+          "Central menu, price and offer control",
+          "Branch POS, ordering and kitchen screens",
+          "Chain-wide sales, stock and royalty reports"
+        ],
+        "linkLabel": "Franchise solutions",
+        "seoTitle": "Franchise Management and POS Software",
+        "seoDescription": "One system for every outlet: central menus and prices, branch POS and kitchen screens, and live sales across the whole chain.",
+        "intro": "Run every outlet the same way and see the whole chain from one screen."
       },
       {
         "slug": "pet-businesses",
@@ -1076,19 +1076,19 @@
         "intro": "Sell products and book care from the same system."
       },
       {
-        "slug": "fmcg-and-retail",
+        "slug": "ecommerce",
         "number": "08",
-        "name": "FMCG and retail",
-        "pain": "Live stock inventory ERP, multi-store POS counters, and distributor order management.",
+        "name": "Ecommerce stores",
+        "pain": "Custom storefronts, high-converting checkout, and automated inventory management.",
         "build": [
-          "ERP for stock, purchasing and accounts",
-          "POS for shops and outlets",
-          "Distributor order management"
+          "Custom storefront and checkout",
+          "Inventory and order admin",
+          "Multi vendor marketplaces"
         ],
-        "linkLabel": "Retail solutions",
-        "seoTitle": "ERP and POS Software for Retail and FMCG",
-        "seoDescription": "Stock, purchasing, POS and distributor ordering for FMCG and retail businesses that need to see inventory live.",
-        "intro": "Know what you have, what you sold and what to reorder."
+        "linkLabel": "Ecommerce solutions",
+        "seoTitle": "Custom Ecommerce Development",
+        "seoDescription": "Custom storefronts, checkout, inventory and multi vendor marketplaces for online stores that have outgrown their template.",
+        "intro": "A fast storefront and an admin your team can run without a developer."
       }
     ],
     "startup": {
@@ -1146,13 +1146,18 @@
         "country": "Malaysia",
         "timeline": "10 weeks",
         "team": "4 engineers",
-        "platforms": "Android (Google Play)",
+        "platforms": "iOS and Android (App Store and Google Play)",
         "liveSince": "May 2026",
-        "heroLabel": "DUDU Car passenger app on Google Play",
+        "heroLabel": "DUDU Car passenger app on the App Store and Google Play",
+        "heroImage": {
+          "src": "/stories/dudu-car.jpg",
+          "width": 3584,
+          "height": 1184
+        },
         "results": [
           {
             "value": "5,000+",
-            "label": "Downloads on Google Play"
+            "label": "Downloads on the App Store and Google Play"
           },
           {
             "value": "100%",
@@ -1184,8 +1189,22 @@
           }
         ],
         "screenshots": [
-          "Passenger booking screen with live electric taxi map",
-          "Trip telemetry and digital payment summary"
+          {
+            "label": "Passenger booking screen with live electric taxi map",
+            "image": {
+              "src": "/stories/dudu-car-electric-taxi-booking-app/screen-1.png",
+              "width": 1600,
+              "height": 1000
+            }
+          },
+          {
+            "label": "Trip telemetry and digital payment summary",
+            "image": {
+              "src": "/stories/dudu-car-electric-taxi-booking-app/screen-2.png",
+              "width": 1600,
+              "height": 1000
+            }
+          }
         ],
         "phases": [
           {
@@ -1201,15 +1220,16 @@
           {
             "name": "Build",
             "duration": "5 weeks",
-            "note": "Built Android app, geospatial matching engine, and integrated Google Maps."
+            "note": "Built the iOS and Android apps, geospatial matching engine, and integrated Google Maps."
           },
           {
             "name": "Launch",
             "duration": "1 week",
-            "note": "Successfully published to Google Play with instant initial passenger adoption."
+            "note": "Successfully published to the App Store and Google Play with instant initial passenger adoption."
           }
         ],
         "tech": [
+          "iOS",
           "Android",
           "React Native",
           "WebSockets",
@@ -1228,8 +1248,8 @@
         "summary": "DUDU Car runs an all electric taxi service in Kuala Lumpur and Selangor. With their app, riders book a nearby driver in real time, follow the car live and pay in cash or digitally.",
         "problemShort": "DUDU Car needed a ride hailing app to launch its electric taxi service to the public.",
         "builtShort": "A passenger app that matches riders with the nearest available electric taxi, with live tracking, in-app calls and messages, and cash or digital payment.",
-        "resultShort": "Live on Google Play with 5,000+ downloads",
-        "whereItStands": "Live on Google Play with 5,000+ active downloads.",
+        "resultShort": "Live on the App Store and Google Play with 5,000+ downloads",
+        "whereItStands": "Live on the App Store and Google Play with 5,000+ active downloads.",
         "publishedAt": "2026-10-15"
       },
       {
@@ -1237,20 +1257,20 @@
         "timeline": "8 weeks",
         "team": "3 engineers",
         "platforms": "Web & SMS Gateway",
-        "liveSince": "August 2026",
+        "liveSince": "Pilot branch",
         "heroLabel": "MediScan patient portal and online report viewer",
         "results": [
           {
             "value": "65%",
-            "label": "Faster report delivery to patients"
+            "label": "Faster report delivery in the pilot branch"
           },
           {
             "value": "24 hrs",
-            "label": "Manual front-desk phone calls saved each week"
+            "label": "Front-desk phone calls saved each week so far"
           },
           {
             "value": "12,000+",
-            "label": "Digital lab reports delivered online"
+            "label": "Lab reports delivered online so far"
           }
         ],
         "problem": "MediScan was printing thousands of physical test reports every month. Patients crowded waiting lobbies just to collect results, and lab technicians spent hours cross-referencing paper logs. Misplaced reports and handwriting errors led to frequent patient frustration and lost operational time.",
@@ -1274,8 +1294,22 @@
           }
         ],
         "screenshots": [
-          "Pathologist digital verification screen",
-          "Patient mobile report download view"
+          {
+            "label": "Pathologist digital verification screen",
+            "image": {
+              "src": "/stories/diagnostic-center-paper-reports-to-online-delivery/screen-1.png",
+              "width": 1600,
+              "height": 1000
+            }
+          },
+          {
+            "label": "Patient mobile report download view",
+            "image": {
+              "src": "/stories/diagnostic-center-paper-reports-to-online-delivery/screen-2.png",
+              "width": 1600,
+              "height": 1000
+            }
+          }
         ],
         "phases": [
           {
@@ -1296,7 +1330,7 @@
           {
             "name": "Launch",
             "duration": "1 week",
-            "note": "Deployed on-premise cloud hybrid with complete technician onboarding."
+            "note": "In progress: rolling out branch by branch, with hands-on training for every technician."
           }
         ],
         "tech": [
@@ -1314,13 +1348,18 @@
         "client": "MediScan Diagnostics",
         "title": "MediScan Diagnostics: Automated lab test booking and digital report delivery",
         "industry": "Diagnostic centers",
-        "status": "completed",
+        "status": "in-progress",
         "summary": "MediScan is a multi-branch diagnostic network in Dhaka. With their modern portal, patients receive test reports online via SMS the moment the lab signs off, eliminating lobby queues.",
         "problemShort": "Reports were delayed and front desks overwhelmed because test results only lived on paper.",
         "builtShort": "An automated lab management system with barcode tracking and instant digital delivery.",
         "resultShort": "Report turnaround time down 65% with zero paper queues",
-        "whereItStands": "",
-        "publishedAt": "2026-10-02"
+        "whereItStands": "Sample tracking and doctor sign-off are live in the first branch. Online report delivery rolls out to every branch next.",
+        "publishedAt": "2026-10-02",
+        "heroImage": {
+          "src": "/stories/diagnostic-center-paper-reports-to-online-delivery/hero.png",
+          "width": 3000,
+          "height": 1000
+        }
       },
       {
         "country": "United Kingdom",
@@ -1364,8 +1403,22 @@
           }
         ],
         "screenshots": [
-          "Student attendance overview",
-          "Term fee collection analytics"
+          {
+            "label": "Student attendance overview",
+            "image": {
+              "src": "/stories/school-management-system/screen-1.png",
+              "width": 1600,
+              "height": 1000
+            }
+          },
+          {
+            "label": "Term fee collection analytics",
+            "image": {
+              "src": "/stories/school-management-system/screen-2.png",
+              "width": 1600,
+              "height": 1000
+            }
+          }
         ],
         "phases": [
           {
@@ -1410,7 +1463,12 @@
         "builtShort": "A unified cloud school management system with parent payments, attendance tracking, and digital report cards.",
         "resultShort": "",
         "whereItStands": "Admissions and attendance live in private beta; full parent portal launching November 2026.",
-        "publishedAt": "2026-08-31"
+        "publishedAt": "2026-08-31",
+        "heroImage": {
+          "src": "/stories/school-management-system/hero.png",
+          "width": 3000,
+          "height": 1000
+        }
       },
       {
         "country": "Singapore",
@@ -1454,8 +1512,22 @@
           }
         ],
         "screenshots": [
-          "Doctor appointment calendar schedule",
-          "Patient mobile booking and reminder screen"
+          {
+            "label": "Doctor appointment calendar schedule",
+            "image": {
+              "src": "/stories/clinic-appointment-app/screen-1.png",
+              "width": 1600,
+              "height": 1000
+            }
+          },
+          {
+            "label": "Patient mobile booking and reminder screen",
+            "image": {
+              "src": "/stories/clinic-appointment-app/screen-2.png",
+              "width": 1600,
+              "height": 1000
+            }
+          }
         ],
         "phases": [
           {
@@ -1500,7 +1572,12 @@
         "builtShort": "A multi-doctor appointment platform with automated WhatsApp reminders and digital medical records.",
         "resultShort": "40% drop in lobby waiting times and 75% fewer no-shows",
         "whereItStands": "",
-        "publishedAt": "2026-10-12"
+        "publishedAt": "2026-10-12",
+        "heroImage": {
+          "src": "/stories/clinic-appointment-app/hero.png",
+          "width": 3000,
+          "height": 1000
+        }
       },
       {
         "country": "Australia",
@@ -1544,8 +1621,22 @@
           }
         ],
         "screenshots": [
-          "Kitchen display order queue tablet",
-          "Customer direct mobile takeout menu"
+          {
+            "label": "Kitchen display order queue tablet",
+            "image": {
+              "src": "/stories/restaurant-ordering-and-kitchen-display/screen-1.png",
+              "width": 1600,
+              "height": 1000
+            }
+          },
+          {
+            "label": "Customer direct mobile takeout menu",
+            "image": {
+              "src": "/stories/restaurant-ordering-and-kitchen-display/screen-2.png",
+              "width": 1600,
+              "height": 1000
+            }
+          }
         ],
         "phases": [
           {
@@ -1583,14 +1674,19 @@
         "slug": "restaurant-ordering-and-kitchen-display",
         "client": "Spice Route Kitchen",
         "title": "Spice Route Kitchen: Direct online ordering and live kitchen display system",
-        "industry": "Food and restaurants",
+        "industry": "Franchises",
         "status": "in-progress",
         "summary": "Spice Route Kitchen is an acclaimed Asian fusion dining room and takeaway in Melbourne. With their direct web menu and digital kitchen screen, they reclaimed 30% aggregator commissions and streamlined food prep.",
         "problemShort": "Delivery aggregators took 30% margins while messy paper receipts caused cooking delays.",
         "builtShort": "A direct online ordering platform paired with a real-time kitchen display system.",
         "resultShort": "28% commission saved on every direct order",
         "whereItStands": "Live in Melbourne flagship; expanding to second location in December 2026.",
-        "publishedAt": "2026-09-18"
+        "publishedAt": "2026-09-18",
+        "heroImage": {
+          "src": "/stories/restaurant-ordering-and-kitchen-display/hero.png",
+          "width": 3000,
+          "height": 1000
+        }
       }
     ]
   },
